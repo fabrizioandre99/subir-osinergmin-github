@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmCiiuMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmCiiu">
+        <!--@Table ADMIN_GART.ADM_CIIU-->
+        <id column="COD_CIIU" jdbcType="CHAR" property="codCiiu"/>
+        <result column="CIIU" jdbcType="VARCHAR" property="ciiu"/>
+        <result column="COD_ACTIVIDAD_ECONOMICA" jdbcType="CHAR" property="codActividadEconomica"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_CIIU,
+        CIIU,
+        COD_ACTIVIDAD_ECONOMICA,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_CIIU
+        where TRIM(COD_CIIU) = TRIM(#{codCiiu,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_CIIU
+        where TRIM(COD_CIIU) = TRIM(#{codCiiu,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCiiu">
+        insert into ADMIN_GART.ADM_CIIU (COD_CIIU, CIIU, COD_ACTIVIDAD_ECONOMICA,
+                                         AD_COD_USUARIO, AD_FECHA)
+        values (#{codCiiu,jdbcType=CHAR}, #{ciiu,jdbcType=VARCHAR}, #{codActividadEconomica,jdbcType=CHAR},
+                #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCiiu">
+        insert into ADMIN_GART.ADM_CIIU
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codCiiu != null">
+                COD_CIIU,
+            </if>
+            <if test="ciiu != null">
+                CIIU,
+            </if>
+            <if test="codActividadEconomica != null">
+                COD_ACTIVIDAD_ECONOMICA,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codCiiu != null">
+                #{codCiiu,jdbcType=CHAR},
+            </if>
+            <if test="ciiu != null">
+                #{ciiu,jdbcType=VARCHAR},
+            </if>
+            <if test="codActividadEconomica != null">
+                #{codActividadEconomica,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCiiu">
+        update ADMIN_GART.ADM_CIIU
+        <set>
+            <if test="ciiu != null">
+                CIIU = #{ciiu,jdbcType=VARCHAR},
+            </if>
+            <if test="codActividadEconomica != null">
+                COD_ACTIVIDAD_ECONOMICA = #{codActividadEconomica,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_CIIU = #{codCiiu,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCiiu">
+        update ADMIN_GART.ADM_CIIU
+        set CIIU                    = #{ciiu,jdbcType=VARCHAR},
+            COD_ACTIVIDAD_ECONOMICA = #{codActividadEconomica,jdbcType=CHAR},
+            AD_COD_USUARIO          = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA                = #{adFecha,jdbcType=TIMESTAMP}
+        where TRIM(COD_CIIU) = TRIM(#{codCiiu,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.ciiu.AdmCiiuDTO">
+        <!--@Table ADMIN_GART.ADM_CIIU-->
+        <id column="COD_CIIU" jdbcType="CHAR" property="codCiiu"/>
+        <result column="CIIU" jdbcType="VARCHAR" property="ciiu"/>
+        <result column="COD_ACTIVIDAD_ECONOMICA" jdbcType="CHAR" property="codActividadEconomica"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_CIIU,
+               CIIU,
+               COD_ACTIVIDAD_ECONOMICA
+        from ADMIN_GART.ADM_CIIU
+    </select>
+
+    <select id="listarFiltro" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.ciiu.AdmCiiuSearchDTO"
+            resultMap="BaseResultMapDTO">
+        SELECT COD_CIIU,
+               CIIU,
+               COD_ACTIVIDAD_ECONOMICA
+        FROM ADMIN_GART.ADM_CIIU
+        WHERE 1 = 1
+        <if test="codCiiu != null and codCiiu != ''">
+            AND COD_CIIU LIKE '%' || #{codCiiu} || '%'
+        </if>
+        <if test="ciiu != null and ciiu != ''">
+            AND UPPER(
+                        TRANSLATE(CIIU, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) LIKE UPPER(
+                        TRANSLATE('%' || #{ciiu} || '%', 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                       )
+        </if>
+    </select>
+</mapper>

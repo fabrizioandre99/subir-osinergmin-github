@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmGrupoGeneracionMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoGeneracion">
+        <!--@Table ADMIN_GART.ADM_GRUPO_GENERACION-->
+        <id column="COD_GRUPO_GENERACION" jdbcType="CHAR" property="codGrupoGeneracion"/>
+        <result column="NOM_GRUPO_GENERACION" jdbcType="VARCHAR" property="nomGrupoGeneracion"/>
+        <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta"/>
+        <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja"/>
+        <result column="COD_TIPO_COMBUSTIBLE" jdbcType="CHAR" property="codTipoCombustible"/>
+        <result column="COD_CENTRAL_GENERACION" jdbcType="CHAR" property="codCentralGeneracion"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_GRUPO_GENERACION_ANT" jdbcType="CHAR" property="codGrupoGeneracionAnt"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_GRUPO_GENERACION,
+        NOM_GRUPO_GENERACION,
+        FEC_ALTA,
+        FEC_BAJA,
+        COD_TIPO_COMBUSTIBLE,
+        COD_CENTRAL_GENERACION,
+        ESTADO,
+        AD_COD_USUARIO,
+        AD_FECHA,
+        COD_COES,
+        COD_GRUPO_GENERACION_ANT
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_GRUPO_GENERACION
+        where TRIM(COD_GRUPO_GENERACION) = TRIM(#{codGrupoGeneracion,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_GRUPO_GENERACION
+        where TRIM(COD_GRUPO_GENERACION) = TRIM(#{codGrupoGeneracion,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoGeneracion">
+        insert into ADMIN_GART.ADM_GRUPO_GENERACION (COD_GRUPO_GENERACION, NOM_GRUPO_GENERACION,
+                                                     FEC_ALTA, FEC_BAJA, COD_TIPO_COMBUSTIBLE,
+                                                     COD_CENTRAL_GENERACION, ESTADO, AD_COD_USUARIO,
+                                                     AD_FECHA, COD_COES, COD_GRUPO_GENERACION_ANT)
+        values (#{codGrupoGeneracion,jdbcType=CHAR}, #{nomGrupoGeneracion,jdbcType=VARCHAR},
+                #{fecAlta,jdbcType=TIMESTAMP}, #{fecBaja,jdbcType=TIMESTAMP}, #{codTipoCombustible,jdbcType=CHAR},
+                #{codCentralGeneracion,jdbcType=CHAR}, #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR},
+                #{adFecha,jdbcType=TIMESTAMP}, #{codCoes,jdbcType=VARCHAR}, #{codGrupoGeneracionAnt,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoGeneracion">
+        insert into ADMIN_GART.ADM_GRUPO_GENERACION
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codGrupoGeneracion != null">
+                COD_GRUPO_GENERACION,
+            </if>
+            <if test="nomGrupoGeneracion != null">
+                NOM_GRUPO_GENERACION,
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA,
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA,
+            </if>
+            <if test="codTipoCombustible != null">
+                COD_TIPO_COMBUSTIBLE,
+            </if>
+            <if test="codCentralGeneracion != null">
+                COD_CENTRAL_GENERACION,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codGrupoGeneracionAnt != null">
+                COD_GRUPO_GENERACION_ANT,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codGrupoGeneracion != null">
+                #{codGrupoGeneracion,jdbcType=CHAR},
+            </if>
+            <if test="nomGrupoGeneracion != null">
+                #{nomGrupoGeneracion,jdbcType=VARCHAR},
+            </if>
+            <if test="fecAlta != null">
+                #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codTipoCombustible != null">
+                #{codTipoCombustible,jdbcType=CHAR},
+            </if>
+            <if test="codCentralGeneracion != null">
+                #{codCentralGeneracion,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codGrupoGeneracionAnt != null">
+                #{codGrupoGeneracionAnt,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoGeneracion">
+        update ADMIN_GART.ADM_GRUPO_GENERACION
+        <set>
+            <if test="nomGrupoGeneracion != null">
+                NOM_GRUPO_GENERACION = #{nomGrupoGeneracion,jdbcType=VARCHAR},
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codTipoCombustible != null">
+                COD_TIPO_COMBUSTIBLE = #{codTipoCombustible,jdbcType=CHAR},
+            </if>
+            <if test="codCentralGeneracion != null">
+                COD_CENTRAL_GENERACION = #{codCentralGeneracion,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codCoes != null">
+                COD_COES = #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codGrupoGeneracionAnt != null">
+                COD_GRUPO_GENERACION_ANT = #{codGrupoGeneracionAnt,jdbcType=CHAR},
+            </if>
+        </set>
+        where COD_GRUPO_GENERACION = #{codGrupoGeneracion,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoGeneracion">
+        update ADMIN_GART.ADM_GRUPO_GENERACION
+        set NOM_GRUPO_GENERACION     = #{nomGrupoGeneracion,jdbcType=VARCHAR},
+            FEC_ALTA                 = #{fecAlta,jdbcType=TIMESTAMP},
+            FEC_BAJA                 = #{fecBaja,jdbcType=TIMESTAMP},
+            COD_TIPO_COMBUSTIBLE     = #{codTipoCombustible,jdbcType=CHAR},
+            COD_CENTRAL_GENERACION   = #{codCentralGeneracion,jdbcType=CHAR},
+            ESTADO                   = #{estado,jdbcType=CHAR},
+            COD_COES                 = #{codCoes,jdbcType=VARCHAR},
+            COD_GRUPO_GENERACION_ANT = #{codGrupoGeneracionAnt,jdbcType=CHAR}
+        where TRIM(COD_GRUPO_GENERACION) = TRIM(#{codGrupoGeneracion,jdbcType=CHAR})
+    </update>
+    <resultMap id="BaseResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.grupoGeneracion.AdmGrupoGeneracionDTO">
+        <!--@Table ADMIN_GART.ADM_GRUPO_GENERACION-->
+        <result column="COD_GRUPO_GENERACION" jdbcType="CHAR" property="codGrupoGeneracion"/>
+        <result column="NOM_GRUPO_GENERACION" jdbcType="VARCHAR" property="nomGrupoGeneracion"/>
+        <result column="COD_TIPO_COMBUSTIBLE" jdbcType="CHAR" property="codTipoCombustible"/>
+        <result column="COD_CENTRAL_GENERACION" jdbcType="CHAR" property="codCentralGeneracion"/>
+        <result column="NOM_CENTRAL_GENERACION" jdbcType="VARCHAR" property="nomCentralGeneracion"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta"/>
+        <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_GRUPO_GENERACION_ANT" jdbcType="CHAR" property="codGrupoGeneracionAnt"/>
+        <result column="NOM_TIPO_COMBUSTIBLE" jdbcType="VARCHAR" property="nomTipoCombustible"/>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_GRUPO_GENERACION,
+               NOM_GRUPO_GENERACION,
+               COD_TIPO_COMBUSTIBLE,
+               COD_CENTRAL_GENERACION,
+               ESTADO,
+               FEC_ALTA,
+               FEC_BAJA,
+               COD_COES,
+               COD_GRUPO_GENERACION_ANT
+        from ADMIN_GART.ADM_GRUPO_GENERACION
+    </select>
+
+    <select id="filtro" resultMap="BaseResultMapDTO">
+        SELECT G.COD_GRUPO_GENERACION,
+               G.NOM_GRUPO_GENERACION,
+               G.COD_TIPO_COMBUSTIBLE,
+               G.COD_CENTRAL_GENERACION,
+               G.ESTADO,
+               G.FEC_ALTA,
+               G.FEC_BAJA,
+               G.COD_COES,
+               G.COD_GRUPO_GENERACION_ANT,
+               C.NOM_CENTRAL_GENERACION AS NOM_CENTRAL_GENERACION,
+               T.NOM_TIPO_COMBUSTIBLE   AS NOM_TIPO_COMBUSTIBLE
+        FROM ADMIN_GART.ADM_GRUPO_GENERACION G
+                 LEFT JOIN ADMIN_GART.ADM_CENTRAL_GENERACION C ON G.COD_CENTRAL_GENERACION = C.COD_CENTRAL_GENERACION
+                 LEFT JOIN ADMIN_GART.ADM_TIPO_COMBUSTIBLE T ON G.COD_TIPO_COMBUSTIBLE = T.COD_TIPO_COMBUSTIBLE
+        WHERE 1 = 1
+        <if test="codGrupoGeneracion != null and codGrupoGeneracion != ''">
+            AND NLSSORT(G.COD_GRUPO_GENERACION, 'NLS_SORT=SPANISH_AI') LIKE
+                '%' || NLSSORT(#{codGrupoGeneracion}, 'NLS_SORT=SPANISH_AI') || '%'
+        </if>
+        <if test="nomGrupoGeneracion != null and nomGrupoGeneracion != ''">
+            AND NLSSORT(G.NOM_GRUPO_GENERACION, 'NLS_SORT=SPANISH_AI') LIKE
+                '%' || NLSSORT(#{nomGrupoGeneracion}, 'NLS_SORT=SPANISH_AI') || '%'
+        </if>
+        <if test="codCentralGeneracion != null and codCentralGeneracion != ''">
+            AND NLSSORT(G.COD_CENTRAL_GENERACION, 'NLS_SORT=SPANISH_AI') LIKE
+                '%' || NLSSORT(#{codCentralGeneracion}, 'NLS_SORT=SPANISH_AI') || '%'
+        </if>
+        <if test="estado != null and estado != ''">
+            AND NLSSORT(G.ESTADO, 'NLS_SORT=SPANISH_AI') LIKE '%' || NLSSORT(#{estado}, 'NLS_SORT=SPANISH_AI') || '%'
+        </if>
+    </select>
+
+
+    <delete id="eliminarCodCentral" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_GRUPO_GENERACION
+        where TRIM(COD_CENTRAL_GENERACION) = TRIM(#{codCentralGeneracion,jdbcType=CHAR})
+    </delete>
+
+    <select id="selectByCodCentralGeneracionList" parameterType="java.util.List" resultMap="BaseResultMapDTO">
+        SELECT G.COD_GRUPO_GENERACION,
+               G.NOM_GRUPO_GENERACION,
+               G.COD_TIPO_COMBUSTIBLE,
+               G.COD_CENTRAL_GENERACION,
+               G.ESTADO,
+               G.FEC_ALTA,
+               G.FEC_BAJA,
+               G.COD_COES,
+               G.COD_GRUPO_GENERACION_ANT,
+               T.NOM_TIPO_COMBUSTIBLE
+        FROM ADMIN_GART.ADM_GRUPO_GENERACION G
+                 LEFT JOIN ADMIN_GART.ADM_TIPO_COMBUSTIBLE T ON G.COD_TIPO_COMBUSTIBLE = T.COD_TIPO_COMBUSTIBLE
+        WHERE
+        G.COD_CENTRAL_GENERACION IN
+        <foreach item="item" index="index" collection="codCentralGeneracionList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

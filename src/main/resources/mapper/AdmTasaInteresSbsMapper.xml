@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTasaInteresSbsMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTasaInteresSbs">
+    <!--@Table ADMIN_GART.ADM_TASA_INTERES_SBS-->
+    <result column="FEC_TASA_EMITIDA" jdbcType="TIMESTAMP" property="fecTasaEmitida" />
+    <result column="TAMN" jdbcType="DECIMAL" property="tamn" />
+    <result column="TIPMN" jdbcType="DECIMAL" property="tipmn" />
+    <result column="TASA_ANUAL" jdbcType="DECIMAL" property="tasaAnual" />
+    <result column="TASA_MENSUAL" jdbcType="DECIMAL" property="tasaMensual" />
+    <result column="TASA_DIARIA" jdbcType="DECIMAL" property="tasaDiaria" />
+    <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro" />
+    <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion" />
+    <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion" />
+    <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion" />
+    <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion" />
+    <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion" />
+    <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FEC_TASA_EMITIDA, TAMN, TIPMN, TASA_ANUAL, TASA_MENSUAL, TASA_DIARIA, ESTADO_REGISTRO, 
+    USUARIO_CREACION, FECHA_CREACION, TERMINAL_CREACION, USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION, 
+    FECHA_ACTUALIZACION
+  </sql>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTasaInteresSbs">
+    insert into ADMIN_GART.ADM_TASA_INTERES_SBS (FEC_TASA_EMITIDA, TAMN, TIPMN, 
+      TASA_ANUAL, TASA_MENSUAL, TASA_DIARIA, 
+      ESTADO_REGISTRO, USUARIO_CREACION, FECHA_CREACION, 
+      TERMINAL_CREACION, USUARIO_ACTUALIZACION, 
+      TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION
+      )
+    values (#{fecTasaEmitida,jdbcType=TIMESTAMP}, #{tamn,jdbcType=DECIMAL}, #{tipmn,jdbcType=DECIMAL}, 
+      #{tasaAnual,jdbcType=DECIMAL}, #{tasaMensual,jdbcType=DECIMAL}, #{tasaDiaria,jdbcType=DECIMAL}, 
+      #{estadoRegistro,jdbcType=CHAR}, #{usuarioCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP}, 
+      #{terminalCreacion,jdbcType=VARCHAR}, #{usuarioActualizacion,jdbcType=VARCHAR}, 
+      #{terminalActualizacion,jdbcType=VARCHAR}, #{fechaActualizacion,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTasaInteresSbs">
+    insert into ADMIN_GART.ADM_TASA_INTERES_SBS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fecTasaEmitida != null">
+        FEC_TASA_EMITIDA,
+      </if>
+      <if test="tamn != null">
+        TAMN,
+      </if>
+      <if test="tipmn != null">
+        TIPMN,
+      </if>
+      <if test="tasaAnual != null">
+        TASA_ANUAL,
+      </if>
+      <if test="tasaMensual != null">
+        TASA_MENSUAL,
+      </if>
+      <if test="tasaDiaria != null">
+        TASA_DIARIA,
+      </if>
+      <if test="estadoRegistro != null">
+        ESTADO_REGISTRO,
+      </if>
+      <if test="usuarioCreacion != null">
+        USUARIO_CREACION,
+      </if>
+      <if test="fechaCreacion != null">
+        FECHA_CREACION,
+      </if>
+      <if test="terminalCreacion != null">
+        TERMINAL_CREACION,
+      </if>
+      <if test="usuarioActualizacion != null">
+        USUARIO_ACTUALIZACION,
+      </if>
+      <if test="terminalActualizacion != null">
+        TERMINAL_ACTUALIZACION,
+      </if>
+      <if test="fechaActualizacion != null">
+        FECHA_ACTUALIZACION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fecTasaEmitida != null">
+        #{fecTasaEmitida,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tamn != null">
+        #{tamn,jdbcType=DECIMAL},
+      </if>
+      <if test="tipmn != null">
+        #{tipmn,jdbcType=DECIMAL},
+      </if>
+      <if test="tasaAnual != null">
+        #{tasaAnual,jdbcType=DECIMAL},
+      </if>
+      <if test="tasaMensual != null">
+        #{tasaMensual,jdbcType=DECIMAL},
+      </if>
+      <if test="tasaDiaria != null">
+        #{tasaDiaria,jdbcType=DECIMAL},
+      </if>
+      <if test="estadoRegistro != null">
+        #{estadoRegistro,jdbcType=CHAR},
+      </if>
+      <if test="usuarioCreacion != null">
+        #{usuarioCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaCreacion != null">
+        #{fechaCreacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminalCreacion != null">
+        #{terminalCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="usuarioActualizacion != null">
+        #{usuarioActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalActualizacion != null">
+        #{terminalActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaActualizacion != null">
+        #{fechaActualizacion,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tasaInteres.TasaIntereDTO">
+    <result column="TAMN" jdbcType="DECIMAL" property="tamn" />
+    <result column="TIPMN" jdbcType="DECIMAL" property="tipmn" />
+    <result column="TASA_ANUAL" jdbcType="DECIMAL" property="tasaAnual" />
+    <result column="TASA_MENSUAL" jdbcType="DECIMAL" property="tasaMensual" />
+    <result column="TASA_DIARIA" jdbcType="DECIMAL" property="tasaDiaria" />
+    <result column="ESTADO_REGISTRO" jdbcType="VARCHAR" property="estadoRegistro" />
+    <result column="FEC_TASA_EMITIDA" jdbcType="TIMESTAMP" property="fecTasaEmitida" />
+  </resultMap>
+
+  <resultMap id="BaseResultMapString" type="pe.gob.osinergmin.prie.admin.backend.dto.tasaInteres.TasaInteresResult">
+    <result column="TAMN" jdbcType="INTEGER" property="tamn" />
+    <result column="TIPMN" jdbcType="INTEGER" property="tipmn" />
+    <result column="TASA_ANUAL" jdbcType="DECIMAL" property="tasaAnual" />
+    <result column="TASA_MENSUAL" jdbcType="DECIMAL" property="tasaMensual" />
+    <result column="TASA_DIARIA" jdbcType="DECIMAL" property="tasaDiaria" />
+    <result column="ESTADO_REGISTRO" jdbcType="VARCHAR" property="estadoRegistro" />
+    <result column="FEC_TASA_EMITIDA" jdbcType="VARCHAR" property="fecTasaEmitida" />
+  </resultMap>
+
+  <select id="listarConFiltroEstado" parameterType="map" resultMap="BaseResultMapString">
+    SELECT
+    TAMN, TIPMN, TASA_ANUAL, TASA_MENSUAL, TASA_DIARIA, ESTADO_REGISTRO,
+    TO_CHAR(FEC_TASA_EMITIDA, 'DD-MM-YYYY') AS FEC_TASA_EMITIDA
+    FROM ADMIN_GART.ADM_TASA_INTERES_SBS
+    WHERE 1=1
+    <if test="fecTasaEmitida != null and fecTasaEmitida != ''">
+      AND TRUNC(FEC_TASA_EMITIDA) = TO_DATE(#{fecTasaEmitida, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+    </if>
+  </select>
+
+  <select id="ListarTasaInteres" resultMap="BaseResultMapDTO">
+    SELECT
+      TAMN, TIPMN, TASA_ANUAL, TASA_MENSUAL, TASA_DIARIA,ESTADO_REGISTRO, FEC_TASA_EMITIDA
+    FROM ADMIN_GART.ADM_TASA_INTERES_SBS
+  </select>
+
+  <update id="updateByFecTasaEmitida" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTasaInteresSbs">
+    UPDATE ADMIN_GART.ADM_TASA_INTERES_SBS
+    SET
+    TAMN = #{tamn, jdbcType=DECIMAL},
+    TIPMN = #{tipmn, jdbcType=DECIMAL},
+    TASA_ANUAL = #{tasaAnual, jdbcType=DECIMAL},
+    TASA_MENSUAL = #{tasaMensual, jdbcType=DECIMAL},
+    ESTADO_REGISTRO = #{estadoRegistro, jdbcType=VARCHAR},
+    USUARIO_ACTUALIZACION = #{usuarioActualizacion, jdbcType=VARCHAR},
+    TERMINAL_ACTUALIZACION = #{terminalActualizacion, jdbcType=VARCHAR},
+    FECHA_ACTUALIZACION = #{fechaActualizacion, jdbcType=TIMESTAMP}
+    WHERE TASA_DIARIA = #{tasaDiaria, jdbcType=DECIMAL}
+    AND TRUNC(FEC_TASA_EMITIDA) = TO_DATE(#{fecTasaEmitidaString, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+  </update>
+
+  <select id="selectByTasaDiaria" resultMap="BaseResultMap">
+    SELECT * FROM ADMIN_GART.ADM_TASA_INTERES_SBS
+    WHERE TASA_DIARIA = #{tasaDiaria, jdbcType=DECIMAL}
+    AND TRUNC(FEC_TASA_EMITIDA) = TO_DATE(#{fecTasaEmitida, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    DELETE FROM ADMIN_GART.ADM_TASA_INTERES_SBS
+    WHERE TASA_DIARIA = #{tasaDiaria, jdbcType=DECIMAL}
+    AND TRUNC(FEC_TASA_EMITIDA) = TO_DATE(#{fecTasaEmitida, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+  </delete>
+
+</mapper>

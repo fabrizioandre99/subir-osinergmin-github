@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmPliegoMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliego">
+        <!--@Table ADMIN_GART.ADM_PLIEGO-->
+        <id column="COD_PLIEGO" jdbcType="CHAR" property="codPliego"/>
+        <result column="NOM_PLIEGO" jdbcType="VARCHAR" property="nomPliego"/>
+        <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta"/>
+        <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_PLIEGO,
+        NOM_PLIEGO,
+        FEC_ALTA,
+        FEC_BAJA,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_PLIEGO
+        where trim(COD_PLIEGO) = trim(#{codPliego,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_PLIEGO
+        where COD_PLIEGO = #{codPliego,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliego">
+        insert into ADMIN_GART.ADM_PLIEGO (COD_PLIEGO, NOM_PLIEGO, FEC_ALTA,
+                                           FEC_BAJA, AD_COD_USUARIO, AD_FECHA)
+        values (#{codPliego,jdbcType=CHAR}, #{nomPliego,jdbcType=VARCHAR}, #{fecAlta,jdbcType=TIMESTAMP},
+                #{fecBaja,jdbcType=TIMESTAMP}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliego">
+        insert into ADMIN_GART.ADM_PLIEGO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codPliego != null">
+                COD_PLIEGO,
+            </if>
+            <if test="nomPliego != null">
+                NOM_PLIEGO,
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA,
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codPliego != null">
+                #{codPliego,jdbcType=CHAR},
+            </if>
+            <if test="nomPliego != null">
+                #{nomPliego,jdbcType=VARCHAR},
+            </if>
+            <if test="fecAlta != null">
+                #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliego">
+        update ADMIN_GART.ADM_PLIEGO
+        <set>
+            <if test="nomPliego != null">
+                NOM_PLIEGO = #{nomPliego,jdbcType=VARCHAR},
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_PLIEGO = #{codPliego,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliego">
+        update ADMIN_GART.ADM_PLIEGO
+        set NOM_PLIEGO     = #{nomPliego,jdbcType=VARCHAR},
+            FEC_ALTA       = #{fecAlta,jdbcType=TIMESTAMP},
+            FEC_BAJA       = #{fecBaja,jdbcType=TIMESTAMP},
+            AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA       = #{adFecha,jdbcType=TIMESTAMP}
+        where trim(COD_PLIEGO) = trim(#{codPliego,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="AdmPliegoDTOResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.pliego.AdmPliegoDTO">
+        <result property="codPliego" column="COD_PLIEGO"/>
+        <result property="nomPliego" column="NOM_PLIEGO"/>
+        <result property="numSistemasElectricos" column="NUM_SISTEMAS_ELECTRICOS"/>
+    </resultMap>
+
+    <resultMap id="PliegoSiselecDTOResultMap"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.pliegoSiselec.PliegoSiselecDTO">
+        <id property="annioMes" column="ANNIO_MES"/>
+        <result property="codPliego" column="COD_PLIEGO"/>
+        <result property="codSisElec" column="COD_SIS_ELEC"/>
+        <result property="nomSisElec" column="NOM_SIS_ELEC"/>
+    </resultMap>
+
+
+    <select id="selectAllAdmPliegos" resultMap="AdmPliegoDTOResultMap">
+        SELECT p.COD_PLIEGO,
+               p.NOM_PLIEGO,
+               COUNT(ps.COD_SIS_ELEC) AS NUM_SISTEMAS_ELECTRICOS
+        FROM ADM_PLIEGO p
+                 LEFT JOIN ADM_PLIEGO_SISELEC ps ON p.COD_PLIEGO = ps.COD_PLIEGO
+        GROUP BY p.COD_PLIEGO, p.NOM_PLIEGO
+    </select>
+
+    <select id="filtro" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.pliego.AdmPliegoSearchDTO"
+            resultMap="AdmPliegoDTOResultMap">
+        SELECT
+        P.COD_PLIEGO,
+        P.NOM_PLIEGO,
+        COUNT(DISTINCT PS.COD_SIS_ELEC) AS NUM_SISTEMAS_ELECTRICOS
+        FROM ADM_PLIEGO P
+        LEFT JOIN ADM_PLIEGO_SISELEC PS ON P.COD_PLIEGO = PS.COD_PLIEGO
+        WHERE 1 = 1
+        <if test="codPliego != null and codPliego != ''">
+            AND UPPER(TRANSLATE(P.COD_PLIEGO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+            LIKE '%' || UPPER(TRANSLATE(#{codPliego}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomPliego != null and nomPliego != ''">
+            AND UPPER(TRANSLATE(P.NOM_PLIEGO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+            LIKE '%' || UPPER(TRANSLATE(#{nomPliego}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        GROUP BY P.COD_PLIEGO, P.NOM_PLIEGO
+        ORDER BY
+        <choose>
+            <when test="sort != null and sort != ''">
+                ${sort} ${order}
+            </when>
+            <otherwise>
+                P.COD_PLIEGO ASC
+            </otherwise>
+        </choose>
+    </select>
+
+
+</mapper>

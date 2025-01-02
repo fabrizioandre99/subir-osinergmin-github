@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTipoCambioMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCambio">
+    <!--@Table ADMIN_GART.ADM_TIPO_CAMBIO-->
+    <id column="MONEDA" jdbcType="CHAR" property="moneda" />
+    <id column="FUENTE" jdbcType="CHAR" property="fuente" />
+    <id column="FECHA" jdbcType="TIMESTAMP" property="fecha" />
+    <result column="VAL_COMPRA" jdbcType="DECIMAL" property="valCompra" />
+    <result column="VAL_VENTA" jdbcType="DECIMAL" property="valVenta" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MONEDA, FUENTE, FECHA, VAL_COMPRA, VAL_VENTA, AD_COD_USUARIO, AD_FECHA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TIPO_CAMBIO
+    where MONEDA = #{moneda,jdbcType=CHAR}
+      and FUENTE = #{fuente,jdbcType=CHAR}
+      and TO_CHAR(FECHA, 'YYYY-MM-DD') = #{fecha, jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from ADMIN_GART.ADM_TIPO_CAMBIO
+    where TO_CHAR(FECHA, 'YYYY-MM-DD') = #{fecha, jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCambio">
+    insert into ADMIN_GART.ADM_TIPO_CAMBIO (MONEDA, FUENTE, FECHA, 
+      VAL_COMPRA, VAL_VENTA, AD_COD_USUARIO, 
+      AD_FECHA)
+    values (#{moneda,jdbcType=CHAR}, #{fuente,jdbcType=CHAR}, #{fecha,jdbcType=TIMESTAMP}, 
+      #{valCompra,jdbcType=DECIMAL}, #{valVenta,jdbcType=DECIMAL}, #{adCodUsuario,jdbcType=VARCHAR}, 
+      #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCambio">
+    insert into ADMIN_GART.ADM_TIPO_CAMBIO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="moneda != null">
+        MONEDA,
+      </if>
+      <if test="fuente != null">
+        FUENTE,
+      </if>
+      <if test="fecha != null">
+        FECHA,
+      </if>
+      <if test="valCompra != null">
+        VAL_COMPRA,
+      </if>
+      <if test="valVenta != null">
+        VAL_VENTA,
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO,
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="moneda != null">
+        #{moneda,jdbcType=CHAR},
+      </if>
+      <if test="fuente != null">
+        #{fuente,jdbcType=CHAR},
+      </if>
+      <if test="fecha != null">
+        #{fecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valCompra != null">
+        #{valCompra,jdbcType=DECIMAL},
+      </if>
+      <if test="valVenta != null">
+        #{valVenta,jdbcType=DECIMAL},
+      </if>
+      <if test="adCodUsuario != null">
+        #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCambio">
+    update ADMIN_GART.ADM_TIPO_CAMBIO
+    <set>
+      <if test="valCompra != null">
+        VAL_COMPRA = #{valCompra,jdbcType=DECIMAL},
+      </if>
+      <if test="valVenta != null">
+        VAL_VENTA = #{valVenta,jdbcType=DECIMAL},
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where MONEDA = #{moneda,jdbcType=CHAR}
+      and FUENTE = #{fuente,jdbcType=CHAR}
+      and FECHA = #{fecha,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCambio">
+    update ADMIN_GART.ADM_TIPO_CAMBIO
+    set VAL_COMPRA = #{valCompra,jdbcType=DECIMAL},
+      VAL_VENTA = #{valVenta,jdbcType=DECIMAL},
+      AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+        MONEDA = #{moneda,jdbcType=CHAR}
+    where FUENTE = #{fuente,jdbcType=CHAR}
+      and FECHA = #{fecha,jdbcType=TIMESTAMP}
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tipoCambio.TipoCambioResultDTO">
+    <id column="MONEDA" jdbcType="VARCHAR" property="moneda" />
+    <result column="FUENTE" jdbcType="VARCHAR" property="fuente" />
+    <result column="VAL_COMPRA" jdbcType="DECIMAL" property="valCompra" />
+    <result column="VAL_VENTA" jdbcType="DECIMAL" property="valVenta" />
+    <result column="FECHA" jdbcType="VARCHAR" property="fecha" />
+  </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMapDTO">
+    SELECT MONEDA, FUENTE, VAL_COMPRA, VAL_VENTA, TRUNC(FECHA) AS FECHA
+    FROM ADMIN_GART.ADM_TIPO_CAMBIO
+  </select>
+
+
+  <select id="selectByFecha" resultMap="BaseResultMapDTO">
+    SELECT MONEDA, FUENTE, VAL_COMPRA, VAL_VENTA, TO_CHAR(FECHA, 'YYYY-MM-DD') AS FECHA
+    FROM ADMIN_GART.ADM_TIPO_CAMBIO
+    WHERE
+    (#{fecha} IS NULL OR TRIM(#{fecha}) = '' OR TRUNC(FECHA) = TO_DATE(#{fecha}, 'YYYY-MM-DD'))
+  </select>
+
+
+  <select id="existe" resultType="int">
+    SELECT COUNT(1) FROM ADM_TIPO_CAMBIO WHERE FUENTE = #{fuente,jdbcType=CHAR}
+  </select>
+
+  <resultMap id="BaseResultMapCrearDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tipoCambio.TipoCambioCrearActDTO">
+    <result column="MONEDA" jdbcType="DECIMAL" property="moneda" />
+    <result column="FUENTE" jdbcType="CHAR" property="fuente" />
+    <result column="VAL_COMPRA" jdbcType="VARCHAR" property="valCompra" />
+    <result column="VAL_VENTA" jdbcType="DECIMAL" property="valVenta" />
+    <result column="FECHA" jdbcType="VARCHAR" property="fecha" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+  </resultMap>
+
+  <insert id="insertarNuevo">
+    insert into ADMIN_GART.ADM_TIPO_CAMBIO (MONEDA, FUENTE, FECHA,
+    VAL_COMPRA, VAL_VENTA, AD_COD_USUARIO,
+    AD_FECHA)
+    values (#{moneda,jdbcType=CHAR}, #{fuente,jdbcType=CHAR}, TO_DATE(#{fecha, jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+    #{valCompra,jdbcType=DECIMAL}, #{valVenta,jdbcType=DECIMAL}, #{adCodUsuario,jdbcType=VARCHAR},
+    #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="actualizarNuevo">
+    update ADMIN_GART.ADM_TIPO_CAMBIO
+    set VAL_COMPRA = #{valCompra,jdbcType=DECIMAL},
+    VAL_VENTA = #{valVenta,jdbcType=DECIMAL},
+    FUENTE = #{fuente,jdbcType=VARCHAR},
+    MONEDA = #{moneda,jdbcType=CHAR}
+    WHERE FECHA = TO_DATE(#{fecha, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+  </update>
+
+  <select id="obtenerFecha" resultType="int">
+    SELECT count(1)
+    FROM ADM_TIPO_CAMBIO
+    WHERE FECHA = TO_DATE(#{fecha, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+  </select>
+</mapper>

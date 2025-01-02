@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmEmbalseMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmbalse">
+        <!--@Table ADMIN_GART.ADM_EMBALSE-->
+        <id column="COD_EMBALSE" jdbcType="CHAR" property="codEmbalse"/>
+        <result column="NOM_EMBALSE" jdbcType="VARCHAR" property="nomEmbalse"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_EMBALSE_ANT" jdbcType="CHAR" property="codEmbalseAnt"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_EMBALSE,
+        NOM_EMBALSE,
+        COD_COES,
+        COD_EMBALSE_ANT,
+        ESTADO_REGISTRO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_EMBALSE
+        where TRIM(COD_EMBALSE) = TRIM(#{codEmbalse,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_EMBALSE
+        where TRIM(COD_EMBALSE) = TRIM(#{codEmbalse,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmbalse">
+        insert into ADMIN_GART.ADM_EMBALSE (COD_EMBALSE, NOM_EMBALSE, COD_COES,
+                                            COD_EMBALSE_ANT, ESTADO_REGISTRO, USUARIO_CREACION,
+                                            TERMINAL_CREACION, FECHA_CREACION, USUARIO_ACTUALIZACION,
+                                            TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION)
+        values (#{codEmbalse,jdbcType=CHAR}, #{nomEmbalse,jdbcType=VARCHAR}, #{codCoes,jdbcType=VARCHAR},
+                #{codEmbalseAnt,jdbcType=CHAR}, #{estadoRegistro,jdbcType=CHAR}, #{usuarioCreacion,jdbcType=VARCHAR},
+                #{terminalCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+                #{terminalActualizacion,jdbcType=VARCHAR}, #{fechaActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmbalse">
+        insert into ADMIN_GART.ADM_EMBALSE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codEmbalse != null">
+                COD_EMBALSE,
+            </if>
+            <if test="nomEmbalse != null">
+                NOM_EMBALSE,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codEmbalseAnt != null">
+                COD_EMBALSE_ANT,
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codEmbalse != null">
+                #{codEmbalse,jdbcType=CHAR},
+            </if>
+            <if test="nomEmbalse != null">
+                #{nomEmbalse,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codEmbalseAnt != null">
+                #{codEmbalseAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmbalse">
+        update ADMIN_GART.ADM_EMBALSE
+        <set>
+            <if test="nomEmbalse != null">
+                NOM_EMBALSE = #{nomEmbalse,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                COD_COES = #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codEmbalseAnt != null">
+                COD_EMBALSE_ANT = #{codEmbalseAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_EMBALSE = #{codEmbalse,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmbalse">
+        update ADMIN_GART.ADM_EMBALSE
+        set NOM_EMBALSE            = #{nomEmbalse,jdbcType=VARCHAR},
+            COD_COES               = #{codCoes,jdbcType=VARCHAR},
+            COD_EMBALSE_ANT        = #{codEmbalseAnt,jdbcType=CHAR},
+            ESTADO_REGISTRO        = #{estadoRegistro,jdbcType=CHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where TRIM(COD_EMBALSE) = TRIM(#{codEmbalse,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.embalse.AdmEmbalseDTO">
+        <!--@Table ADMIN_GART.ADM_EMBALSE-->
+        <result column="COD_EMBALSE" jdbcType="CHAR" property="codEmbalse"/>
+        <result column="NOM_EMBALSE" jdbcType="VARCHAR" property="nomEmbalse"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="COD_EMBALSE_ANT" jdbcType="CHAR" property="codEmbalseAnt"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_EMBALSE,
+               NOM_EMBALSE,
+               COD_COES,
+               ESTADO_REGISTRO,
+               COD_EMBALSE_ANT
+        from ADMIN_GART.ADM_EMBALSE
+    </select>
+
+    <select id="filtro" resultMap="BaseResultMapDTO">
+        SELECT COD_EMBALSE,
+               NOM_EMBALSE,
+               COD_COES,
+               ESTADO_REGISTRO,
+               COD_EMBALSE_ANT
+        FROM ADMIN_GART.ADM_EMBALSE
+        WHERE 1 = 1
+        <if test="codEmbalse != null and codEmbalse != ''">
+            AND UPPER(TRANSLATE(COD_EMBALSE, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codEmbalse}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomEmbalse != null and nomEmbalse != ''">
+            AND UPPER(TRANSLATE(NOM_EMBALSE, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{nomEmbalse}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codCoes != null and codCoes != ''">
+            AND UPPER(TRANSLATE(COD_COES, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codCoes}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="estadoRegistro != null and estadoRegistro != ''">
+            AND UPPER(TRANSLATE(ESTADO_REGISTRO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{estadoRegistro}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codEmbalseAnt != null and codEmbalseAnt != ''">
+            AND UPPER(TRANSLATE(COD_EMBALSE_ANT, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codEmbalseAnt}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

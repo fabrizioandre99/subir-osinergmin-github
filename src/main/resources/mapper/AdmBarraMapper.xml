@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmBarraMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarra">
+        <!--@Table ADMIN_GART.ADM_BARRA-->
+        <id column="COD_BARRA" jdbcType="CHAR" property="codBarra"/>
+        <result column="NOM_BARRA" jdbcType="VARCHAR" property="nomBarra"/>
+        <result column="TENSION" jdbcType="DECIMAL" property="tension"/>
+        <result column="COD_BRG" jdbcType="CHAR" property="codBrg"/>
+        <result column="AREA_DEMANDA" jdbcType="DECIMAL" property="areaDemanda"/>
+        <result column="COD_SUBESTACION" jdbcType="CHAR" property="codSubestacion"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        <result column="EN_RED_DISTRIBUCION" jdbcType="CHAR" property="enRedDistribucion"/>
+        <result column="COD_BARRA_CT" jdbcType="CHAR" property="codBarraCt"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_BARRA_ANT" jdbcType="CHAR" property="codBarraAnt"/>
+        <result column="IP_CREACION" jdbcType="VARCHAR" property="ipCreacion"/>
+        <result column="US_ACTUALIZACION" jdbcType="VARCHAR" property="usActualizacion"/>
+        <result column="IP_ACTUALIZACION" jdbcType="VARCHAR" property="ipActualizacion"/>
+        <result column="FE_ACTUALIZACION" jdbcType="TIMESTAMP" property="feActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_BARRA,
+        NOM_BARRA,
+        TENSION,
+        COD_BRG,
+        AREA_DEMANDA,
+        COD_SUBESTACION,
+        ESTADO,
+        AD_COD_USUARIO,
+        AD_FECHA,
+        EN_RED_DISTRIBUCION,
+        COD_BARRA_CT,
+        COD_COES,
+        COD_BARRA_ANT,
+        IP_CREACION,
+        US_ACTUALIZACION,
+        IP_ACTUALIZACION,
+        FE_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_BARRA
+        where TRIM(COD_BARRA) = TRIM(#{codBarra,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_BARRA
+        where TRIM(COD_BARRA) = TRIM(#{codBarra,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarra">
+        insert into ADMIN_GART.ADM_BARRA (COD_BARRA, NOM_BARRA, TENSION,
+                                          COD_BRG, AREA_DEMANDA, COD_SUBESTACION,
+                                          ESTADO, AD_COD_USUARIO, AD_FECHA,
+                                          EN_RED_DISTRIBUCION, COD_BARRA_CT, COD_COES,
+                                          COD_BARRA_ANT, IP_CREACION, US_ACTUALIZACION,
+                                          IP_ACTUALIZACION, FE_ACTUALIZACION)
+        values (#{codBarra,jdbcType=CHAR}, #{nomBarra,jdbcType=VARCHAR}, #{tension,jdbcType=DECIMAL},
+                #{codBrg,jdbcType=CHAR}, #{areaDemanda,jdbcType=DECIMAL}, #{codSubestacion,jdbcType=CHAR},
+                #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP},
+                #{enRedDistribucion,jdbcType=CHAR}, #{codBarraCt,jdbcType=CHAR}, #{codCoes,jdbcType=VARCHAR},
+                #{codBarraAnt,jdbcType=CHAR}, #{ipCreacion,jdbcType=VARCHAR}, #{usActualizacion,jdbcType=VARCHAR},
+                #{ipActualizacion,jdbcType=VARCHAR}, #{feActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarra">
+        insert into ADMIN_GART.ADM_BARRA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codBarra != null">
+                COD_BARRA,
+            </if>
+            <if test="nomBarra != null">
+                NOM_BARRA,
+            </if>
+            <if test="tension != null">
+                TENSION,
+            </if>
+            <if test="codBrg != null">
+                COD_BRG,
+            </if>
+            <if test="areaDemanda != null">
+                AREA_DEMANDA,
+            </if>
+            <if test="codSubestacion != null">
+                COD_SUBESTACION,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+            <if test="enRedDistribucion != null">
+                EN_RED_DISTRIBUCION,
+            </if>
+            <if test="codBarraCt != null">
+                COD_BARRA_CT,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codBarraAnt != null">
+                COD_BARRA_ANT,
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION,
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION,
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION,
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codBarra != null">
+                #{codBarra,jdbcType=CHAR},
+            </if>
+            <if test="nomBarra != null">
+                #{nomBarra,jdbcType=VARCHAR},
+            </if>
+            <if test="tension != null">
+                #{tension,jdbcType=DECIMAL},
+            </if>
+            <if test="codBrg != null">
+                #{codBrg,jdbcType=CHAR},
+            </if>
+            <if test="areaDemanda != null">
+                #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="codSubestacion != null">
+                #{codSubestacion,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enRedDistribucion != null">
+                #{enRedDistribucion,jdbcType=CHAR},
+            </if>
+            <if test="codBarraCt != null">
+                #{codBarraCt,jdbcType=CHAR},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codBarraAnt != null">
+                #{codBarraAnt,jdbcType=CHAR},
+            </if>
+            <if test="ipCreacion != null">
+                #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarra">
+        update ADMIN_GART.ADM_BARRA
+        <set>
+            <if test="nomBarra != null">
+                NOM_BARRA = #{nomBarra,jdbcType=VARCHAR},
+            </if>
+            <if test="tension != null">
+                TENSION = #{tension,jdbcType=DECIMAL},
+            </if>
+            <if test="codBrg != null">
+                COD_BRG = #{codBrg,jdbcType=CHAR},
+            </if>
+            <if test="areaDemanda != null">
+                AREA_DEMANDA = #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="codSubestacion != null">
+                COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enRedDistribucion != null">
+                EN_RED_DISTRIBUCION = #{enRedDistribucion,jdbcType=CHAR},
+            </if>
+            <if test="codBarraCt != null">
+                COD_BARRA_CT = #{codBarraCt,jdbcType=CHAR},
+            </if>
+            <if test="codCoes != null">
+                COD_COES = #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codBarraAnt != null">
+                COD_BARRA_ANT = #{codBarraAnt,jdbcType=CHAR},
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION = #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_BARRA = #{codBarra,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarra">
+        update ADMIN_GART.ADM_BARRA
+        set NOM_BARRA           = #{nomBarra,jdbcType=VARCHAR},
+            TENSION             = #{tension,jdbcType=DECIMAL},
+            COD_BRG             = #{codBrg,jdbcType=CHAR},
+            AREA_DEMANDA        = #{areaDemanda,jdbcType=DECIMAL},
+            COD_SUBESTACION     = #{codSubestacion,jdbcType=CHAR},
+            ESTADO              = #{estado,jdbcType=CHAR},
+            EN_RED_DISTRIBUCION = #{enRedDistribucion,jdbcType=CHAR},
+            COD_BARRA_CT        = #{codBarraCt,jdbcType=CHAR},
+            COD_COES            = #{codCoes,jdbcType=VARCHAR},
+            COD_BARRA_ANT       = #{codBarraAnt,jdbcType=CHAR},
+            US_ACTUALIZACION    = #{usActualizacion,jdbcType=VARCHAR},
+            IP_ACTUALIZACION    = #{ipActualizacion,jdbcType=VARCHAR},
+            FE_ACTUALIZACION    = #{feActualizacion,jdbcType=TIMESTAMP}
+        where TRIM(COD_BARRA) = TRIM(#{codBarra,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BarraSistElectricoResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.barraSisElectrico.barraSistResponseDTO">
+        <id column="COD_SIS_ELEC" property="codSisElec"/>
+        <result column="NOM_SIS_ELEC" property="nomSisElec"/>
+        <result column="COD_EMPRESA" property="codEmpresa"/>
+        <result column="NOM_EMPRESA" property="nomEmpresa"/>
+        <result column="TIP_SIS_ELEC" property="tipSisElectrico"/>
+    </resultMap>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.barra.AdmBarraDTO">
+        <id column="CODIGO" property="codigo"/>
+        <result column="DESCRIPCION" property="descripcion"/>
+        <result column="TENSION" property="tension"/>
+        <result column="BRG" property="brg"/>
+        <result column="SUBESTACION" property="subestacion"/>
+        <result column="AREA_DEMANDADA" property="areaDemandada"/>
+        <result column="COD_SUBESTACION" property="codSubestacion"/>
+        <result column="NOM_SUBESTACION" property="nomSubestacion"/>
+        <result column="ESTADO" property="estado"/>
+        <result column="EN_RED_DISTRIBUCION" property="enRedDistribucion"/>
+        <result column="COD_BARRA_CT" property="codBarraCt"/>
+        <collection property="barraSistElectricoDTOList" ofType="pe.gob.osinergmin.prie.admin.backend.dto.barraSisElectrico.barraSistResponseDTO">
+            <id column="COD_SIS_ELEC" property="codSisElec"/>
+            <result column="NOM_SIS_ELEC" property="nomSisElec"/>
+            <result column="COD_EMPRESA" property="codEmpresa"/>
+            <result column="NOM_EMPRESA" property="nomEmpresa"/>
+            <result column="TIP_SIS_ELEC" property="tipSisElectrico"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="BarraListadoResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.barra.AdmBarraListadoDTO">
+        <result column="COD_BARRA" property="codBarra"/>
+        <result column="NOM_BARRA" property="nomBarra"/>
+        <result column="TENSION" property="tension"/>
+        <result column="COD_BRG" property="codBrg"/>
+        <result column="AREA_DEMANDA" property="areaDemanda"/>
+        <result column="DES_AREA_DEMANDA" property="desAreaDemanda"/>
+        <result column="COD_SUBESTACION" property="codSubestacion"/>
+        <result column="NOM_SUBESTACION" property="nomSubestacion"/>
+        <result column="ESTADO" property="estado"/>
+        <result column="EN_RED_DISTRIBUCION" property="enRedDistribucion"/>
+        <result column="COD_BARRA_CT" property="codBarraCt"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        SELECT A.COD_BARRA AS codigo,
+               A.NOM_BARRA AS descripcion,
+               A.TENSION AS tension,
+               B.NOM_BARRA || ' ' || B.TENSION || ' kV' AS brg,
+               C.NOM_SUBESTACION AS subestacion,
+               D.DSC_AREA_DEMANDA AS areaDemandada
+        FROM ADM_BARRA A
+                 LEFT JOIN ADM_BARRA B ON A.COD_BRG = B.COD_BARRA
+                 LEFT JOIN ADM_SUBESTACION C ON A.COD_SUBESTACION = C.COD_SUBESTACION
+                 LEFT JOIN ADM_AREA_DEMANDA D ON A.AREA_DEMANDA = D.AREA_DEMANDA
+        WHERE A.ESTADO = '1'
+        ORDER BY A.COD_BARRA
+    </select>
+
+
+    <select id="filtrar" resultMap="BaseResultMapDTO">
+        SELECT A.COD_BARRA                              AS CODIGO,
+        A.NOM_BARRA                              AS DESCRIPCION,
+        A.TENSION                                AS TENSION,
+        B.NOM_BARRA || ' ' || B.TENSION || ' kV' AS BRG,
+        C.NOM_SUBESTACION                        AS SUBESTACION,
+        D.DSC_AREA_DEMANDA                       AS AREA_DEMANDADA,
+        A.COD_SUBESTACION                        AS COD_SUBESTACION,
+        C.NOM_SUBESTACION                        AS NOM_SUBESTACION,
+        A.ESTADO                                 AS ESTADO,
+        A.EN_RED_DISTRIBUCION                    AS EN_RED_DISTRIBUCION,
+        A.COD_BARRA_CT                           AS COD_BARRA_CT,
+        SE.COD_SIS_ELEC                          AS COD_SIS_ELEC,
+        SE.NOM_SIS_ELEC                          AS NOM_SIS_ELEC,
+        E.COD_EMPRESA                            AS COD_EMPRESA,
+        E.DSC_EMPRESA                            AS NOM_EMPRESA,
+        SE.TIP_SIS_ELEC                          AS TIP_SIS_ELEC
+        FROM ADM_BARRA A
+        LEFT JOIN ADM_BARRA B ON A.COD_BRG = B.COD_BARRA
+        LEFT JOIN ADM_SUBESTACION C ON A.COD_SUBESTACION = C.COD_SUBESTACION
+        LEFT JOIN ADM_AREA_DEMANDA D ON A.AREA_DEMANDA = D.AREA_DEMANDA
+        LEFT JOIN ADM_BARRA_SISELEC_ALIM BASA ON A.COD_BARRA = BASA.COD_BARRA
+        LEFT JOIN ADM_SISTEMA_ELECTRICO SE ON BASA.COD_SIS_ELEC = SE.COD_SIS_ELEC
+        LEFT JOIN ADM_EMPRESA E ON SE.COD_EMPRESA = E.COD_EMPRESA
+        WHERE 1 = 1
+        <if test="codigo != null and codigo != ''">
+            AND UPPER(TRIM(A.COD_BARRA)) LIKE '%' || UPPER(TRIM(#{codigo})) || '%'
+        </if>
+        <if test="descripcion != null and descripcion != ''">
+            AND UPPER(TRIM(A.NOM_BARRA)) LIKE '%' || UPPER(TRIM(#{descripcion})) || '%'
+        </if>
+        <if test="tension != null and tension != ''">
+            AND TO_CHAR(A.TENSION) LIKE '%' || #{tension} || '%'
+        </if>
+        <if test="brg != null and brg != ''">
+            AND UPPER(TRIM(B.NOM_BARRA || ' ' || B.TENSION || ' kV')) LIKE '%' || UPPER(TRIM(#{brg})) || '%'
+        </if>
+        <if test="subestacion != null and subestacion != ''">
+            AND UPPER(TRIM(C.NOM_SUBESTACION)) LIKE '%' || UPPER(TRIM(#{subestacion})) || '%'
+        </if>
+        <if test="areaDemandada != null and areaDemandada != ''">
+            AND UPPER(TRIM(D.DSC_AREA_DEMANDA)) LIKE '%' || UPPER(TRIM(#{areaDemandada})) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+
+
+    <select id="listarBRG" resultType="pe.gob.osinergmin.prie.admin.backend.dto.barra.AdmBarraResultDTO">
+        SELECT COD_BARRA                            AS codBarra,
+               NOM_BARRA || ' ' || TENSION || ' kV' AS dscBarra
+        FROM ADMIN_GART.ADM_BARRA
+        ORDER BY dscBarra
+    </select>
+
+    <delete id="deleteByCodSubestacion" parameterType="java.lang.String">
+        DELETE
+        FROM ADMIN_GART.ADM_BARRA
+        WHERE TRIM(COD_SUBESTACION) = TRIM(#{codSubestacion,jdbcType=CHAR})
+    </delete>
+
+    <select id="listarPorCodSubestacion" resultMap="BaseResultMapDTO" parameterType="java.lang.String">
+        SELECT A.COD_BARRA                              AS "CÓDIGO",
+               A.NOM_BARRA                              AS "DESCRIPCIÓN",
+               A.TENSION                                AS "TENSIÓN",
+               B.NOM_BARRA || ' ' || B.TENSION || ' kV' AS "BRG",
+               C.NOM_SUBESTACION                        AS "SUBESTACIÓN",
+               D.DSC_AREA_DEMANDA                       AS "ÁREA_DEMANDADA"
+        FROM ADM_BARRA A
+                 LEFT JOIN ADM_BARRA B ON A.COD_BRG = B.COD_BARRA
+                 LEFT JOIN ADM_SUBESTACION C ON A.COD_SUBESTACION = C.COD_SUBESTACION
+                 LEFT JOIN ADM_AREA_DEMANDA D ON A.AREA_DEMANDA = D.AREA_DEMANDA
+        WHERE TRIM(A.COD_SUBESTACION) = TRIM(#{codSubestacion, jdbcType=CHAR})
+        ORDER BY A.COD_BARRA
+    </select>
+
+    <select id="selectByCodSubestacion" parameterType="java.lang.String" resultType="pe.gob.osinergmin.prie.admin.backend.dto.barra.AdmBarraListadoDTO">
+        SELECT
+        B.COD_BARRA AS codBarra,
+        B.NOM_BARRA AS nomBarra,
+        B.TENSION AS tension,
+        B.COD_BRG AS codBrg,
+        B.AREA_DEMANDA AS areaDemanda,
+        AD.DSC_AREA_DEMANDA AS desAreaDemanda,
+        B.COD_SUBESTACION AS codSubestacion,
+        S.NOM_SUBESTACION AS nomSubestacion,
+        B.ESTADO AS estado,
+        B.EN_RED_DISTRIBUCION AS enRedDistribucion,
+        B.COD_BARRA_CT AS codBarraCt
+        FROM ADM_BARRA B
+        LEFT JOIN ADM_SUBESTACION S ON B.COD_SUBESTACION = S.COD_SUBESTACION
+        LEFT JOIN ADM_AREA_DEMANDA AD ON B.AREA_DEMANDA = AD.AREA_DEMANDA
+        WHERE B.COD_SUBESTACION = #{codSubestacion}
+    </select>
+
+</mapper>

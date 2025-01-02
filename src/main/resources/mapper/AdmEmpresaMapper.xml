@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmEmpresaMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmpresa">
+        <id column="COD_EMPRESA" jdbcType="CHAR" property="codEmpresa"/>
+        <result column="DSC_CORTA_EMPRESA" jdbcType="VARCHAR" property="dscCortaEmpresa"/>
+        <result column="DSC_EMPRESA" jdbcType="VARCHAR" property="dscEmpresa"/>
+        <result column="RUC" jdbcType="CHAR" property="ruc"/>
+        <result column="DIRECCION" jdbcType="VARCHAR" property="direccion"/>
+        <result column="COD_UBIGEO" jdbcType="CHAR" property="codUbigeo"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        <result column="REPRESENTANTE_LEGAL" jdbcType="VARCHAR" property="representanteLegal"/>
+        <result column="TELEFONOS" jdbcType="VARCHAR" property="telefonos"/>
+        <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_EMPRESA_ANT" jdbcType="CHAR" property="codEmpresaAnt"/>
+        <result column="IP_CREACION" jdbcType="VARCHAR" property="ipCreacion"/>
+        <result column="US_ACTUALIZACION" jdbcType="VARCHAR" property="usActualizacion"/>
+        <result column="IP_ACTUALIZACION" jdbcType="VARCHAR" property="ipActualizacion"/>
+        <result column="FE_ACTUALIZACION" jdbcType="TIMESTAMP" property="feActualizacion"/>
+        <result column="ID_SARGOP" jdbcType="DECIMAL" property="idSargop"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        COD_EMPRESA,
+        DSC_CORTA_EMPRESA,
+        DSC_EMPRESA,
+        RUC,
+        DIRECCION,
+        COD_UBIGEO,
+        ESTADO,
+        AD_COD_USUARIO,
+        AD_FECHA,
+        REPRESENTANTE_LEGAL,
+        TELEFONOS,
+        EMAIL,
+        COD_COES,
+        COD_EMPRESA_ANT,
+        IP_CREACION,
+        US_ACTUALIZACION,
+        IP_ACTUALIZACION,
+        FE_ACTUALIZACION,
+        ID_SARGOP
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_EMPRESA
+        where trim(COD_EMPRESA) = trim(#{codEmpresa,jdbcType=CHAR})
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_EMPRESA
+        where COD_EMPRESA = #{codEmpresa,jdbcType=CHAR}
+    </delete>
+
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmpresa">
+        insert into ADMIN_GART.ADM_EMPRESA (COD_EMPRESA, DSC_CORTA_EMPRESA, DSC_EMPRESA,
+                                            RUC, DIRECCION, COD_UBIGEO,
+                                            ESTADO, AD_COD_USUARIO, AD_FECHA,
+                                            REPRESENTANTE_LEGAL, TELEFONOS, EMAIL,
+                                            COD_COES, COD_EMPRESA_ANT, IP_CREACION,
+                                            US_ACTUALIZACION, IP_ACTUALIZACION, FE_ACTUALIZACION,
+                                            ID_SARGOP)
+        values (#{codEmpresa,jdbcType=CHAR}, #{dscCortaEmpresa,jdbcType=VARCHAR}, #{dscEmpresa,jdbcType=VARCHAR},
+                #{ruc,jdbcType=CHAR}, #{direccion,jdbcType=VARCHAR}, #{codUbigeo,jdbcType=CHAR},
+                #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP},
+                #{representanteLegal,jdbcType=VARCHAR}, #{telefonos,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+                #{codCoes,jdbcType=VARCHAR}, #{codEmpresaAnt,jdbcType=CHAR}, #{ipCreacion,jdbcType=VARCHAR},
+                #{usActualizacion,jdbcType=VARCHAR}, #{ipActualizacion,jdbcType=VARCHAR},
+                #{feActualizacion,jdbcType=TIMESTAMP},
+                #{idSargop,jdbcType=DECIMAL})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmpresa">
+        insert into ADMIN_GART.ADM_EMPRESA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codEmpresa != null">
+                COD_EMPRESA,
+            </if>
+            <if test="dscCortaEmpresa != null">
+                DSC_CORTA_EMPRESA,
+            </if>
+            <if test="dscEmpresa != null">
+                DSC_EMPRESA,
+            </if>
+            <if test="ruc != null">
+                RUC,
+            </if>
+            <if test="direccion != null">
+                DIRECCION,
+            </if>
+            <if test="codUbigeo != null">
+                COD_UBIGEO,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+            <if test="representanteLegal != null">
+                REPRESENTANTE_LEGAL,
+            </if>
+            <if test="telefonos != null">
+                TELEFONOS,
+            </if>
+            <if test="email != null">
+                EMAIL,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codEmpresaAnt != null">
+                COD_EMPRESA_ANT,
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION,
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION,
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION,
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION,
+            </if>
+            <if test="idSargop != null">
+                ID_SARGOP,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codEmpresa != null">
+                #{codEmpresa,jdbcType=CHAR},
+            </if>
+            <if test="dscCortaEmpresa != null">
+                #{dscCortaEmpresa,jdbcType=VARCHAR},
+            </if>
+            <if test="dscEmpresa != null">
+                #{dscEmpresa,jdbcType=VARCHAR},
+            </if>
+            <if test="ruc != null">
+                #{ruc,jdbcType=CHAR},
+            </if>
+            <if test="direccion != null">
+                #{direccion,jdbcType=VARCHAR},
+            </if>
+            <if test="codUbigeo != null">
+                #{codUbigeo,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="representanteLegal != null">
+                #{representanteLegal,jdbcType=VARCHAR},
+            </if>
+            <if test="telefonos != null">
+                #{telefonos,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codEmpresaAnt != null">
+                #{codEmpresaAnt,jdbcType=CHAR},
+            </if>
+            <if test="ipCreacion != null">
+                #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="idSargop != null">
+                #{idSargop,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmpresa">
+        update ADMIN_GART.ADM_EMPRESA
+        <set>
+            <if test="dscCortaEmpresa != null">
+                DSC_CORTA_EMPRESA = #{dscCortaEmpresa,jdbcType=VARCHAR},
+            </if>
+            <if test="dscEmpresa != null">
+                DSC_EMPRESA = #{dscEmpresa,jdbcType=VARCHAR},
+            </if>
+            <if test="ruc != null">
+                RUC = #{ruc,jdbcType=CHAR},
+            </if>
+            <if test="direccion != null">
+                DIRECCION = #{direccion,jdbcType=VARCHAR},
+            </if>
+            <if test="codUbigeo != null">
+                COD_UBIGEO = #{codUbigeo,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="representanteLegal != null">
+                REPRESENTANTE_LEGAL = #{representanteLegal,jdbcType=VARCHAR},
+            </if>
+            <if test="telefonos != null">
+                TELEFONOS = #{telefonos,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                COD_COES = #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codEmpresaAnt != null">
+                COD_EMPRESA_ANT = #{codEmpresaAnt,jdbcType=CHAR},
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION = #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="idSargop != null">
+                ID_SARGOP = #{idSargop,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where COD_EMPRESA = #{codEmpresa,jdbcType=CHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmEmpresa">
+        UPDATE ADMIN_GART.ADM_EMPRESA
+        SET DSC_CORTA_EMPRESA   = #{dscCortaEmpresa,jdbcType=VARCHAR},
+            DSC_EMPRESA         = #{dscEmpresa,jdbcType=VARCHAR},
+            RUC                 = #{ruc,jdbcType=VARCHAR},
+            DIRECCION           = #{direccion,jdbcType=VARCHAR},
+            COD_UBIGEO          = #{codUbigeo,jdbcType=VARCHAR},
+            ESTADO              = #{estado,jdbcType=VARCHAR},
+            AD_COD_USUARIO      = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA            = #{adFecha,jdbcType=TIMESTAMP},
+            REPRESENTANTE_LEGAL = #{representanteLegal,jdbcType=VARCHAR},
+            TELEFONOS           = #{telefonos,jdbcType=VARCHAR},
+            EMAIL               = #{email,jdbcType=VARCHAR},
+            COD_COES            = #{codCoes,jdbcType=VARCHAR},
+            COD_EMPRESA_ANT     = #{codEmpresaAnt,jdbcType=VARCHAR},
+            US_ACTUALIZACION    = #{usActualizacion,jdbcType=VARCHAR},
+            IP_ACTUALIZACION    = #{ipActualizacion,jdbcType=VARCHAR},
+            FE_ACTUALIZACION    = #{feActualizacion,jdbcType=TIMESTAMP},
+            ID_SARGOP           = #{idSargop,jdbcType=DECIMAL}
+        WHERE TRIM(COD_EMPRESA) = TRIM(#{codEmpresa,jdbcType=VARCHAR})
+    </update>
+
+    <resultMap id="ProcesoResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.empresa.ProcesoAsociadoDTO">
+        <result column="COD_PROC_SUPERVISION" property="codProcSupervision"/>
+        <result column="COD_TIPO_EMPRESA" property="codTipoEmpresa"/>
+        <result column="COD_FUNCION_PROC_SUPERV" property="codFuncionProcSuperv"/>
+    </resultMap>
+
+    <resultMap id="EmpresaResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmEmpresaDTO">
+        <id column="COD_EMPRESA" property="codEmpresa"/>
+        <result column="COD_UBIGEO" property="codUbigeo"/>
+        <result column="DIRECCION" property="direccion"/>
+        <result column="DSC_CORTA_EMPRESA" property="dscCortaEmpresa"/>
+        <result column="DSC_EMPRESA" property="dscEmpresa"/>
+        <result column="RUC" property="ruc"/>
+        <result column="ESTADO" property="estado"/>
+        <result column="PROCESOSASOCIADOS" property="procesosAsociadosFromString" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="EmpresaResultMap">
+        SELECT e.COD_EMPRESA,
+               e.COD_UBIGEO,
+               e.DIRECCION,
+               e.DSC_CORTA_EMPRESA,
+               e.DSC_EMPRESA,
+               e.RUC,
+               e.ESTADO,
+               JSON_ARRAYAGG(
+                       JSON_OBJECT(
+                               'codProcSupervision' VALUE p.COD_PROC_SUPERVISION,
+                               'codTipoEmpresa' VALUE p.COD_TIPO_EMPRESA,
+                               'codFuncionProcSuperv' VALUE p.COD_FUNCION_PROC_SUPERV,
+                               'idProcEmpresa' VALUE p.ID_PROC_EMPRESA
+                       ) RETURNING CLOB
+               ) AS procesosAsociados
+        FROM ADMIN_GART.ADM_EMPRESA e
+                 LEFT JOIN ADMIN_GART.ADM_PROC_EMPRESA p ON e.COD_EMPRESA = p.COD_EMPRESA
+        WHERE e.ESTADO = '1'
+        GROUP BY e.COD_EMPRESA, e.COD_UBIGEO, e.DIRECCION, e.DSC_CORTA_EMPRESA, e.DSC_EMPRESA, e.RUC, e.ESTADO
+        ORDER BY e.DSC_EMPRESA ASC
+    </select>
+
+    <select id="ListarFiltro" resultMap="EmpresaResultMap">
+        SELECT e.COD_EMPRESA,
+               e.COD_UBIGEO,
+               e.DIRECCION,
+               e.DSC_CORTA_EMPRESA,
+               e.DSC_EMPRESA,
+               e.RUC,
+               e.ESTADO,
+               COUNT(p.COD_PROC_SUPERVISION) AS COUNT_PROCESOS,
+               JSON_ARRAYAGG(
+                       JSON_OBJECT(
+                               'codProcSupervision' VALUE p.COD_PROC_SUPERVISION,
+                               'codTipoEmpresa' VALUE p.COD_TIPO_EMPRESA,
+                               'codFuncionProcSuperv' VALUE p.COD_FUNCION_PROC_SUPERV,
+                               'idProcEmpresa' VALUE p.ID_PROC_EMPRESA
+                       ) RETURNING CLOB
+               )                             AS procesosAsociados
+        FROM ADMIN_GART.ADM_EMPRESA e
+                 LEFT JOIN ADMIN_GART.ADM_PROC_EMPRESA p ON e.COD_EMPRESA = p.COD_EMPRESA
+        WHERE 1 = 1
+        <if test="searchDTO.codEmpresa != null and !searchDTO.codEmpresa.isEmpty()">
+            AND TRIM(UPPER(e.COD_EMPRESA)) LIKE '%' || TRIM(UPPER(#{searchDTO.codEmpresa})) || '%'
+        </if>
+        <if test="searchDTO.dscEmpresa != null and !searchDTO.dscEmpresa.isEmpty()">
+            AND TRIM(UPPER(e.DSC_EMPRESA)) LIKE '%' || TRIM(UPPER(#{searchDTO.dscEmpresa})) || '%'
+        </if>
+        <if test="searchDTO.procesosAsociados != null and !searchDTO.procesosAsociados.isEmpty()">
+            AND TRIM(UPPER(p.COD_PROC_SUPERVISION)) IN
+            <foreach item="item" collection="searchDTO.procesosAsociados" open="(" separator="," close=")">
+                TRIM(UPPER(#{item}))
+            </foreach>
+        </if>
+        GROUP BY e.COD_EMPRESA,
+                 e.COD_UBIGEO,
+                 e.DIRECCION,
+                 e.DSC_CORTA_EMPRESA,
+                 e.DSC_EMPRESA,
+                 e.RUC,
+                 e.ESTADO
+    </select>
+
+    <select id="existeRuc" resultType="int">
+        SELECT COUNT(1)
+        FROM ADMIN_GART.ADM_EMPRESA
+        WHERE RUC = #{ruc,jdbcType=CHAR}
+    </select>
+
+    <insert id="insertEmpresa" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmEmpresaFormDTO">
+        INSERT INTO ADMIN_GART.ADM_EMPRESA (COD_EMPRESA, DSC_CORTA_EMPRESA, DSC_EMPRESA, RUC, DIRECCION, COD_UBIGEO,
+                                            ESTADO, AD_COD_USUARIO, AD_FECHA, IP_CREACION)
+        VALUES (#{codEmpresa}, #{dscCortaEmpresa}, #{dscEmpresa}, #{ruc}, #{direccion}, #{codUbigeo}, #{estado},
+                #{adCodUsuario}, #{adFecha}, #{ipCreacion})
+    </insert>
+
+    <insert id="insertProcEmpresa" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmProcEmpresaDTO">
+        INSERT INTO ADMIN_GART.ADM_PROC_EMPRESA
+        (COD_EMPRESA, COD_TIPO_EMPRESA, ID_PROC_EMPRESA, COD_FUNCION_PROC_SUPERV, COD_PROC_SUPERVISION, AD_COD_USUARIO)
+        VALUES (#{codEmpresa, jdbcType=CHAR},
+                #{codTipoEmpresa, jdbcType=CHAR},
+                #{idProcEmpresa, jdbcType=DECIMAL},
+                #{codFuncionProcSuperv, jdbcType=CHAR},
+                #{codProcSupervision, jdbcType=CHAR},
+                #{adCodUsuario, jdbcType=VARCHAR})
+    </insert>
+
+    <select id="getNextIdProcEmpresa" resultType="int">
+        SELECT NVL(MAX(ID_PROC_EMPRESA), 0) + 1
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+    </select>
+
+    <select id="selectByCodEmpresa" resultType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmEmpresaDTO">
+        SELECT COD_EMPRESA, DSC_CORTA_EMPRESA, DSC_EMPRESA, RUC, DIRECCION, COD_UBIGEO, ESTADO
+        FROM ADMIN_GART.ADM_EMPRESA
+        WHERE TRIM(COD_EMPRESA) = TRIM(#{codEmpresa})
+    </select>
+
+    <select id="obtenerMaximoIdProcEmpresa" resultType="int">
+        SELECT COALESCE(MAX(ID_PROC_EMPRESA), 0)
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+    </select>
+
+    <select id="selectProcByCodEmpresaAndId" parameterType="map"
+            resultType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmProcEmpresaDTO">
+        SELECT *
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE COD_EMPRESA = #{codEmpresa}
+          AND ID_PROC_EMPRESA = #{idProcEmpresa}
+    </select>
+
+    <update id="updateProcEmpresa" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmProcEmpresaDTO">
+        UPDATE ADMIN_GART.ADM_PROC_EMPRESA
+        SET COD_TIPO_EMPRESA        = #{codTipoEmpresa},
+            COD_FUNCION_PROC_SUPERV = #{codFuncionProcSuperv},
+            AD_COD_USUARIO          = #{adCodUsuario},
+            AD_FECHA                = SYSTIMESTAMP
+        WHERE COD_EMPRESA = #{codEmpresa}
+          AND ID_PROC_EMPRESA = #{idProcEmpresa}
+    </update>
+
+    <update id="updateByPrimaryKeySelectiveDos"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmEmpresaFormDTO">
+        UPDATE ADMIN_GART.ADM_EMPRESA
+        <set>
+            <if test="dscCortaEmpresa != null">
+                DSC_CORTA_EMPRESA = #{dscCortaEmpresa},
+            </if>
+            <if test="dscEmpresa != null">
+                DSC_EMPRESA = #{dscEmpresa},
+            </if>
+            <if test="ruc != null">
+                RUC = #{ruc},
+            </if>
+            <if test="direccion != null">
+                DIRECCION = #{direccion},
+            </if>
+            <if test="codUbigeo != null">
+                COD_UBIGEO = #{codUbigeo},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha},
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION = #{ipCreacion},
+            </if>
+        </set>
+        WHERE COD_EMPRESA = #{codEmpresa}
+    </update>
+
+    <select id="selectProcByCodEmpresaAndTipo" parameterType="map"
+            resultType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmProcEmpresaDTO">
+        SELECT *
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE TRIM(ADMIN_GART.ADM_PROC_EMPRESA.COD_EMPRESA) = TRIM(#{codEmpresa})
+          AND TRIM(ADMIN_GART.ADM_PROC_EMPRESA.COD_TIPO_EMPRESA) = TRIM(#{codTipoEmpresa})
+    </select>
+</mapper>

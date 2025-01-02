@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmProcEmpresaMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcEmpresa">
+        <!--@Table ADMIN_GART.ADM_PROC_EMPRESA-->
+        <id column="ID_PROC_EMPRESA" jdbcType="DECIMAL" property="idProcEmpresa"/>
+        <result column="COD_EMPRESA" jdbcType="CHAR" property="codEmpresa"/>
+        <result column="COD_TIPO_EMPRESA" jdbcType="CHAR" property="codTipoEmpresa"/>
+        <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta"/>
+        <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja"/>
+        <result column="COD_PROC_SUPERVISION" jdbcType="CHAR" property="codProcSupervision"/>
+        <result column="COD_FUNCION_PROC_SUPERV" jdbcType="CHAR" property="codFuncionProcSuperv"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID_PROC_EMPRESA,
+        COD_EMPRESA,
+        COD_TIPO_EMPRESA,
+        FEC_ALTA,
+        FEC_BAJA,
+        COD_PROC_SUPERVISION,
+        COD_FUNCION_PROC_SUPERV,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_PROC_EMPRESA
+        where ID_PROC_EMPRESA = #{idProcEmpresa,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from ADMIN_GART.ADM_PROC_EMPRESA
+        where ID_PROC_EMPRESA = #{idProcEmpresa,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcEmpresa">
+        insert into ADMIN_GART.ADM_PROC_EMPRESA (ID_PROC_EMPRESA, COD_EMPRESA, COD_TIPO_EMPRESA,
+                                                 FEC_ALTA, FEC_BAJA, COD_PROC_SUPERVISION,
+                                                 COD_FUNCION_PROC_SUPERV, AD_COD_USUARIO, AD_FECHA)
+        values (#{idProcEmpresa,jdbcType=DECIMAL}, #{codEmpresa,jdbcType=CHAR}, #{codTipoEmpresa,jdbcType=CHAR},
+                #{fecAlta,jdbcType=TIMESTAMP}, #{fecBaja,jdbcType=TIMESTAMP}, #{codProcSupervision,jdbcType=CHAR},
+                #{codFuncionProcSuperv,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcEmpresa">
+        insert into ADMIN_GART.ADM_PROC_EMPRESA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idProcEmpresa != null">
+                ID_PROC_EMPRESA,
+            </if>
+            <if test="codEmpresa != null">
+                COD_EMPRESA,
+            </if>
+            <if test="codTipoEmpresa != null">
+                COD_TIPO_EMPRESA,
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA,
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA,
+            </if>
+            <if test="codProcSupervision != null">
+                COD_PROC_SUPERVISION,
+            </if>
+            <if test="codFuncionProcSuperv != null">
+                COD_FUNCION_PROC_SUPERV,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="idProcEmpresa != null">
+                #{idProcEmpresa,jdbcType=DECIMAL},
+            </if>
+            <if test="codEmpresa != null">
+                #{codEmpresa,jdbcType=CHAR},
+            </if>
+            <if test="codTipoEmpresa != null">
+                #{codTipoEmpresa,jdbcType=CHAR},
+            </if>
+            <if test="fecAlta != null">
+                #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codProcSupervision != null">
+                #{codProcSupervision,jdbcType=CHAR},
+            </if>
+            <if test="codFuncionProcSuperv != null">
+                #{codFuncionProcSuperv,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmProcEmpresaDTO">
+        update ADMIN_GART.ADM_PROC_EMPRESA
+        <set>
+            <if test="codEmpresa != null">
+                COD_EMPRESA = #{codEmpresa,jdbcType=CHAR},
+            </if>
+            <if test="codTipoEmpresa != null">
+                COD_TIPO_EMPRESA = #{codTipoEmpresa,jdbcType=CHAR},
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codProcSupervision != null">
+                COD_PROC_SUPERVISION = #{codProcSupervision,jdbcType=CHAR},
+            </if>
+            <if test="codFuncionProcSuperv != null">
+                COD_FUNCION_PROC_SUPERV = #{codFuncionProcSuperv,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID_PROC_EMPRESA = #{idProcEmpresa,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcEmpresa">
+        update ADMIN_GART.ADM_PROC_EMPRESA
+        set COD_EMPRESA             = #{codEmpresa,jdbcType=CHAR},
+            COD_TIPO_EMPRESA        = #{codTipoEmpresa,jdbcType=CHAR},
+            FEC_ALTA                = #{fecAlta,jdbcType=TIMESTAMP},
+            FEC_BAJA                = #{fecBaja,jdbcType=TIMESTAMP},
+            COD_PROC_SUPERVISION    = #{codProcSupervision,jdbcType=CHAR},
+            COD_FUNCION_PROC_SUPERV = #{codFuncionProcSuperv,jdbcType=CHAR},
+            AD_COD_USUARIO          = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA                = #{adFecha,jdbcType=TIMESTAMP}
+        where ID_PROC_EMPRESA = #{idProcEmpresa,jdbcType=DECIMAL}
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.empresa.AdmProcEmpresaDTO">
+        <id column="ID_PROC_EMPRESA" jdbcType="DECIMAL" property="idProcEmpresa"/>
+        <result column="COD_EMPRESA" jdbcType="VARCHAR" property="codEmpresa"/>
+        <result column="COD_TIPO_EMPRESA" jdbcType="VARCHAR" property="codTipoEmpresa"/>
+        <result column="COD_PROC_SUPERVISION" jdbcType="VARCHAR" property="codProcSupervision"/>
+        <result column="COD_FUNCION_PROC_SUPERV" jdbcType="VARCHAR" property="codFuncionProcSuperv"/>
+    </resultMap>
+
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select ID_PROC_EMPRESA,
+               COD_EMPRESA,
+               COD_TIPO_EMPRESA,
+               COD_PROC_SUPERVISION,
+               COD_FUNCION_PROC_SUPERV
+        from ADMIN_GART.ADM_PROC_EMPRESA
+    </select>
+
+    <resultMap id="BaseResultMapResultDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.procEmpresa.AdmProcEmpresaResultDTO">
+        <!--@Table ADMIN_GART.ADM_PROC_EMPRESA-->
+        <result column="COD_PROC_SUPERVISION" jdbcType="CHAR" property="codProcSupervision"/>
+        <result column="ID_PROC_EMPRESA" jdbcType="DECIMAL" property="idProcEmpresa"/>
+    </resultMap>
+
+    <select id="listarCreacionEmpresa" resultMap="BaseResultMapResultDTO">
+        SELECT DISTINCT COD_PROC_SUPERVISION, ID_PROC_EMPRESA
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+    </select>
+
+    <resultMap id="BaseResultMapProcEmpPorCodDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.procEmpresa.ProcEmpresaPorCodDTO">
+        <!--@Table ADMIN_GART.ADM_PROC_EMPRESA-->
+        <result column="COD_PROC_SUPERVISION" jdbcType="CHAR" property="codProcSupervision"/>
+        <result column="ID_PROC_EMPRESA" jdbcType="DECIMAL" property="idProcEmpresa"/>
+    </resultMap>
+
+    <select id="listarPorCodEmpresa" resultMap="BaseResultMapDTO">
+        SELECT ID_PROC_EMPRESA, COD_PROC_SUPERVISION, COD_TIPO_EMPRESA, COD_FUNCION_PROC_SUPERV, COD_EMPRESA
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE TRIM(COD_EMPRESA) = TRIM(#{codEmpresa})
+    </select>
+
+    <resultMap id="BaseResultMapFuncionDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.procEmpresa.AdmProcEmpresaFuncionDTO">
+        <!--@Table ADMIN_GART.ADM_PROC_EMPRESA-->
+        <result column="COD_FUNCION_PROC_SUPERV" jdbcType="CHAR" property="codFuncionProcSuperv"/>
+    </resultMap>
+
+    <select id="listarFuncion" resultMap="BaseResultMapFuncionDTO">
+        SELECT DISTINCT COD_FUNCION_PROC_SUPERV
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE TRIM(COD_PROC_SUPERVISION) = TRIM(#{codProcSupervision})
+    </select>
+
+    <select id="listarPorCodEmpresaFunTipo" resultMap="BaseResultMapDTO">
+        SELECT ID_PROC_EMPRESA, COD_PROC_SUPERVISION, COD_TIPO_EMPRESA, COD_FUNCION_PROC_SUPERV, COD_EMPRESA
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE TRIM(COD_EMPRESA) = TRIM(#{codEmpresa})
+    </select>
+
+
+    <select id="selectByCodEmpresa" parameterType="String" resultMap="BaseResultMapDTO">
+        SELECT *
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE COD_EMPRESA = #{codEmpresa}
+    </select>
+
+    <delete id="deleteByEmpresaAndProceso" parameterType="map">
+        DELETE
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE TRIM(COD_EMPRESA) = TRIM(#{codEmpresa,jdbcType=VARCHAR})
+          AND TRIM(COD_PROC_SUPERVISION) = TRIM(#{codProcSupervision,jdbcType=VARCHAR})
+          AND TRIM(COD_TIPO_EMPRESA) = TRIM(#{codTipoEmpresa,jdbcType=VARCHAR})
+          AND TRIM(COD_FUNCION_PROC_SUPERV) = TRIM(#{codFuncionProcSuperv,jdbcType=VARCHAR})
+    </delete>
+
+    <delete id="deleteByIdProcEmpresa" parameterType="java.lang.Integer">
+        DELETE
+        FROM ADMIN_GART.ADM_PROC_EMPRESA
+        WHERE TRIM(ID_PROC_EMPRESA) = TRIM(#{idProcEmpresa,jdbcType=DECIMAL})
+    </delete>
+</mapper>

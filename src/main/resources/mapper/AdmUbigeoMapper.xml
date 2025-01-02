@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmUbigeoMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmUbigeo">
+    <!--@Table ADMIN_GART.ADM_UBIGEO-->
+    <id column="COD_UBIGEO" jdbcType="CHAR" property="codUbigeo" />
+    <result column="NOM_UBIGEO" jdbcType="VARCHAR" property="nomUbigeo" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_UBIGEO, NOM_UBIGEO, ESTADO, AD_COD_USUARIO, AD_FECHA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_UBIGEO
+    where COD_UBIGEO = #{codUbigeo,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ADMIN_GART.ADM_UBIGEO
+    where COD_UBIGEO = #{codUbigeo,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmUbigeo">
+    insert into ADMIN_GART.ADM_UBIGEO (COD_UBIGEO, NOM_UBIGEO, ESTADO, 
+      AD_COD_USUARIO, AD_FECHA)
+    values (#{codUbigeo,jdbcType=CHAR}, #{nomUbigeo,jdbcType=VARCHAR}, #{estado,jdbcType=CHAR}, 
+      #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmUbigeo">
+    insert into ADMIN_GART.ADM_UBIGEO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codUbigeo != null">
+        COD_UBIGEO,
+      </if>
+      <if test="nomUbigeo != null">
+        NOM_UBIGEO,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO,
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codUbigeo != null">
+        #{codUbigeo,jdbcType=CHAR},
+      </if>
+      <if test="nomUbigeo != null">
+        #{nomUbigeo,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmUbigeo">
+    update ADMIN_GART.ADM_UBIGEO
+    <set>
+      <if test="nomUbigeo != null">
+        NOM_UBIGEO = #{nomUbigeo,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where COD_UBIGEO = #{codUbigeo,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmUbigeo">
+    update ADMIN_GART.ADM_UBIGEO
+    set NOM_UBIGEO = #{nomUbigeo,jdbcType=VARCHAR},
+      ESTADO = #{estado,jdbcType=CHAR},
+      AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      AD_FECHA = #{adFecha,jdbcType=TIMESTAMP}
+    where COD_UBIGEO = #{codUbigeo,jdbcType=CHAR}
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.ubigeo.UbigeoDTO">
+    <!--@Table ADMIN_GART.ADM_UBIGEO-->
+    <id column="COD_UBIGEO" jdbcType="CHAR" property="codUbigeo" />
+    <result column="NOM_UBIGEO" jdbcType="VARCHAR" property="nomUbigeo" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+  <select id="listarDepartamento" resultMap="BaseResultMapDTO">
+    SELECT COD_UBIGEO, NOM_UBIGEO
+    FROM ADMIN_GART.ADM_UBIGEO
+    WHERE COD_UBIGEO LIKE '__0000'
+    </select>
+
+  <select id="listarProvincia" resultMap="BaseResultMapDTO">
+    SELECT COD_UBIGEO, NOM_UBIGEO
+    FROM ADMIN_GART.ADM_UBIGEO
+    WHERE COD_UBIGEO LIKE SUBSTR(#{codUbigeo, jdbcType=VARCHAR}, 1, 2) || '__00'
+    AND COD_UBIGEO != #{codUbigeo, jdbcType=VARCHAR}
+  </select>
+
+  <select id="listarDistrito" resultMap="BaseResultMapDTO">
+    SELECT COD_UBIGEO, NOM_UBIGEO
+    FROM ADMIN_GART.ADM_UBIGEO
+    WHERE COD_UBIGEO LIKE SUBSTR(#{codUbigeo, jdbcType=VARCHAR}, 1, 4) || '__'
+    AND COD_UBIGEO != SUBSTR(#{codUbigeo, jdbcType=VARCHAR}, 1, 4) || '00'
+  </select>
+
+  <select id="listaAll" resultMap="BaseResultMapDTO">
+    SELECT COD_UBIGEO, NOM_UBIGEO, ESTADO
+    FROM ADMIN_GART.ADM_UBIGEO
+    </select>
+
+  <select id="listaFiltro" resultMap="BaseResultMapDTO">
+    SELECT
+    COD_UBIGEO, NOM_UBIGEO, ESTADO
+    FROM
+    ADMIN_GART.ADM_UBIGEO
+    WHERE
+    1 = 1
+    <if test="codUbigeo != null and codUbigeo != ''">
+      AND COD_UBIGEO LIKE '%' || #{codUbigeo} || '%'
+    </if>
+    <if test="nomUbigeo != null and nomUbigeo != ''">
+      AND NOM_UBIGEO LIKE '%' || #{nomUbigeo} || '%'
+    </if>
+  </select>
+
+  <resultMap id="UbigeoProvDeptResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.ubigeo.UbigeoProvDeptDTO">
+    <result column="COD_PROVINCIA" jdbcType="CHAR" property="codProvincia" />
+    <result column="NOM_PROVINCIA" jdbcType="VARCHAR" property="nomProvincia" />
+    <result column="COD_DEPARTAMENTO" jdbcType="CHAR" property="codDepartamento" />
+    <result column="NOM_DEPARTAMENTO" jdbcType="VARCHAR" property="nomDepartamento" />
+  </resultMap>
+
+  <select id="obtenerProvDeptPorDistrito" resultMap="UbigeoProvDeptResultMap">
+    SELECT
+    SUBSTR(COD_UBIGEO, 1, 4) || '00' AS COD_PROVINCIA,
+    (SELECT NOM_UBIGEO
+    FROM ADMIN_GART.ADM_UBIGEO
+    WHERE COD_UBIGEO = SUBSTR(#{codUbigeo, jdbcType=VARCHAR}, 1, 4) || '00') AS NOM_PROVINCIA,
+    SUBSTR(COD_UBIGEO, 1, 2) || '0000' AS COD_DEPARTAMENTO,
+    (SELECT NOM_UBIGEO
+    FROM ADMIN_GART.ADM_UBIGEO
+    WHERE COD_UBIGEO = SUBSTR(#{codUbigeo, jdbcType=VARCHAR}, 1, 2) || '0000') AS NOM_DEPARTAMENTO
+    FROM ADMIN_GART.ADM_UBIGEO
+    WHERE COD_UBIGEO = #{codUbigeo, jdbcType=VARCHAR}
+  </select>
+
+</mapper>

@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: $APP_NAME
+spec:
+  gateways:
+    - $API_GATEWAY
+  hosts:
+    - $HOSTNAME
+  http:
+    - name: "$APP_NAME"
+      match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: $APP_NAME
+            subset: $APP_VERSION
+          weight: 100

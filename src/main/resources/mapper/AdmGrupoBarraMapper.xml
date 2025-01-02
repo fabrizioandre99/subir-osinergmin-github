@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmGrupoBarraMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoBarra">
+        <!--@Table ADMIN_GART.ADM_GRUPO_BARRA-->
+        <id column="COD_BARRA_GRUPO" jdbcType="CHAR" property="codBarraGrupo"/>
+        <id column="COD_BARRA" jdbcType="CHAR" property="codBarra"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_BARRA_GRUPO,
+        COD_BARRA,
+        ESTADO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_GRUPO_BARRA
+        where COD_BARRA_GRUPO = #{codBarraGrupo,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from ADMIN_GART.ADM_GRUPO_BARRA
+        where COD_BARRA_GRUPO = #{codBarraGrupo,jdbcType=CHAR}
+          and COD_BARRA = #{codBarra,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoBarra">
+        insert into ADMIN_GART.ADM_GRUPO_BARRA (COD_BARRA_GRUPO, COD_BARRA, ESTADO,
+                                                USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION,
+                                                USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+                                                FECHA_ACTUALIZACION)
+        values (#{codBarraGrupo,jdbcType=CHAR}, #{codBarra,jdbcType=CHAR}, #{estado,jdbcType=CHAR},
+                #{usuarioCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR},
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR},
+                #{fechaActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoBarra">
+        insert into ADMIN_GART.ADM_GRUPO_BARRA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codBarraGrupo != null">
+                COD_BARRA_GRUPO,
+            </if>
+            <if test="codBarra != null">
+                COD_BARRA,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codBarraGrupo != null">
+                #{codBarraGrupo,jdbcType=CHAR},
+            </if>
+            <if test="codBarra != null">
+                #{codBarra,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoBarra">
+        update ADMIN_GART.ADM_GRUPO_BARRA
+        <set>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_BARRA_GRUPO = #{codBarraGrupo,jdbcType=CHAR}
+          and COD_BARRA = #{codBarra,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmGrupoBarra">
+        update ADMIN_GART.ADM_GRUPO_BARRA
+        set ESTADO                 = #{estado,jdbcType=CHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where COD_BARRA_GRUPO = #{codBarraGrupo,jdbcType=CHAR}
+          and COD_BARRA = #{codBarra,jdbcType=CHAR}
+    </update>
+
+    <insert id="insertGrupoBarra" parameterType="map">
+        insert into ADMIN_GART.ADM_GRUPO_BARRA (COD_BARRA_GRUPO, COD_BARRA, ESTADO,
+                                                USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION)
+        values (#{codBarraGrupo,jdbcType=CHAR},
+                #{codBarra,jdbcType=CHAR},
+                #{estado,jdbcType=CHAR},
+                #{usuarioCreacion,jdbcType=VARCHAR},
+                #{terminalCreacion,jdbcType=VARCHAR},
+                #{fechaCreacion,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateCodBarra" parameterType="map">
+        UPDATE ADMIN_GART.ADM_GRUPO_BARRA
+        SET ESTADO                 = #{estado,jdbcType=CHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        WHERE TRIM(COD_BARRA_GRUPO) = TRIM(#{codBarraGrupo,jdbcType=CHAR})
+          AND TRIM(COD_BARRA) = TRIM(#{codBarra,jdbcType=CHAR})
+    </update>
+
+    <delete id="deleteCodBarra" parameterType="map">
+        DELETE
+        FROM ADMIN_GART.ADM_GRUPO_BARRA
+        WHERE TRIM(COD_BARRA_GRUPO) = TRIM(#{codBarraGrupo,jdbcType=CHAR})
+    </delete>
+
+    <select id="selectCodBarrasByGrupo" parameterType="string" resultType="string">
+        SELECT COD_BARRA
+        FROM ADMIN_GART.ADM_GRUPO_BARRA
+        WHERE TRIM(COD_BARRA_GRUPO) = TRIM(#{codBarraGrupo,jdbcType=CHAR})
+    </select>
+
+    <select id="selectAllGrupos" resultMap="BaseResultMap">
+        SELECT COD_BARRA_GRUPO, COD_BARRA, ESTADO
+        FROM ADMIN_GART.ADM_GRUPO_BARRA
+    </select>
+
+    <select id="listarGruposDeBarras"
+            resultType="pe.gob.osinergmin.prie.admin.backend.dto.grupoBarra.GrupoBarraResponseDTO">
+        SELECT COD_BARRA_GRUPO AS            "codigo",
+               LISTAGG(TRIM(COD_BARRA), ',') WITHIN GROUP (ORDER BY COD_BARRA) AS "codigosBarra",
+            ESTADO AS "estado"
+        FROM
+            ADM_GRUPO_BARRA
+        GROUP BY
+            COD_BARRA_GRUPO, ESTADO
+        ORDER BY
+            COD_BARRA_GRUPO
+    </select>
+
+    <select id="filtrar" resultType="pe.gob.osinergmin.prie.admin.backend.dto.grupoBarra.GrupoBarraFlatDTO">
+        SELECT g.COD_BARRA_GRUPO AS codigo,
+        g.ESTADO AS estado,
+        b.COD_BARRA AS codBarra,
+        b.NOM_BARRA AS nomBarra
+        FROM ADM_GRUPO_BARRA g
+        LEFT JOIN ADM_BARRA b ON b.COD_BARRA = g.COD_BARRA
+        WHERE 1=1
+        <if test="codigo != null and codigo != ''">
+            AND UPPER(g.COD_BARRA_GRUPO) LIKE '%' || UPPER(#{codigo}) || '%'
+        </if>
+        <if test="codigosBarra != null and codigosBarra != ''">
+            AND UPPER(b.COD_BARRA) LIKE '%' || UPPER(#{codigosBarra}) || '%'
+        </if>
+        <if test="estado != null and estado != ''">
+            AND UPPER(g.ESTADO) = UPPER(#{estado})
+        </if>
+        ORDER BY g.COD_BARRA_GRUPO
+    </select>
+
+    <select id="countByCodBarraGrupo" parameterType="string" resultType="int">
+        SELECT COUNT(*)
+        FROM ADMIN_GART.ADM_GRUPO_BARRA
+        WHERE TRIM(COD_BARRA_GRUPO) = TRIM(#{codBarraGrupo,jdbcType=CHAR})
+    </select>
+
+    <update id="updateEstadoGrupo" parameterType="map">
+        UPDATE ADMIN_GART.ADM_GRUPO_BARRA
+        SET ESTADO = #{estado,jdbcType=CHAR}
+        WHERE COD_BARRA_GRUPO = #{codBarraGrupo,jdbcType=CHAR}
+    </update>
+
+
+</mapper>

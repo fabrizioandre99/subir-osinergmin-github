@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTransformadorMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransformador">
+    <!--@Table ADMIN_GART.ADM_TRANSFORMADOR-->
+    <id column="ID_TRANSFORMADOR" jdbcType="DECIMAL" property="idTransformador" />
+    <result column="ID_TIPO_SIS_TRANS" jdbcType="DECIMAL" property="idTipoSisTrans" />
+    <result column="COD_EQUIPO" jdbcType="VARCHAR" property="codEquipo" />
+    <result column="COD_SUBESTACION" jdbcType="CHAR" property="codSubestacion" />
+    <result column="COD_EMPRESA" jdbcType="CHAR" property="codEmpresa" />
+    <result column="NUM_SERIE" jdbcType="VARCHAR" property="numSerie" />
+    <result column="ANNIO_PES" jdbcType="DECIMAL" property="annioPes" />
+    <result column="MES_PES" jdbcType="DECIMAL" property="mesPes" />
+    <result column="DIA_PES" jdbcType="DECIMAL" property="diaPes" />
+    <result column="POT_ONAN_PRI" jdbcType="DECIMAL" property="potOnanPri" />
+    <result column="POT_ONAN_SEC" jdbcType="DECIMAL" property="potOnanSec" />
+    <result column="POT_ONAN_TER" jdbcType="DECIMAL" property="potOnanTer" />
+    <result column="POT_ONAF_PRI" jdbcType="DECIMAL" property="potOnafPri" />
+    <result column="POT_ONAF_SEC" jdbcType="DECIMAL" property="potOnafSec" />
+    <result column="POT_ONAF_TER" jdbcType="DECIMAL" property="potOnafTer" />
+    <result column="T_PRIMARIO" jdbcType="DECIMAL" property="tPrimario" />
+    <result column="T_SECUNDARIO" jdbcType="DECIMAL" property="tSecundario" />
+    <result column="T_TERCIARIO" jdbcType="DECIMAL" property="tTerciario" />
+    <result column="GRUPO_CONEXION" jdbcType="VARCHAR" property="grupoConexion" />
+    <result column="TAPS" jdbcType="DECIMAL" property="taps" />
+    <result column="VCC_PS" jdbcType="DECIMAL" property="vccPs" />
+    <result column="VCC_PT" jdbcType="DECIMAL" property="vccPt" />
+    <result column="VCC_ST" jdbcType="DECIMAL" property="vccSt" />
+    <result column="PCU_PS" jdbcType="DECIMAL" property="pcuPs" />
+    <result column="PCU_PT" jdbcType="DECIMAL" property="pcuPt" />
+    <result column="PCU_ST" jdbcType="DECIMAL" property="pcuSt" />
+    <result column="PFE" jdbcType="DECIMAL" property="pfe" />
+    <result column="TIPO_REGULACION" jdbcType="VARCHAR" property="tipoRegulacion" />
+    <result column="PESO_TOTAL" jdbcType="DECIMAL" property="pesoTotal" />
+    <result column="PESO_COBRE" jdbcType="DECIMAL" property="pesoCobre" />
+    <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta" />
+    <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja" />
+    <result column="ESTADO" jdbcType="VARCHAR" property="estado" />
+    <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion" />
+    <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion" />
+    <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion" />
+    <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion" />
+    <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion" />
+    <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion" />
+    <result column="USUARIO_ELIMINACION" jdbcType="VARCHAR" property="usuarioEliminacion" />
+    <result column="TERMINAL_ELIMINACION" jdbcType="VARCHAR" property="terminalEliminacion" />
+    <result column="FECHA_ELIMINACION" jdbcType="TIMESTAMP" property="fechaEliminacion" />
+    <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_TRANSFORMADOR, ID_TIPO_SIS_TRANS, COD_EQUIPO, COD_SUBESTACION, COD_EMPRESA, NUM_SERIE, 
+    ANNIO_PES, MES_PES, DIA_PES, POT_ONAN_PRI, POT_ONAN_SEC, POT_ONAN_TER, POT_ONAF_PRI, 
+    POT_ONAF_SEC, POT_ONAF_TER, T_PRIMARIO, T_SECUNDARIO, T_TERCIARIO, GRUPO_CONEXION, 
+    TAPS, VCC_PS, VCC_PT, VCC_ST, PCU_PS, PCU_PT, PCU_ST, PFE, TIPO_REGULACION, PESO_TOTAL, 
+    PESO_COBRE, FEC_ALTA, FEC_BAJA, ESTADO, USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION, 
+    USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION, USUARIO_ELIMINACION, 
+    TERMINAL_ELIMINACION, FECHA_ELIMINACION, ESTADO_REGISTRO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TRANSFORMADOR
+    where trim(ID_TRANSFORMADOR) = trim(#{idTransformador,jdbcType=DECIMAL})
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ADMIN_GART.ADM_TRANSFORMADOR
+    where trim(ID_TRANSFORMADOR) = trim(#{idTransformador,jdbcType=DECIMAL})
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransformador">
+    insert into ADMIN_GART.ADM_TRANSFORMADOR (ID_TRANSFORMADOR, ID_TIPO_SIS_TRANS, 
+      COD_EQUIPO, COD_SUBESTACION, COD_EMPRESA, 
+      NUM_SERIE, ANNIO_PES, MES_PES, 
+      DIA_PES, POT_ONAN_PRI, POT_ONAN_SEC, 
+      POT_ONAN_TER, POT_ONAF_PRI, POT_ONAF_SEC, 
+      POT_ONAF_TER, T_PRIMARIO, T_SECUNDARIO, 
+      T_TERCIARIO, GRUPO_CONEXION, TAPS, 
+      VCC_PS, VCC_PT, VCC_ST, 
+      PCU_PS, PCU_PT, PCU_ST, 
+      PFE, TIPO_REGULACION, PESO_TOTAL, 
+      PESO_COBRE, FEC_ALTA, FEC_BAJA, 
+      ESTADO, USUARIO_CREACION, TERMINAL_CREACION, 
+      FECHA_CREACION, USUARIO_ACTUALIZACION, 
+      TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION, 
+      USUARIO_ELIMINACION, TERMINAL_ELIMINACION, 
+      FECHA_ELIMINACION, ESTADO_REGISTRO)
+    values (#{idTransformador,jdbcType=DECIMAL}, #{idTipoSisTrans,jdbcType=DECIMAL}, 
+      #{codEquipo,jdbcType=VARCHAR}, #{codSubestacion,jdbcType=CHAR}, #{codEmpresa,jdbcType=CHAR}, 
+      #{numSerie,jdbcType=VARCHAR}, #{annioPes,jdbcType=DECIMAL}, #{mesPes,jdbcType=DECIMAL}, 
+      #{diaPes,jdbcType=DECIMAL}, #{potOnanPri,jdbcType=DECIMAL}, #{potOnanSec,jdbcType=DECIMAL}, 
+      #{potOnanTer,jdbcType=DECIMAL}, #{potOnafPri,jdbcType=DECIMAL}, #{potOnafSec,jdbcType=DECIMAL}, 
+      #{potOnafTer,jdbcType=DECIMAL}, #{tPrimario,jdbcType=DECIMAL}, #{tSecundario,jdbcType=DECIMAL}, 
+      #{tTerciario,jdbcType=DECIMAL}, #{grupoConexion,jdbcType=VARCHAR}, #{taps,jdbcType=DECIMAL}, 
+      #{vccPs,jdbcType=DECIMAL}, #{vccPt,jdbcType=DECIMAL}, #{vccSt,jdbcType=DECIMAL}, 
+      #{pcuPs,jdbcType=DECIMAL}, #{pcuPt,jdbcType=DECIMAL}, #{pcuSt,jdbcType=DECIMAL}, 
+      #{pfe,jdbcType=DECIMAL}, #{tipoRegulacion,jdbcType=VARCHAR}, #{pesoTotal,jdbcType=DECIMAL}, 
+      #{pesoCobre,jdbcType=DECIMAL}, #{fecAlta,jdbcType=TIMESTAMP}, #{fecBaja,jdbcType=TIMESTAMP}, 
+      #{estado,jdbcType=VARCHAR}, #{usuarioCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR}, 
+      #{fechaCreacion,jdbcType=TIMESTAMP}, #{usuarioActualizacion,jdbcType=VARCHAR}, 
+      #{terminalActualizacion,jdbcType=VARCHAR}, #{fechaActualizacion,jdbcType=TIMESTAMP}, 
+      #{usuarioEliminacion,jdbcType=VARCHAR}, #{terminalEliminacion,jdbcType=VARCHAR}, 
+      #{fechaEliminacion,jdbcType=TIMESTAMP}, #{estadoRegistro,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransformador">
+    insert into ADMIN_GART.ADM_TRANSFORMADOR
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idTransformador != null">
+        ID_TRANSFORMADOR,
+      </if>
+      <if test="idTipoSisTrans != null">
+        ID_TIPO_SIS_TRANS,
+      </if>
+      <if test="codEquipo != null">
+        COD_EQUIPO,
+      </if>
+      <if test="codSubestacion != null">
+        COD_SUBESTACION,
+      </if>
+      <if test="codEmpresa != null">
+        COD_EMPRESA,
+      </if>
+      <if test="numSerie != null">
+        NUM_SERIE,
+      </if>
+      <if test="annioPes != null">
+        ANNIO_PES,
+      </if>
+      <if test="mesPes != null">
+        MES_PES,
+      </if>
+      <if test="diaPes != null">
+        DIA_PES,
+      </if>
+      <if test="potOnanPri != null">
+        POT_ONAN_PRI,
+      </if>
+      <if test="potOnanSec != null">
+        POT_ONAN_SEC,
+      </if>
+      <if test="potOnanTer != null">
+        POT_ONAN_TER,
+      </if>
+      <if test="potOnafPri != null">
+        POT_ONAF_PRI,
+      </if>
+      <if test="potOnafSec != null">
+        POT_ONAF_SEC,
+      </if>
+      <if test="potOnafTer != null">
+        POT_ONAF_TER,
+      </if>
+      <if test="tPrimario != null">
+        T_PRIMARIO,
+      </if>
+      <if test="tSecundario != null">
+        T_SECUNDARIO,
+      </if>
+      <if test="tTerciario != null">
+        T_TERCIARIO,
+      </if>
+      <if test="grupoConexion != null">
+        GRUPO_CONEXION,
+      </if>
+      <if test="taps != null">
+        TAPS,
+      </if>
+      <if test="vccPs != null">
+        VCC_PS,
+      </if>
+      <if test="vccPt != null">
+        VCC_PT,
+      </if>
+      <if test="vccSt != null">
+        VCC_ST,
+      </if>
+      <if test="pcuPs != null">
+        PCU_PS,
+      </if>
+      <if test="pcuPt != null">
+        PCU_PT,
+      </if>
+      <if test="pcuSt != null">
+        PCU_ST,
+      </if>
+      <if test="pfe != null">
+        PFE,
+      </if>
+      <if test="tipoRegulacion != null">
+        TIPO_REGULACION,
+      </if>
+      <if test="pesoTotal != null">
+        PESO_TOTAL,
+      </if>
+      <if test="pesoCobre != null">
+        PESO_COBRE,
+      </if>
+      <if test="fecAlta != null">
+        FEC_ALTA,
+      </if>
+      <if test="fecBaja != null">
+        FEC_BAJA,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+      <if test="usuarioCreacion != null">
+        USUARIO_CREACION,
+      </if>
+      <if test="terminalCreacion != null">
+        TERMINAL_CREACION,
+      </if>
+      <if test="fechaCreacion != null">
+        FECHA_CREACION,
+      </if>
+      <if test="usuarioActualizacion != null">
+        USUARIO_ACTUALIZACION,
+      </if>
+      <if test="terminalActualizacion != null">
+        TERMINAL_ACTUALIZACION,
+      </if>
+      <if test="fechaActualizacion != null">
+        FECHA_ACTUALIZACION,
+      </if>
+      <if test="usuarioEliminacion != null">
+        USUARIO_ELIMINACION,
+      </if>
+      <if test="terminalEliminacion != null">
+        TERMINAL_ELIMINACION,
+      </if>
+      <if test="fechaEliminacion != null">
+        FECHA_ELIMINACION,
+      </if>
+      <if test="estadoRegistro != null">
+        ESTADO_REGISTRO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idTransformador != null">
+        #{idTransformador,jdbcType=DECIMAL},
+      </if>
+      <if test="idTipoSisTrans != null">
+        #{idTipoSisTrans,jdbcType=DECIMAL},
+      </if>
+      <if test="codEquipo != null">
+        #{codEquipo,jdbcType=VARCHAR},
+      </if>
+      <if test="codSubestacion != null">
+        #{codSubestacion,jdbcType=CHAR},
+      </if>
+      <if test="codEmpresa != null">
+        #{codEmpresa,jdbcType=CHAR},
+      </if>
+      <if test="numSerie != null">
+        #{numSerie,jdbcType=VARCHAR},
+      </if>
+      <if test="annioPes != null">
+        #{annioPes,jdbcType=DECIMAL},
+      </if>
+      <if test="mesPes != null">
+        #{mesPes,jdbcType=DECIMAL},
+      </if>
+      <if test="diaPes != null">
+        #{diaPes,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnanPri != null">
+        #{potOnanPri,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnanSec != null">
+        #{potOnanSec,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnanTer != null">
+        #{potOnanTer,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnafPri != null">
+        #{potOnafPri,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnafSec != null">
+        #{potOnafSec,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnafTer != null">
+        #{potOnafTer,jdbcType=DECIMAL},
+      </if>
+      <if test="tPrimario != null">
+        #{tPrimario,jdbcType=DECIMAL},
+      </if>
+      <if test="tSecundario != null">
+        #{tSecundario,jdbcType=DECIMAL},
+      </if>
+      <if test="tTerciario != null">
+        #{tTerciario,jdbcType=DECIMAL},
+      </if>
+      <if test="grupoConexion != null">
+        #{grupoConexion,jdbcType=VARCHAR},
+      </if>
+      <if test="taps != null">
+        #{taps,jdbcType=DECIMAL},
+      </if>
+      <if test="vccPs != null">
+        #{vccPs,jdbcType=DECIMAL},
+      </if>
+      <if test="vccPt != null">
+        #{vccPt,jdbcType=DECIMAL},
+      </if>
+      <if test="vccSt != null">
+        #{vccSt,jdbcType=DECIMAL},
+      </if>
+      <if test="pcuPs != null">
+        #{pcuPs,jdbcType=DECIMAL},
+      </if>
+      <if test="pcuPt != null">
+        #{pcuPt,jdbcType=DECIMAL},
+      </if>
+      <if test="pcuSt != null">
+        #{pcuSt,jdbcType=DECIMAL},
+      </if>
+      <if test="pfe != null">
+        #{pfe,jdbcType=DECIMAL},
+      </if>
+      <if test="tipoRegulacion != null">
+        #{tipoRegulacion,jdbcType=VARCHAR},
+      </if>
+      <if test="pesoTotal != null">
+        #{pesoTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="pesoCobre != null">
+        #{pesoCobre,jdbcType=DECIMAL},
+      </if>
+      <if test="fecAlta != null">
+        #{fecAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecBaja != null">
+        #{fecBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=VARCHAR},
+      </if>
+      <if test="usuarioCreacion != null">
+        #{usuarioCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalCreacion != null">
+        #{terminalCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaCreacion != null">
+        #{fechaCreacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioActualizacion != null">
+        #{usuarioActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalActualizacion != null">
+        #{terminalActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaActualizacion != null">
+        #{fechaActualizacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioEliminacion != null">
+        #{usuarioEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalEliminacion != null">
+        #{terminalEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEliminacion != null">
+        #{fechaEliminacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estadoRegistro != null">
+        #{estadoRegistro,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransformador">
+    update ADMIN_GART.ADM_TRANSFORMADOR
+    <set>
+      <if test="idTipoSisTrans != null">
+        ID_TIPO_SIS_TRANS = #{idTipoSisTrans,jdbcType=DECIMAL},
+      </if>
+      <if test="codEquipo != null">
+        COD_EQUIPO = #{codEquipo,jdbcType=VARCHAR},
+      </if>
+      <if test="codSubestacion != null">
+        COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR},
+      </if>
+      <if test="codEmpresa != null">
+        COD_EMPRESA = #{codEmpresa,jdbcType=CHAR},
+      </if>
+      <if test="numSerie != null">
+        NUM_SERIE = #{numSerie,jdbcType=VARCHAR},
+      </if>
+      <if test="annioPes != null">
+        ANNIO_PES = #{annioPes,jdbcType=DECIMAL},
+      </if>
+      <if test="mesPes != null">
+        MES_PES = #{mesPes,jdbcType=DECIMAL},
+      </if>
+      <if test="diaPes != null">
+        DIA_PES = #{diaPes,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnanPri != null">
+        POT_ONAN_PRI = #{potOnanPri,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnanSec != null">
+        POT_ONAN_SEC = #{potOnanSec,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnanTer != null">
+        POT_ONAN_TER = #{potOnanTer,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnafPri != null">
+        POT_ONAF_PRI = #{potOnafPri,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnafSec != null">
+        POT_ONAF_SEC = #{potOnafSec,jdbcType=DECIMAL},
+      </if>
+      <if test="potOnafTer != null">
+        POT_ONAF_TER = #{potOnafTer,jdbcType=DECIMAL},
+      </if>
+      <if test="tPrimario != null">
+        T_PRIMARIO = #{tPrimario,jdbcType=DECIMAL},
+      </if>
+      <if test="tSecundario != null">
+        T_SECUNDARIO = #{tSecundario,jdbcType=DECIMAL},
+      </if>
+      <if test="tTerciario != null">
+        T_TERCIARIO = #{tTerciario,jdbcType=DECIMAL},
+      </if>
+      <if test="grupoConexion != null">
+        GRUPO_CONEXION = #{grupoConexion,jdbcType=VARCHAR},
+      </if>
+      <if test="taps != null">
+        TAPS = #{taps,jdbcType=DECIMAL},
+      </if>
+      <if test="vccPs != null">
+        VCC_PS = #{vccPs,jdbcType=DECIMAL},
+      </if>
+      <if test="vccPt != null">
+        VCC_PT = #{vccPt,jdbcType=DECIMAL},
+      </if>
+      <if test="vccSt != null">
+        VCC_ST = #{vccSt,jdbcType=DECIMAL},
+      </if>
+      <if test="pcuPs != null">
+        PCU_PS = #{pcuPs,jdbcType=DECIMAL},
+      </if>
+      <if test="pcuPt != null">
+        PCU_PT = #{pcuPt,jdbcType=DECIMAL},
+      </if>
+      <if test="pcuSt != null">
+        PCU_ST = #{pcuSt,jdbcType=DECIMAL},
+      </if>
+      <if test="pfe != null">
+        PFE = #{pfe,jdbcType=DECIMAL},
+      </if>
+      <if test="tipoRegulacion != null">
+        TIPO_REGULACION = #{tipoRegulacion,jdbcType=VARCHAR},
+      </if>
+      <if test="pesoTotal != null">
+        PESO_TOTAL = #{pesoTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="pesoCobre != null">
+        PESO_COBRE = #{pesoCobre,jdbcType=DECIMAL},
+      </if>
+      <if test="fecAlta != null">
+        FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecBaja != null">
+        FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=VARCHAR},
+      </if>
+      <if test="usuarioCreacion != null">
+        USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalCreacion != null">
+        TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaCreacion != null">
+        FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioActualizacion != null">
+        USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalActualizacion != null">
+        TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaActualizacion != null">
+        FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioEliminacion != null">
+        USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalEliminacion != null">
+        TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEliminacion != null">
+        FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estadoRegistro != null">
+        ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransformador">
+    update ADMIN_GART.ADM_TRANSFORMADOR
+    set ID_TIPO_SIS_TRANS = #{idTipoSisTrans,jdbcType=DECIMAL},
+      COD_EQUIPO = #{codEquipo,jdbcType=VARCHAR},
+      COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR},
+      COD_EMPRESA = #{codEmpresa,jdbcType=CHAR},
+      NUM_SERIE = #{numSerie,jdbcType=VARCHAR},
+      ANNIO_PES = #{annioPes,jdbcType=DECIMAL},
+      MES_PES = #{mesPes,jdbcType=DECIMAL},
+      DIA_PES = #{diaPes,jdbcType=DECIMAL},
+      POT_ONAN_PRI = #{potOnanPri,jdbcType=DECIMAL},
+      POT_ONAN_SEC = #{potOnanSec,jdbcType=DECIMAL},
+      POT_ONAN_TER = #{potOnanTer,jdbcType=DECIMAL},
+      POT_ONAF_PRI = #{potOnafPri,jdbcType=DECIMAL},
+      POT_ONAF_SEC = #{potOnafSec,jdbcType=DECIMAL},
+      POT_ONAF_TER = #{potOnafTer,jdbcType=DECIMAL},
+      T_PRIMARIO = #{tPrimario,jdbcType=DECIMAL},
+      T_SECUNDARIO = #{tSecundario,jdbcType=DECIMAL},
+      T_TERCIARIO = #{tTerciario,jdbcType=DECIMAL},
+      GRUPO_CONEXION = #{grupoConexion,jdbcType=VARCHAR},
+      TAPS = #{taps,jdbcType=DECIMAL},
+      VCC_PS = #{vccPs,jdbcType=DECIMAL},
+      VCC_PT = #{vccPt,jdbcType=DECIMAL},
+      VCC_ST = #{vccSt,jdbcType=DECIMAL},
+      PCU_PS = #{pcuPs,jdbcType=DECIMAL},
+      PCU_PT = #{pcuPt,jdbcType=DECIMAL},
+      PCU_ST = #{pcuSt,jdbcType=DECIMAL},
+      PFE = #{pfe,jdbcType=DECIMAL},
+      TIPO_REGULACION = #{tipoRegulacion,jdbcType=VARCHAR},
+      PESO_TOTAL = #{pesoTotal,jdbcType=DECIMAL},
+      PESO_COBRE = #{pesoCobre,jdbcType=DECIMAL},
+      FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+      FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+      ESTADO = #{estado,jdbcType=VARCHAR},
+      USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+      TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+      FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+      USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+      TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+      FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+      USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+      TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+      FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+      ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR}
+    where ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL}
+  </update>
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.transformador.AdmTransformadorDTO">
+    <!--@Table ADMIN_GART.ADM_TRANSFORMADOR-->
+    <id column="ID_TRANSFORMADOR" jdbcType="DECIMAL" property="idTransformador" />
+    <result column="ID_TIPO_SIS_TRANS" jdbcType="DECIMAL" property="idTipoSisTrans" />
+    <result column="COD_EQUIPO" jdbcType="VARCHAR" property="codEquipo" />
+    <result column="COD_SUBESTACION" jdbcType="CHAR" property="codSubestacion" />
+    <result column="COD_EMPRESA" jdbcType="CHAR" property="codEmpresa" />
+    <result column="NUM_SERIE" jdbcType="VARCHAR" property="numSerie" />
+    <result column="ANNIO_PES" jdbcType="DECIMAL" property="annioPes" />
+    <result column="MES_PES" jdbcType="DECIMAL" property="mesPes" />
+    <result column="DIA_PES" jdbcType="DECIMAL" property="diaPes" />
+    <result column="POT_ONAN_PRI" jdbcType="DECIMAL" property="potOnanPri" />
+    <result column="POT_ONAN_SEC" jdbcType="DECIMAL" property="potOnanSec" />
+    <result column="POT_ONAN_TER" jdbcType="DECIMAL" property="potOnanTer" />
+    <result column="POT_ONAF_PRI" jdbcType="DECIMAL" property="potOnafPri" />
+    <result column="POT_ONAF_SEC" jdbcType="DECIMAL" property="potOnafSec" />
+    <result column="POT_ONAF_TER" jdbcType="DECIMAL" property="potOnafTer" />
+    <result column="T_PRIMARIO" jdbcType="DECIMAL" property="tPrimario" />
+    <result column="T_SECUNDARIO" jdbcType="DECIMAL" property="tSecundario" />
+    <result column="T_TERCIARIO" jdbcType="DECIMAL" property="tTerciario" />
+    <result column="GRUPO_CONEXION" jdbcType="VARCHAR" property="grupoConexion" />
+    <result column="TAPS" jdbcType="DECIMAL" property="taps" />
+    <result column="VCC_PS" jdbcType="DECIMAL" property="vccPs" />
+    <result column="VCC_PT" jdbcType="DECIMAL" property="vccPt" />
+    <result column="VCC_ST" jdbcType="DECIMAL" property="vccSt" />
+    <result column="PCU_PS" jdbcType="DECIMAL" property="pcuPs" />
+    <result column="PCU_PT" jdbcType="DECIMAL" property="pcuPt" />
+    <result column="PCU_ST" jdbcType="DECIMAL" property="pcuSt" />
+    <result column="PFE" jdbcType="DECIMAL" property="pfe" />
+    <result column="TIPO_REGULACION" jdbcType="VARCHAR" property="tipoRegulacion" />
+    <result column="PESO_TOTAL" jdbcType="DECIMAL" property="pesoTotal" />
+    <result column="PESO_COBRE" jdbcType="DECIMAL" property="pesoCobre" />
+    <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta" />
+    <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja" />
+    <result column="ESTADO" jdbcType="VARCHAR" property="estado" />
+    <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro" />
+    <result column="DSC_EMPRESA" jdbcType="VARCHAR" property="dscEmpresa"/>
+    <result column="NOM_SUBESTACION" jdbcType="VARCHAR" property="nomSubestacion"/>
+  </resultMap>
+  <select id="selectAll" resultMap="BaseResultMapDTO">
+    select
+      ID_TRANSFORMADOR,
+      ID_TIPO_SIS_TRANS,
+    COD_EQUIPO,
+      COD_SUBESTACION,
+      COD_EMPRESA,
+      NUM_SERIE,
+      ANNIO_PES,
+      MES_PES,
+      DIA_PES,
+      POT_ONAN_PRI,
+      POT_ONAN_SEC,
+      POT_ONAN_TER,
+      POT_ONAF_PRI,
+      POT_ONAF_SEC,
+      POT_ONAF_TER,
+      T_PRIMARIO,
+      T_SECUNDARIO,
+      T_TERCIARIO,
+      GRUPO_CONEXION,
+      TAPS,
+      VCC_PS,
+      VCC_PT,
+      VCC_ST,
+      PCU_PS,
+      PCU_PT,
+      PCU_ST,
+      PFE,
+      TIPO_REGULACION,
+      PESO_TOTAL,
+      PESO_COBRE,
+      FEC_ALTA,
+      FEC_BAJA,
+      ESTADO,
+      ESTADO_REGISTRO
+    from ADMIN_GART.ADM_TRANSFORMADOR
+    </select>
+
+  <select id="filtrar" resultMap="BaseResultMapDTO">
+    SELECT
+    T.ID_TRANSFORMADOR,
+    T.ID_TIPO_SIS_TRANS,
+    T.COD_EQUIPO,
+    T.COD_SUBESTACION,
+    T.COD_EMPRESA,
+    T.NUM_SERIE,
+    T.ANNIO_PES,
+    T.MES_PES,
+    T.DIA_PES,
+    T.POT_ONAN_PRI,
+    T.POT_ONAN_SEC,
+    T.POT_ONAN_TER,
+    T.POT_ONAF_PRI,
+    T.POT_ONAF_SEC,
+    T.POT_ONAF_TER,
+    T.T_PRIMARIO,
+    T.T_SECUNDARIO,
+    T.T_TERCIARIO,
+    T.GRUPO_CONEXION,
+    T.TAPS,
+    T.VCC_PS,
+    T.VCC_PT,
+    T.VCC_ST,
+    T.PCU_PS,
+    T.PCU_PT,
+    T.PCU_ST,
+    T.PFE,
+    T.TIPO_REGULACION,
+    T.PESO_TOTAL,
+    T.PESO_COBRE,
+    T.FEC_ALTA,
+    T.FEC_BAJA,
+    T.ESTADO,
+    T.ESTADO_REGISTRO,
+    E.DSC_EMPRESA,
+    S.NOM_SUBESTACION
+    FROM
+    ADMIN_GART.ADM_TRANSFORMADOR T
+    LEFT JOIN
+    ADMIN_GART.ADM_EMPRESA E ON T.COD_EMPRESA = E.COD_EMPRESA
+    LEFT JOIN
+    ADMIN_GART.ADM_SUBESTACION S ON T.COD_SUBESTACION = S.COD_SUBESTACION
+    WHERE
+    1 = 1
+    <if test="codEquipo != null and codEquipo != ''">
+      AND UPPER(T.COD_EQUIPO) LIKE '%' || UPPER(#{codEquipo}) || '%'
+    </if>
+    <if test="codEmpresa != null and codEmpresa != ''">
+      AND UPPER(T.COD_EMPRESA) LIKE '%' || UPPER(#{codEmpresa}) || '%'
+    </if>
+    <if test="codSubestacion != null and codSubestacion != ''">
+      AND UPPER(T.COD_SUBESTACION) LIKE '%' || UPPER(#{codSubestacion}) || '%'
+    </if>
+    <if test="estadoRegistro != null and estadoRegistro != ''">
+      AND UPPER(T.ESTADO_REGISTRO) LIKE '%' || UPPER(#{estadoRegistro}) || '%'
+    </if>
+  </select>
+
+  <insert id="insertarFechasString" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.transformador.AdmTransformadorInsertarDTO">
+    insert into ADMIN_GART.ADM_TRANSFORMADOR (
+    ID_TRANSFORMADOR, ID_TIPO_SIS_TRANS,
+    COD_EQUIPO, COD_SUBESTACION, COD_EMPRESA,
+    NUM_SERIE, ANNIO_PES, MES_PES,
+    DIA_PES, POT_ONAN_PRI, POT_ONAN_SEC,
+    POT_ONAN_TER, POT_ONAF_PRI, POT_ONAF_SEC,
+    POT_ONAF_TER, T_PRIMARIO, T_SECUNDARIO,
+    T_TERCIARIO, GRUPO_CONEXION, TAPS,
+    VCC_PS, VCC_PT, VCC_ST,
+    PCU_PS, PCU_PT, PCU_ST,
+    PFE, TIPO_REGULACION, PESO_TOTAL,
+    PESO_COBRE, FEC_ALTA, FEC_BAJA,
+    ESTADO, USUARIO_CREACION, TERMINAL_CREACION,
+    FECHA_CREACION, USUARIO_ACTUALIZACION,
+    TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION,
+    USUARIO_ELIMINACION, TERMINAL_ELIMINACION,
+    FECHA_ELIMINACION, ESTADO_REGISTRO
+    )
+    values (
+    #{idTransformador,jdbcType=DECIMAL}, #{idTipoSisTrans,jdbcType=DECIMAL},
+    #{codEquipo,jdbcType=VARCHAR}, #{codSubestacion,jdbcType=CHAR}, #{codEmpresa,jdbcType=CHAR},
+    #{numSerie,jdbcType=VARCHAR}, #{annioPes,jdbcType=DECIMAL}, #{mesPes,jdbcType=DECIMAL},
+    #{diaPes,jdbcType=DECIMAL}, #{potOnanPri,jdbcType=DECIMAL}, #{potOnanSec,jdbcType=DECIMAL},
+    #{potOnanTer,jdbcType=DECIMAL}, #{potOnafPri,jdbcType=DECIMAL}, #{potOnafSec,jdbcType=DECIMAL},
+    #{potOnafTer,jdbcType=DECIMAL}, #{tPrimario,jdbcType=DECIMAL}, #{tSecundario,jdbcType=DECIMAL},
+    #{tTerciario,jdbcType=DECIMAL}, #{grupoConexion,jdbcType=VARCHAR}, #{taps,jdbcType=DECIMAL},
+    #{vccPs,jdbcType=DECIMAL}, #{vccPt,jdbcType=DECIMAL}, #{vccSt,jdbcType=DECIMAL},
+    #{pcuPs,jdbcType=DECIMAL}, #{pcuPt,jdbcType=DECIMAL}, #{pcuSt,jdbcType=DECIMAL},
+    #{pfe,jdbcType=DECIMAL}, #{tipoRegulacion,jdbcType=VARCHAR}, #{pesoTotal,jdbcType=DECIMAL},
+    #{pesoCobre,jdbcType=DECIMAL},
+    TO_DATE(#{fecAlta, jdbcType=VARCHAR}, 'yyyy-MM-dd'),
+    TO_DATE(#{fecBaja, jdbcType=VARCHAR}, 'yyyy-MM-dd'),
+    #{estado,jdbcType=VARCHAR},
+    #{usuarioCreacion,jdbcType=VARCHAR},
+    #{terminalCreacion,jdbcType=VARCHAR},
+    #{fechaCreacion,jdbcType=TIMESTAMP},
+    #{usuarioActualizacion,jdbcType=VARCHAR},
+    #{terminalActualizacion,jdbcType=VARCHAR},
+    #{fechaActualizacion,jdbcType=TIMESTAMP},
+    #{usuarioEliminacion,jdbcType=VARCHAR},
+    #{terminalEliminacion,jdbcType=VARCHAR},
+    #{fechaEliminacion,jdbcType=TIMESTAMP},
+    #{estadoRegistro,jdbcType=CHAR}
+    )
+  </insert>
+
+  <update id="actualizarFechasString" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.transformador.AdmTransformadorInsertarDTO">
+    UPDATE ADMIN_GART.ADM_TRANSFORMADOR
+    SET
+    ID_TIPO_SIS_TRANS = #{idTipoSisTrans,jdbcType=DECIMAL},
+    COD_EQUIPO = #{codEquipo,jdbcType=VARCHAR},
+    COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR},
+    COD_EMPRESA = #{codEmpresa,jdbcType=CHAR},
+    NUM_SERIE = #{numSerie,jdbcType=VARCHAR},
+    ANNIO_PES = #{annioPes,jdbcType=DECIMAL},
+    MES_PES = #{mesPes,jdbcType=DECIMAL},
+    DIA_PES = #{diaPes,jdbcType=DECIMAL},
+    POT_ONAN_PRI = #{potOnanPri,jdbcType=DECIMAL},
+    POT_ONAN_SEC = #{potOnanSec,jdbcType=DECIMAL},
+    POT_ONAN_TER = #{potOnanTer,jdbcType=DECIMAL},
+    POT_ONAF_PRI = #{potOnafPri,jdbcType=DECIMAL},
+    POT_ONAF_SEC = #{potOnafSec,jdbcType=DECIMAL},
+    POT_ONAF_TER = #{potOnafTer,jdbcType=DECIMAL},
+    T_PRIMARIO = #{tPrimario,jdbcType=DECIMAL},
+    T_SECUNDARIO = #{tSecundario,jdbcType=DECIMAL},
+    T_TERCIARIO = #{tTerciario,jdbcType=DECIMAL},
+    GRUPO_CONEXION = #{grupoConexion,jdbcType=VARCHAR},
+    TAPS = #{taps,jdbcType=DECIMAL},
+    VCC_PS = #{vccPs,jdbcType=DECIMAL},
+    VCC_PT = #{vccPt,jdbcType=DECIMAL},
+    VCC_ST = #{vccSt,jdbcType=DECIMAL},
+    PCU_PS = #{pcuPs,jdbcType=DECIMAL},
+    PCU_PT = #{pcuPt,jdbcType=DECIMAL},
+    PCU_ST = #{pcuSt,jdbcType=DECIMAL},
+    PFE = #{pfe,jdbcType=DECIMAL},
+    TIPO_REGULACION = #{tipoRegulacion,jdbcType=VARCHAR},
+    PESO_TOTAL = #{pesoTotal,jdbcType=DECIMAL},
+    PESO_COBRE = #{pesoCobre,jdbcType=DECIMAL},
+    FEC_ALTA = TO_DATE(#{fecAlta, jdbcType=VARCHAR}, 'yyyy-MM-dd'),
+    FEC_BAJA = TO_DATE(#{fecBaja, jdbcType=VARCHAR}, 'yyyy-MM-dd'),
+    ESTADO = #{estado,jdbcType=VARCHAR},
+    USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+    TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+    FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+    USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+    TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+    FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+    ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR}
+    WHERE
+    ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL}
+  </update>
+
+  <delete id="deleteByCodEmpresa" parameterType="String">
+    DELETE FROM ADMIN_GART.ADM_TRANSFORMADOR
+    WHERE COD_EMPRESA = #{codEmpresa}
+  </delete>
+
+  <select id="countByCodEmpresa" resultType="int" parameterType="String">
+    SELECT COUNT(1)
+    FROM ADMIN_GART.ADM_TRANSFORMADOR
+    WHERE COD_EMPRESA = #{codEmpresa}
+  </select>
+
+  <delete id="deleteByIdTipoSisTrans" parameterType="java.lang.Integer">
+    DELETE FROM ADMIN_GART.ADM_TRANSFORMADOR
+    WHERE ID_TIPO_SIS_TRANS = #{idTipoSisTrans, jdbcType=DECIMAL}
+  </delete>
+
+  <select id="getNextId" resultType="java.lang.Integer">
+    SELECT SEQ_ID_TRANSFORMADOR.NEXTVAL FROM DUAL
+  </select>
+
+</mapper>

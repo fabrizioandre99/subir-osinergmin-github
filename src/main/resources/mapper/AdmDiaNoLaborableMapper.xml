@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmDiaNoLaborableMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmDiaNoLaborable">
+        <!--@Table ADMIN_GART.ADM_DIA_NO_LABORABLE-->
+        <id column="FECHA" jdbcType="TIMESTAMP" property="fecha"/>
+        <result column="TIPO" jdbcType="CHAR" property="tipo"/>
+        <result column="MOTIVO" jdbcType="VARCHAR" property="motivo"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        FECHA,
+        TIPO,
+        MOTIVO,
+        ESTADO,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_DIA_NO_LABORABLE
+        where FECHA = #{fecha,jdbcType=TIMESTAMP}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.sql.Date">
+        DELETE
+        FROM ADMIN_GART.ADM_DIA_NO_LABORABLE
+        WHERE TRUNC(FECHA) = TRUNC(#{fecha})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDiaNoLaborable">
+        insert into ADMIN_GART.ADM_DIA_NO_LABORABLE (FECHA, TIPO, MOTIVO,
+                                                     ESTADO, AD_COD_USUARIO, AD_FECHA)
+        values (#{fecha,jdbcType=TIMESTAMP}, #{tipo,jdbcType=CHAR}, #{motivo,jdbcType=VARCHAR},
+                #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDiaNoLaborable">
+        insert into ADMIN_GART.ADM_DIA_NO_LABORABLE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fecha != null">
+                FECHA,
+            </if>
+            <if test="tipo != null">
+                TIPO,
+            </if>
+            <if test="motivo != null">
+                MOTIVO,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fecha != null">
+                #{fecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tipo != null">
+                #{tipo,jdbcType=CHAR},
+            </if>
+            <if test="motivo != null">
+                #{motivo,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDiaNoLaborable">
+        update ADMIN_GART.ADM_DIA_NO_LABORABLE
+        <set>
+            <if test="tipo != null">
+                TIPO = #{tipo,jdbcType=CHAR},
+            </if>
+            <if test="motivo != null">
+                MOTIVO = #{motivo,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where FECHA = #{fecha,jdbcType=TIMESTAMP}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDiaNoLaborable">
+        update ADMIN_GART.ADM_DIA_NO_LABORABLE
+        set TIPO           = #{tipo,jdbcType=CHAR},
+            MOTIVO         = #{motivo,jdbcType=VARCHAR},
+            ESTADO         = #{estado,jdbcType=CHAR},
+            AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA       = #{adFecha,jdbcType=TIMESTAMP}
+        where FECHA = #{fecha,jdbcType=TIMESTAMP}
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.diaNoLaborable.DiaNoLaborableDTO">
+        <!--@Table ADMIN_GART.ADM_DIA_NO_LABORABLE-->
+        <id column="FECHA" jdbcType="TIMESTAMP" property="fecha"/>
+        <result column="TIPO" jdbcType="CHAR" property="tipo"/>
+        <result column="MOTIVO" jdbcType="VARCHAR" property="motivo"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+    <select id="enlistarTodos" resultMap="BaseResultMapDTO">
+        select FECHA,
+               TIPO,
+               MOTIVO,
+               ESTADO
+        from ADMIN_GART.ADM_DIA_NO_LABORABLE
+    </select>
+
+    <select id="filtrar" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.diaNoLaborable.DiaNoLaborableSearchDTO"
+            resultMap="BaseResultMapDTO">
+        SELECT FECHA,
+               TIPO,
+               MOTIVO,
+               ESTADO
+        FROM ADMIN_GART.ADM_DIA_NO_LABORABLE
+        WHERE 1 = 1
+        <if test="fecha != null and fecha != ''">
+            AND TRUNC(FECHA) = TO_DATE(#{fecha, jdbcType=VARCHAR}, 'YYYY-MM-DD')
+        </if>
+        <if test="motivo != null and motivo != ''">
+            AND UPPER(
+                        TRANSLATE(MOTIVO, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) LIKE UPPER(
+                        TRANSLATE('%' || #{motivo} || '%', 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                       )
+        </if>
+    </select>
+
+    <resultMap id="BaseResultMapDTOs"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.diaNoLaborable.DiaNoLaborableMapperDTO">
+        <!--@Table ADMIN_GART.ADM_DIA_NO_LABORABLE-->
+        <id column="FECHA" jdbcType="TIMESTAMP" property="fecha"/>
+        <result column="TIPO" jdbcType="CHAR" property="tipo"/>
+        <result column="MOTIVO" jdbcType="VARCHAR" property="motivo"/>
+    </resultMap>
+
+    <select id="buscarFechaString" resultMap="BaseResultMapDTOs">
+        select FECHA,
+               TIPO,
+               MOTIVO
+        from ADMIN_GART.ADM_DIA_NO_LABORABLE
+        where TRUNC(FECHA) = TO_DATE(#{fecha,jdbcType=VARCHAR}, 'YYYY-MM-DD')
+    </select>
+
+    <delete id="eliminarString">
+        DELETE
+        FROM ADMIN_GART.ADM_DIA_NO_LABORABLE
+        WHERE TRUNC(FECHA) = TO_DATE(#{fecha,jdbcType=VARCHAR}, 'YYYY-MM-DD')
+    </delete>
+
+    <insert id="insertarNuevo">
+        insert into ADMIN_GART.ADM_DIA_NO_LABORABLE (FECHA, TIPO, MOTIVO,
+                                                     ESTADO, AD_COD_USUARIO, AD_FECHA)
+        values (TO_DATE(#{fecha,jdbcType=VARCHAR}, 'YYYY-MM-DD'), #{tipo,jdbcType=CHAR}, #{motivo,jdbcType=VARCHAR},
+                #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="actualizarNuevo">
+        update ADMIN_GART.ADM_DIA_NO_LABORABLE
+        set TIPO           = #{tipo,jdbcType=CHAR},
+            MOTIVO         = #{motivo,jdbcType=VARCHAR},
+            ESTADO         = #{estado,jdbcType=CHAR},
+            AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA       = #{adFecha,jdbcType=TIMESTAMP}
+        where TRUNC(FECHA) = TO_DATE(#{fecha,jdbcType=VARCHAR}, 'YYYY-MM-DD')
+    </update>
+</mapper>

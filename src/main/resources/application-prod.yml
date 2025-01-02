@@ -1,0 +1,57 @@
+spring:
+  servlet:
+    multipart:
+      max-request-size: ${PRIE_ARCHIVE_SIZE:10MB}
+      max-file-size: ${PRIE_ARCHIVE_SIZE:10MB}
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin:@${DB_HOST_PRIE:192.168.1.37}:${DB_PORT_PRIE:1521}/${DB_NAME_PRIE:orcl}
+#    username: ${DB_USERNAME_PRIE:ADMIN_GART}
+#    password: ${DB_PASSWORD_PRIE:CLOUDCOMP}
+
+
+    url: jdbc:oracle:thin:@${DB_HOST_PRIE:localhost}:${DB_PORT_PRIE:1600}/${DB_NAME_PRIE:O19D03}
+    username: ${DB_USERNAME_PRIE:ADMIN_GART}
+    password: ${DB_PASSWORD_PRIE:nHp124Rt}
+
+server:
+  port: ${SERVER_PORT:9998}
+  forward-headers-strategy: native
+  tomcat:
+    use-relative-redirects: true
+  servlet:
+    context-path: /admin-backend
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+  server:
+    port: ${MANAGEMENT_PORT:8082}
+
+logging:
+  level:
+    org:
+      springframework: ERROR
+      apache:
+        tomcat: ERROR
+
+mybatis:
+  type-aliases-package: pe.gob.osinergmin.prie.admin.backend.mapper
+  mapper-locations: classpath:mapper/*.xml
+
+
+ws:
+  consultaRuc: ${WS_URL:https://11.160.124.169:9505}
+  usuario: ${WS_USUARIO:user_pido_prie}
+  contrasena: ${WS_PASSWORD:p413D3s4P1d0}
+  organizacion: ${WS_ORGANIZACION:OSINERGMIN}
+  canal: ${WS_CANAL:WEB}
+  sistema: ${WS_SISTEMA:PIDO}
+  modulo: ${WS_MODULO:RENIEC}
+

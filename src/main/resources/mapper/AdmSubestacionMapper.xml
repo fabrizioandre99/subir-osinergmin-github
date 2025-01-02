@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmSubestacionMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmSubestacion">
+        <!--@Table ADMIN_GART.ADM_SUBESTACION-->
+        <id column="COD_SUBESTACION" jdbcType="CHAR" property="codSubestacion"/>
+        <result column="NOM_SUBESTACION" jdbcType="VARCHAR" property="nomSubestacion"/>
+        <result column="COD_UBIGEO" jdbcType="CHAR" property="codUbigeo"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        <result column="ID_SIS_TRANS" jdbcType="DECIMAL" property="idSisTrans"/>
+        <result column="IP_CREACION" jdbcType="VARCHAR" property="ipCreacion"/>
+        <result column="US_ACTUALIZACION" jdbcType="VARCHAR" property="usActualizacion"/>
+        <result column="IP_ACTUALIZACION" jdbcType="VARCHAR" property="ipActualizacion"/>
+        <result column="FE_ACTUALIZACION" jdbcType="TIMESTAMP" property="feActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_SUBESTACION,
+        NOM_SUBESTACION,
+        COD_UBIGEO,
+        ESTADO,
+        AD_COD_USUARIO,
+        AD_FECHA,
+        ID_SIS_TRANS,
+        IP_CREACION,
+        US_ACTUALIZACION,
+        IP_ACTUALIZACION,
+        FE_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_SUBESTACION
+        where TRIM(COD_SUBESTACION) = TRIM(#{codSubestacion,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_SUBESTACION
+        where TRIM(COD_SUBESTACION) = TRIM(#{codSubestacion,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSubestacion">
+        insert into ADMIN_GART.ADM_SUBESTACION (COD_SUBESTACION, NOM_SUBESTACION, COD_UBIGEO,
+                                                ESTADO, AD_COD_USUARIO, AD_FECHA,
+                                                ID_SIS_TRANS, IP_CREACION, US_ACTUALIZACION,
+                                                IP_ACTUALIZACION, FE_ACTUALIZACION)
+        values (#{codSubestacion,jdbcType=CHAR}, #{nomSubestacion,jdbcType=VARCHAR}, #{codUbigeo,jdbcType=CHAR},
+                #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP},
+                #{idSisTrans,jdbcType=DECIMAL}, #{ipCreacion,jdbcType=VARCHAR}, #{usActualizacion,jdbcType=VARCHAR},
+                #{ipActualizacion,jdbcType=VARCHAR}, #{feActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSubestacion">
+        insert into ADMIN_GART.ADM_SUBESTACION
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codSubestacion != null">
+                COD_SUBESTACION,
+            </if>
+            <if test="nomSubestacion != null">
+                NOM_SUBESTACION,
+            </if>
+            <if test="codUbigeo != null">
+                COD_UBIGEO,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+            <if test="idSisTrans != null">
+                ID_SIS_TRANS,
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION,
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION,
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION,
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codSubestacion != null">
+                #{codSubestacion,jdbcType=CHAR},
+            </if>
+            <if test="nomSubestacion != null">
+                #{nomSubestacion,jdbcType=VARCHAR},
+            </if>
+            <if test="codUbigeo != null">
+                #{codUbigeo,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="idSisTrans != null">
+                #{idSisTrans,jdbcType=DECIMAL},
+            </if>
+            <if test="ipCreacion != null">
+                #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSubestacion">
+        update ADMIN_GART.ADM_SUBESTACION
+        <set>
+            <if test="nomSubestacion != null">
+                NOM_SUBESTACION = #{nomSubestacion,jdbcType=VARCHAR},
+            </if>
+            <if test="codUbigeo != null">
+                COD_UBIGEO = #{codUbigeo,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="idSisTrans != null">
+                ID_SIS_TRANS = #{idSisTrans,jdbcType=DECIMAL},
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION = #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSubestacion">
+        update ADMIN_GART.ADM_SUBESTACION
+        set NOM_SUBESTACION  = #{nomSubestacion,jdbcType=VARCHAR},
+            COD_UBIGEO       = #{codUbigeo,jdbcType=CHAR},
+            ESTADO           = #{estado,jdbcType=CHAR},
+            ID_SIS_TRANS     = #{idSisTrans,jdbcType=DECIMAL},
+            US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+            FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP}
+        where COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR}
+    </update>
+
+    <resultMap id="SubestacionResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.subestacion.AdmSubestacionListadoDTO">
+        <id column="COD_SUBESTACION" property="codSubestacion"/>
+        <result column="NOM_SUBESTACION" property="nomSubestacion"/>
+        <result column="NOM_DEPARTAMENTO" property="nomDepartamento"/>
+        <result column="NOM_PROVINCIA" property="nomProvincia"/>
+        <result column="NOM_DISTRITO" property="nomDistrito"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="ID_SIS_TRANS" jdbcType="DECIMAL" property="idSisTrans"/>
+    </resultMap>
+
+    <select id="listarSubestaciones" resultMap="SubestacionResultMapDTO">
+        SELECT S.COD_SUBESTACION,
+               S.NOM_SUBESTACION,
+               D.NOM_UBIGEO AS NOM_DEPARTAMENTO,
+               P.NOM_UBIGEO AS NOM_PROVINCIA,
+               U.NOM_UBIGEO AS NOM_DISTRITO,
+               S.ESTADO,
+               S.ID_SIS_TRANS
+        FROM ADM_SUBESTACION S
+                 LEFT JOIN ADMIN_GART.ADM_UBIGEO U ON S.COD_UBIGEO = U.COD_UBIGEO
+                 LEFT JOIN ADMIN_GART.ADM_UBIGEO P ON P.COD_UBIGEO = SUBSTR(S.COD_UBIGEO, 1, 4) || '00'
+                 LEFT JOIN ADMIN_GART.ADM_UBIGEO D ON D.COD_UBIGEO = SUBSTR(S.COD_UBIGEO, 1, 2) || '0000'
+        WHERE S.ESTADO = '1'
+    </select>
+
+    <select id="listarFiltro" resultMap="SubestacionResultMapDTO">
+        SELECT S.COD_SUBESTACION,
+               S.NOM_SUBESTACION,
+               D.NOM_UBIGEO AS NOM_DEPARTAMENTO,
+               P.NOM_UBIGEO AS NOM_PROVINCIA,
+               U.NOM_UBIGEO AS NOM_DISTRITO,
+               S.ESTADO,
+               S.ID_SIS_TRANS
+        FROM ADM_SUBESTACION S
+                 LEFT JOIN ADMIN_GART.ADM_UBIGEO U ON S.COD_UBIGEO = U.COD_UBIGEO
+                 LEFT JOIN ADMIN_GART.ADM_UBIGEO P ON P.COD_UBIGEO = SUBSTR(S.COD_UBIGEO, 1, 4) || '00'
+                 LEFT JOIN ADMIN_GART.ADM_UBIGEO D ON D.COD_UBIGEO = SUBSTR(S.COD_UBIGEO, 1, 2) || '0000'
+        WHERE S.ESTADO = '1'
+        <if test="codSubestacion != null and codSubestacion != ''">
+            AND UPPER(TRANSLATE(TRIM(S.COD_SUBESTACION), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(TRIM(#{codSubestacion}), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomSubestacion != null and nomSubestacion != ''">
+            AND UPPER(TRANSLATE(TRIM(S.NOM_SUBESTACION), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(TRIM(#{nomSubestacion}), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomDepartamento != null and nomDepartamento != ''">
+            AND UPPER(TRANSLATE(TRIM(D.NOM_UBIGEO), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(TRIM(#{nomDepartamento}), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomProvincia != null and nomProvincia != ''">
+            AND UPPER(TRANSLATE(TRIM(P.NOM_UBIGEO), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(TRIM(#{nomProvincia}), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomDistrito != null and nomDistrito != ''">
+            AND UPPER(TRANSLATE(TRIM(U.NOM_UBIGEO), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(TRIM(#{nomDistrito}), 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

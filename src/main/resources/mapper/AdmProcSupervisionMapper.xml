@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmProcSupervisionMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcSupervision">
+        <!--@Table ADMIN_GART.ADM_PROC_SUPERVISION-->
+        <id column="COD_PROC_SUPERVISION" jdbcType="CHAR" property="codProcSupervision"/>
+        <result column="NOM_PROC_SUPERVISION" jdbcType="VARCHAR" property="nomProcSupervision"/>
+        <result column="ABREV_PROC_SUPERVISION" jdbcType="VARCHAR" property="abrevProcSupervision"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        <result column="CO_MODULO" jdbcType="CHAR" property="coModulo"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_PROC_SUPERVISION,
+        NOM_PROC_SUPERVISION,
+        ABREV_PROC_SUPERVISION,
+        AD_COD_USUARIO,
+        AD_FECHA,
+        CO_MODULO,
+        ESTADO
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_PROC_SUPERVISION
+        where trim(COD_PROC_SUPERVISION) = trim(#{codProcSupervision,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_PROC_SUPERVISION
+        where trim(COD_PROC_SUPERVISION) = trim(#{codProcSupervision,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcSupervision">
+        insert into ADMIN_GART.ADM_PROC_SUPERVISION (COD_PROC_SUPERVISION, NOM_PROC_SUPERVISION,
+                                                     ABREV_PROC_SUPERVISION, AD_COD_USUARIO, AD_FECHA,
+                                                     CO_MODULO, ESTADO)
+        values (#{codProcSupervision,jdbcType=CHAR}, #{nomProcSupervision,jdbcType=VARCHAR},
+                #{abrevProcSupervision,jdbcType=VARCHAR}, #{adCodUsuario,jdbcType=VARCHAR},
+                #{adFecha,jdbcType=TIMESTAMP},
+                #{coModulo,jdbcType=CHAR}, #{estado,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcSupervision">
+        insert into ADMIN_GART.ADM_PROC_SUPERVISION
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codProcSupervision != null">
+                COD_PROC_SUPERVISION,
+            </if>
+            <if test="nomProcSupervision != null">
+                NOM_PROC_SUPERVISION,
+            </if>
+            <if test="abrevProcSupervision != null">
+                ABREV_PROC_SUPERVISION,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+            <if test="coModulo != null">
+                CO_MODULO,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codProcSupervision != null">
+                #{codProcSupervision,jdbcType=CHAR},
+            </if>
+            <if test="nomProcSupervision != null">
+                #{nomProcSupervision,jdbcType=VARCHAR},
+            </if>
+            <if test="abrevProcSupervision != null">
+                #{abrevProcSupervision,jdbcType=VARCHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="coModulo != null">
+                #{coModulo,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcSupervision">
+        update ADMIN_GART.ADM_PROC_SUPERVISION
+        <set>
+            <if test="nomProcSupervision != null">
+                NOM_PROC_SUPERVISION = #{nomProcSupervision,jdbcType=VARCHAR},
+            </if>
+            <if test="abrevProcSupervision != null">
+                ABREV_PROC_SUPERVISION = #{abrevProcSupervision,jdbcType=VARCHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="coModulo != null">
+                CO_MODULO = #{coModulo,jdbcType=CHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+        </set>
+        where COD_PROC_SUPERVISION = #{codProcSupervision,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProcSupervision">
+        update ADMIN_GART.ADM_PROC_SUPERVISION
+        set NOM_PROC_SUPERVISION   = #{nomProcSupervision,jdbcType=VARCHAR},
+            ABREV_PROC_SUPERVISION = #{abrevProcSupervision,jdbcType=VARCHAR},
+            AD_COD_USUARIO         = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA               = #{adFecha,jdbcType=TIMESTAMP},
+            CO_MODULO              = #{coModulo,jdbcType=CHAR},
+            ESTADO                 = #{estado,jdbcType=CHAR}
+        where trim(COD_PROC_SUPERVISION) = trim(#{codProcSupervision,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.procSupervision.AdmProcSupervisionDTO">
+        <!--@Table ADMIN_GART.ADM_PROC_SUPERVISION-->
+        <id column="COD_PROC_SUPERVISION" jdbcType="CHAR" property="codProcSupervision"/>
+        <result column="NOM_PROC_SUPERVISION" jdbcType="VARCHAR" property="nomProcSupervision"/>
+        <result column="ABREV_PROC_SUPERVISION" jdbcType="VARCHAR" property="abrevProcSupervision"/>
+        <result column="CO_MODULO" jdbcType="CHAR" property="coModulo"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_PROC_SUPERVISION,
+               NOM_PROC_SUPERVISION,
+               ABREV_PROC_SUPERVISION,
+               CO_MODULO,
+               ESTADO
+        from ADMIN_GART.ADM_PROC_SUPERVISION
+    </select>
+
+    <resultMap id="BaseResultMapConFunciones"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.procSupervision.AdmProcSupervisionDTO">
+        <id column="COD_PROC_SUPERVISION" property="codProcSupervision" jdbcType="CHAR"/>
+        <result column="NOM_PROC_SUPERVISION" property="nomProcSupervision" jdbcType="VARCHAR"/>
+        <result column="ABREV_PROC_SUPERVISION" property="abrevProcSupervision" jdbcType="VARCHAR"/>
+        <result column="CO_MODULO" property="coModulo" jdbcType="CHAR"/>
+        <result column="ESTADO" property="estado" jdbcType="CHAR"/>
+        <collection property="funciones"
+                    ofType="pe.gob.osinergmin.prie.admin.backend.dto.funcionProcSuperv.FuncionFormdDTO"
+                    select="selectFuncionesByProcSupervision" column="COD_PROC_SUPERVISION"/>
+    </resultMap>
+
+    <select id="selectFuncionesByProcSupervision" parameterType="java.lang.String"
+            resultType="pe.gob.osinergmin.prie.admin.backend.dto.funcionProcSuperv.FuncionFormdDTO">
+        select COD_FUNCION_PROC_SUPERV as codFuncionProcSuperv,
+        DSC_FUNCION_PROC_SUPERV as dscFuncionProcSuperv
+        from ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        where COD_PROC_SUPERVISION = #{codProcSupervision}
+    </select>
+
+    <select id="filtrar" resultMap="BaseResultMapConFunciones">
+        select APS.COD_PROC_SUPERVISION,
+        APS.NOM_PROC_SUPERVISION,
+        APS.ABREV_PROC_SUPERVISION,
+        APS.CO_MODULO,
+        APS.ESTADO
+        from ADMIN_GART.ADM_PROC_SUPERVISION APS
+        where 1 = 1
+        <if test="codProcSupervision != null and codProcSupervision != ''">
+            and UPPER(
+                        TRANSLATE(APS.COD_PROC_SUPERVISION, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) like '%' || UPPER(
+                    TRANSLATE(#{codProcSupervision}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                              ) || '%'
+        </if>
+        <if test="nomProcSupervision != null and nomProcSupervision != ''">
+            and UPPER(
+                        TRANSLATE(APS.NOM_PROC_SUPERVISION, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) like '%' || UPPER(
+                    TRANSLATE(#{nomProcSupervision}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                              ) || '%'
+        </if>
+        <if test="abrevProcSupervision != null and abrevProcSupervision != ''">
+            and UPPER(
+                        TRANSLATE(APS.ABREV_PROC_SUPERVISION, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) like '%' || UPPER(
+                    TRANSLATE(#{abrevProcSupervision}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                              ) || '%'
+        </if>
+        <if test="coModulo != null and coModulo != ''">
+            and UPPER(
+                        TRANSLATE(APS.CO_MODULO, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) like '%' || UPPER(
+                    TRANSLATE(#{coModulo}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                              ) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

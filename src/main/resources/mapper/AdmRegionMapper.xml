@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmRegionMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmRegion">
+        <!--@Table ADMIN_GART.ADM_REGION-->
+        <id column="COD_REGION" jdbcType="CHAR" property="codRegion"/>
+        <result column="NOM_REGION" jdbcType="VARCHAR" property="nomRegion"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_REGION,
+        NOM_REGION,
+        ESTADO_REGISTRO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_REGION
+        where COD_REGION = #{codRegion,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_REGION
+        where COD_REGION = #{codRegion,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmRegion">
+        insert into ADMIN_GART.ADM_REGION (COD_REGION, NOM_REGION, ESTADO_REGISTRO,
+                                           USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION,
+                                           USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+                                           FECHA_ACTUALIZACION)
+        values (#{codRegion,jdbcType=CHAR}, #{nomRegion,jdbcType=VARCHAR}, #{estadoRegistro,jdbcType=CHAR},
+                #{usuarioCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR},
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR},
+                #{fechaActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmRegion">
+        insert into ADMIN_GART.ADM_REGION
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codRegion != null">
+                COD_REGION,
+            </if>
+            <if test="nomRegion != null">
+                NOM_REGION,
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codRegion != null">
+                #{codRegion,jdbcType=CHAR},
+            </if>
+            <if test="nomRegion != null">
+                #{nomRegion,jdbcType=VARCHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmRegion">
+        update ADMIN_GART.ADM_REGION
+        <set>
+            <if test="nomRegion != null">
+                NOM_REGION = #{nomRegion,jdbcType=VARCHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_REGION = #{codRegion,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmRegion">
+        update ADMIN_GART.ADM_REGION
+        set NOM_REGION             = #{nomRegion,jdbcType=VARCHAR},
+            ESTADO_REGISTRO        = #{estadoRegistro,jdbcType=CHAR},
+            USUARIO_CREACION       = #{usuarioCreacion,jdbcType=VARCHAR},
+            TERMINAL_CREACION      = #{terminalCreacion,jdbcType=VARCHAR},
+            FECHA_CREACION         = #{fechaCreacion,jdbcType=TIMESTAMP},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where COD_REGION = #{codRegion,jdbcType=CHAR}
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.region.AdmRegionDTO">
+        <!--@Table ADMIN_GART.ADM_REGION-->
+        <id column="COD_REGION" jdbcType="CHAR" property="codRegion"/>
+        <result column="NOM_REGION" jdbcType="VARCHAR" property="nomRegion"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_REGION,
+               NOM_REGION,
+               ESTADO_REGISTRO
+        from ADMIN_GART.ADM_REGION
+    </select>
+
+    <select id="filtrar" resultMap="BaseResultMapDTO">
+        select COD_REGION,
+               NOM_REGION,
+               ESTADO_REGISTRO
+        from ADMIN_GART.ADM_REGION
+        WHERE 1 = 1
+        <if test="codRegion != null and codRegion != ''">
+            AND COD_REGION LIKE '%' || #{codRegion} || '%'
+        </if>
+        <if test="nomRegion != null and nomRegion != ''">
+            AND NOM_REGION LIKE '%' || #{nomRegion} || '%'
+        </if>
+    </select>
+</mapper>

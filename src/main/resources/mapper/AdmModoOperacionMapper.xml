@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmModoOperacionMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmModoOperacion">
+        <!--@Table ADMIN_GART.ADM_MODO_OPERACION-->
+        <id column="COD_MODO_OPERACION" jdbcType="CHAR" property="codModoOperacion"/>
+        <result column="DSC_MODO_OPERACION" jdbcType="VARCHAR" property="dscModoOperacion"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_MODO_OPERACION_ANT" jdbcType="CHAR" property="codModoOperacionAnt"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_MODO_OPERACION,
+        DSC_MODO_OPERACION,
+        COD_COES,
+        COD_MODO_OPERACION_ANT,
+        ESTADO_REGISTRO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_MODO_OPERACION
+        where TRIM(COD_MODO_OPERACION) = TRIM(#{codModoOperacion,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_MODO_OPERACION
+        where TRIM(COD_MODO_OPERACION) = TRIM(#{codModoOperacion,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModoOperacion">
+        insert into ADMIN_GART.ADM_MODO_OPERACION (COD_MODO_OPERACION, DSC_MODO_OPERACION,
+                                                   COD_COES, COD_MODO_OPERACION_ANT, ESTADO_REGISTRO,
+                                                   USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION,
+                                                   USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+                                                   FECHA_ACTUALIZACION)
+        values (#{codModoOperacion,jdbcType=CHAR}, #{dscModoOperacion,jdbcType=VARCHAR},
+                #{codCoes,jdbcType=VARCHAR}, #{codModoOperacionAnt,jdbcType=CHAR}, #{estadoRegistro,jdbcType=CHAR},
+                #{usuarioCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR},
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR},
+                #{fechaActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModoOperacion">
+        insert into ADMIN_GART.ADM_MODO_OPERACION
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codModoOperacion != null">
+                COD_MODO_OPERACION,
+            </if>
+            <if test="dscModoOperacion != null">
+                DSC_MODO_OPERACION,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codModoOperacionAnt != null">
+                COD_MODO_OPERACION_ANT,
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codModoOperacion != null">
+                #{codModoOperacion,jdbcType=CHAR},
+            </if>
+            <if test="dscModoOperacion != null">
+                #{dscModoOperacion,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codModoOperacionAnt != null">
+                #{codModoOperacionAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModoOperacion">
+        update ADMIN_GART.ADM_MODO_OPERACION
+        <set>
+            <if test="dscModoOperacion != null">
+                DSC_MODO_OPERACION = #{dscModoOperacion,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                COD_COES = #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codModoOperacionAnt != null">
+                COD_MODO_OPERACION_ANT = #{codModoOperacionAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_MODO_OPERACION = #{codModoOperacion,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModoOperacion">
+        update ADMIN_GART.ADM_MODO_OPERACION
+        set DSC_MODO_OPERACION     = #{dscModoOperacion,jdbcType=VARCHAR},
+            COD_COES               = #{codCoes,jdbcType=VARCHAR},
+            COD_MODO_OPERACION_ANT = #{codModoOperacionAnt,jdbcType=CHAR},
+            ESTADO_REGISTRO        = #{estadoRegistro,jdbcType=CHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where TRIM(COD_MODO_OPERACION) = TRIM(#{codModoOperacion,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.modoOperacion.AdmModoOperacionDTO">
+        <!--@Table ADMIN_GART.ADM_MODO_OPERACION-->
+        <result column="COD_MODO_OPERACION" jdbcType="CHAR" property="codModoOperacion"/>
+        <result column="DSC_MODO_OPERACION" jdbcType="VARCHAR" property="dscModoOperacion"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="COD_MODO_OPERACION_ANT" jdbcType="CHAR" property="codModoOperacionAnt"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_MODO_OPERACION,
+               DSC_MODO_OPERACION,
+               COD_COES,
+               ESTADO_REGISTRO,
+               COD_MODO_OPERACION_ANT
+        from ADMIN_GART.ADM_MODO_OPERACION
+    </select>
+
+    <select id="filtro" resultMap="BaseResultMapDTO">
+        SELECT COD_MODO_OPERACION,
+               DSC_MODO_OPERACION,
+               COD_COES,
+               ESTADO_REGISTRO,
+               COD_MODO_OPERACION_ANT
+        FROM ADMIN_GART.ADM_MODO_OPERACION
+        WHERE 1 = 1
+        <if test="codModoOperacion != null and codModoOperacion != ''">
+            AND UPPER(TRANSLATE(COD_MODO_OPERACION, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codModoOperacion}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="dscModoOperacion != null and dscModoOperacion != ''">
+            AND UPPER(TRANSLATE(DSC_MODO_OPERACION, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{dscModoOperacion}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codCoes != null and codCoes != ''">
+            AND UPPER(TRANSLATE(COD_COES, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codCoes}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="estadoRegistro != null and estadoRegistro != ''">
+            AND UPPER(TRANSLATE(ESTADO_REGISTRO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{estadoRegistro}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codModoOperacionAnt != null and codModoOperacionAnt != ''">
+            AND UPPER(TRANSLATE(COD_MODO_OPERACION_ANT, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codModoOperacionAnt}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmSunatMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmSunat">
+    <!--@Table ADMIN_GART.ADM_SUNAT-->
+    <id column="COD_SUNAT" jdbcType="CHAR" property="codSunat" />
+    <result column="NOM_SUNAT" jdbcType="VARCHAR" property="nomSunat" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_SUNAT, NOM_SUNAT, ESTADO, AD_COD_USUARIO, AD_FECHA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_SUNAT
+    where TRIM(COD_SUNAT) = TRIM(#{codSunat,jdbcType=CHAR})
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ADMIN_GART.ADM_SUNAT
+    where TRIM(COD_SUNAT) = TRIM(#{codSunat,jdbcType=CHAR})
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSunat">
+    insert into ADMIN_GART.ADM_SUNAT (COD_SUNAT, NOM_SUNAT, ESTADO, 
+      AD_COD_USUARIO, AD_FECHA)
+    values (#{codSunat,jdbcType=CHAR}, #{nomSunat,jdbcType=VARCHAR}, #{estado,jdbcType=CHAR}, 
+      #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSunat">
+    insert into ADMIN_GART.ADM_SUNAT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codSunat != null">
+        COD_SUNAT,
+      </if>
+      <if test="nomSunat != null">
+        NOM_SUNAT,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO,
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codSunat != null">
+        #{codSunat,jdbcType=CHAR},
+      </if>
+      <if test="nomSunat != null">
+        #{nomSunat,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSunat">
+    update ADMIN_GART.ADM_SUNAT
+    <set>
+      <if test="nomSunat != null">
+        NOM_SUNAT = #{nomSunat,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where COD_SUNAT = #{codSunat,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSunat">
+    update ADMIN_GART.ADM_SUNAT
+    set NOM_SUNAT = #{nomSunat,jdbcType=VARCHAR},
+      ESTADO = #{estado,jdbcType=CHAR},
+      AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      AD_FECHA = #{adFecha,jdbcType=TIMESTAMP}
+    where TRIM(COD_SUNAT) = TRIM(#{codSunat,jdbcType=CHAR})
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.sunat.AdmSunatDTO">
+    <!--@Table ADMIN_GART.ADM_SUNAT-->
+    <id column="COD_SUNAT" jdbcType="CHAR" property="codSunat" />
+    <result column="NOM_SUNAT" jdbcType="VARCHAR" property="nomSunat" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+
+  <select id="listar" resultMap="BaseResultMapDTO">
+    select
+      COD_SUNAT, NOM_SUNAT, ESTADO
+    from ADMIN_GART.ADM_SUNAT
+    </select>
+
+  <select id="listarFiltro" resultMap="BaseResultMapDTO">
+    select
+    COD_SUNAT, NOM_SUNAT, ESTADO
+    from ADMIN_GART.ADM_SUNAT
+    WHERE
+    1 = 1
+    <if test="codSunat != null and codSunat != ''">
+      AND UPPER(COD_SUNAT) LIKE '%' || UPPER(#{codSunat}) || '%'
+    </if>
+    <if test="nomSunat != null and nomSunat != ''">
+      AND UPPER(NOM_SUNAT) LIKE '%' || UPPER(#{nomSunat}) || '%'
+    </if>
+  </select>
+</mapper>

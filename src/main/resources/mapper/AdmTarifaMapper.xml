@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTarifaMapper">
+
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTarifa">
+    <id column="ID_TARIFA" jdbcType="DECIMAL" property="idTarifa" />
+    <result column="COD_TARIFA" jdbcType="VARCHAR" property="codTarifa" />
+    <result column="NOM_TARIFA" jdbcType="VARCHAR" property="nomTarifa" />
+    <result column="SECUENCIA" jdbcType="DECIMAL" property="secuencia" />
+    <result column="TIPO_MEDICION" jdbcType="VARCHAR" property="tipoMedicion" />
+    <result column="ESTADO" jdbcType="VARCHAR" property="estado" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    ID_TARIFA, COD_TARIFA, NOM_TARIFA, SECUENCIA, TIPO_MEDICION, ESTADO, AD_COD_USUARIO, AD_FECHA
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TARIFA
+    where ID_TARIFA = #{idTarifa,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ADMIN_GART.ADM_TARIFA
+    where ID_TARIFA = #{idTarifa,jdbcType=INTEGER}
+  </delete>
+
+
+
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTarifa">
+    insert into ADMIN_GART.ADM_TARIFA (ID_TARIFA, COD_TARIFA, NOM_TARIFA, SECUENCIA, TIPO_MEDICION, ESTADO, AD_COD_USUARIO, AD_FECHA)
+    values (#{idTarifa,jdbcType=INTEGER}, #{codTarifa,jdbcType=CHAR}, #{nomTarifa,jdbcType=VARCHAR}, #{secuencia,jdbcType=DECIMAL}, #{tipoMedicion,jdbcType=CHAR}, #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTarifa">
+    insert into ADMIN_GART.ADM_TARIFA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idTarifa != null">ID_TARIFA,</if>
+      <if test="codTarifa != null">COD_TARIFA,</if>
+      <if test="nomTarifa != null">NOM_TARIFA,</if>
+      <if test="secuencia != null">SECUENCIA,</if>
+      <if test="tipoMedicion != null">TIPO_MEDICION,</if>
+      <if test="estado != null">ESTADO,</if>
+      <if test="adCodUsuario != null">AD_COD_USUARIO,</if>
+      <if test="adFecha != null">AD_FECHA,</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idTarifa != null">#{idTarifa,jdbcType=INTEGER},</if>
+      <if test="codTarifa != null">#{codTarifa,jdbcType=CHAR},</if>
+      <if test="nomTarifa != null">#{nomTarifa,jdbcType=VARCHAR},</if>
+      <if test="secuencia != null">#{secuencia,jdbcType=DECIMAL},</if>
+      <if test="tipoMedicion != null">#{tipoMedicion,jdbcType=CHAR},</if>
+      <if test="estado != null">#{estado,jdbcType=CHAR},</if>
+      <if test="adCodUsuario != null">#{adCodUsuario,jdbcType=VARCHAR},</if>
+      <if test="adFecha != null">#{adFecha,jdbcType=TIMESTAMP},</if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTarifa">
+    update ADMIN_GART.ADM_TARIFA
+    <set>
+      <if test="codTarifa != null">COD_TARIFA = #{codTarifa,jdbcType=CHAR},</if>
+      <if test="nomTarifa != null">NOM_TARIFA = #{nomTarifa,jdbcType=VARCHAR},</if>
+      <if test="secuencia != null">SECUENCIA = #{secuencia,jdbcType=DECIMAL},</if>
+      <if test="tipoMedicion != null">TIPO_MEDICION = #{tipoMedicion,jdbcType=CHAR},</if>
+      <if test="estado != null">ESTADO = #{estado,jdbcType=CHAR},</if>
+      <if test="adCodUsuario != null">AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},</if>
+      <if test="adFecha != null">AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},</if>
+    </set>
+    where ID_TARIFA = #{idTarifa,jdbcType=DECIMAL}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTarifa">
+    update ADMIN_GART.ADM_TARIFA
+    set COD_TARIFA = #{codTarifa,jdbcType=CHAR},
+    NOM_TARIFA = #{nomTarifa,jdbcType=VARCHAR},
+    SECUENCIA = #{secuencia,jdbcType=DECIMAL},
+    TIPO_MEDICION = #{tipoMedicion,jdbcType=CHAR},
+    ESTADO = #{estado,jdbcType=CHAR},
+    AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+    AD_FECHA = #{adFecha,jdbcType=TIMESTAMP}
+    where ID_TARIFA = #{idTarifa,jdbcType=INTEGER}
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tarifa.TarifaDTO">
+    <result column="ID_TARIFA" jdbcType="INTEGER" property="idTarifa" />
+    <result column="COD_TARIFA" jdbcType="CHAR" property="codTarifa" />
+    <result column="NOM_TARIFA" jdbcType="VARCHAR" property="nomTarifa" />
+    <result column="SECUENCIA" jdbcType="DECIMAL" property="secuencia" />
+    <result column="TIPO_MEDICION" jdbcType="VARCHAR" property="tipoMedicion" />
+    <result column="ESTADO" jdbcType="VARCHAR" property="estado" />
+    <result column="DESCRIPCION" jdbcType="VARCHAR" property="descripcion" />
+  </resultMap>
+
+  <select id="listarTarifas" resultMap="BaseResultMapDTO">
+    SELECT
+      t.ID_TARIFA,
+      t.COD_TARIFA,
+      t.NOM_TARIFA,
+      t.SECUENCIA,
+      t.TIPO_MEDICION,
+      t.ESTADO,
+      tt.DESCRIPCION AS DESCRIPCION
+    FROM ADMIN_GART.ADM_TARIFA t
+           LEFT JOIN ADMIN_GART.ADM_TIPO_TARIFA tt
+                     ON UPPER(TRIM(t.COD_TARIFA)) = UPPER(TRIM(tt.CODTARIFA))
+  </select>
+
+
+  <select id="listarTarifasFiltro" resultMap="BaseResultMapDTO">
+    SELECT
+    t.ID_TARIFA,
+    t.COD_TARIFA,
+    t.NOM_TARIFA,
+    t.SECUENCIA,
+    t.TIPO_MEDICION,
+    t.ESTADO,
+    tt.DESCRIPCION AS DESCRIPCION
+    FROM ADMIN_GART.ADM_TARIFA t
+    LEFT JOIN ADMIN_GART.ADM_TIPO_TARIFA tt
+    ON UPPER(TRIM(t.COD_TARIFA)) = UPPER(TRIM(tt.CODTARIFA))
+    WHERE 1=1
+    <if test="nomTarifa != null and nomTarifa != ''">
+      AND UPPER(
+      TRANSLATE(t.NOM_TARIFA,
+      'ÁÉÍÓÚáéíóú',
+      'AEIOUaeiou')
+      ) LIKE UPPER(
+      TRANSLATE('%' || #{nomTarifa} || '%',
+      'ÁÉÍÓÚáéíóú',
+      'AEIOUaeiou')
+      )
+    </if>
+    <if test="codTarifa != null and codTarifa != ''">
+      AND UPPER(
+      TRANSLATE(t.COD_TARIFA,
+      'ÁÉÍÓÚáéíóú',
+      'AEIOUaeiou')
+      ) LIKE UPPER(
+      TRANSLATE('%' || #{codTarifa} || '%',
+      'ÁÉÍÓÚáéíóú',
+      'AEIOUaeiou')
+      )
+    </if>
+    <if test="sort != null and sort != ''">
+      ORDER BY
+      ${sort} ${order}
+    </if>
+  </select>
+
+  <select id="detalleTarifa" resultMap="BaseResultMapDTO">
+    SELECT ID_TARIFA,
+           COD_TARIFA,
+           NOM_TARIFA,
+           SECUENCIA,
+           TIPO_MEDICION,
+           ESTADO
+    FROM ADMIN_GART.ADM_TARIFA
+    WHERE ID_TARIFA = #{idTarifa,jdbcType=DECIMAL}
+  </select>
+
+  <resultMap id="BaseResultMapDTOs" type="pe.gob.osinergmin.prie.admin.backend.dto.tarifa.TarifaResultDTO">
+    <result column="CODTARIFA" jdbcType="CHAR" property="codigTarifa" />
+    <result column="DESCRIPCION" jdbcType="VARCHAR" property="descripcion" />
+  </resultMap>
+
+  <select id="listarTiposTarifaConcat" resultMap="BaseResultMapDTOs">
+    SELECT CODTARIFA,DESCRIPCION
+    FROM ADMIN_GART.ADM_TIPO_TARIFA
+    WHERE ESTADO = #{estado,jdbcType=CHAR}
+  </select>
+
+  <delete id="eliminarTarifasPorTipo" parameterType="java.lang.String">
+    DELETE FROM ADMIN_GART.ADM_TARIFA
+    WHERE TRIM(COD_TARIFA) = TRIM(#{codTarifa, jdbcType=CHAR})
+  </delete>
+
+</mapper>

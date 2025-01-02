@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmActividadEconomicaMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmActividadEconomica">
+    <!--@Table ADMIN_GART.ADM_ACTIVIDAD_ECONOMICA-->
+    <result column="COD_ACTIVIDAD_ECONOMICA" jdbcType="CHAR" property="codActividadEconomica" />
+    <result column="ACTIVIDAD_ECONOMICA" jdbcType="VARCHAR" property="actividadEconomica" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_ACTIVIDAD_ECONOMICA, ACTIVIDAD_ECONOMICA
+  </sql>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmActividadEconomica">
+    insert into ADMIN_GART.ADM_ACTIVIDAD_ECONOMICA (COD_ACTIVIDAD_ECONOMICA, ACTIVIDAD_ECONOMICA
+      )
+    values (#{codActividadEconomica,jdbcType=CHAR}, #{actividadEconomica,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmActividadEconomica">
+    insert into ADMIN_GART.ADM_ACTIVIDAD_ECONOMICA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codActividadEconomica != null">
+        COD_ACTIVIDAD_ECONOMICA,
+      </if>
+      <if test="actividadEconomica != null">
+        ACTIVIDAD_ECONOMICA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codActividadEconomica != null">
+        #{codActividadEconomica,jdbcType=CHAR},
+      </if>
+      <if test="actividadEconomica != null">
+        #{actividadEconomica,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <resultMap id="dto" type="pe.gob.osinergmin.prie.admin.backend.dto.actividadEconomica.AdmActividadEconomicaDTO">
+    <!--@Table ADMIN_GART.ADM_ACTIVIDAD_ECONOMICA-->
+    <result column="COD_ACTIVIDAD_ECONOMICA" jdbcType="CHAR" property="codActividadEconomica" />
+    <result column="ACTIVIDAD_ECONOMICA" jdbcType="VARCHAR" property="actividadEconomica" />
+  </resultMap>
+  <select id="selectAll" resultMap="dto">
+    Select COD_ACTIVIDAD_ECONOMICA, ACTIVIDAD_ECONOMICA
+    from ADMIN_GART.ADM_ACTIVIDAD_ECONOMICA
+    </select>
+</mapper>

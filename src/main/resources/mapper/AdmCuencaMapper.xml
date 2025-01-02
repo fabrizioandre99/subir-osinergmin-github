@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmCuencaMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmCuenca">
+        <!--@Table ADMIN_GART.ADM_CUENCA-->
+        <id column="COD_CUENCA" jdbcType="CHAR" property="codCuenca"/>
+        <result column="NOM_CUENCA" jdbcType="VARCHAR" property="nomCuenca"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_CUENCA_ANT" jdbcType="CHAR" property="codCuencaAnt"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_CUENCA,
+        NOM_CUENCA,
+        COD_COES,
+        COD_CUENCA_ANT,
+        ESTADO_REGISTRO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_CUENCA
+        where TRIM(COD_CUENCA) = TRIM(#{codCuenca,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_CUENCA
+        where TRIM(COD_CUENCA) = TRIM(#{codCuenca,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCuenca">
+        insert into ADMIN_GART.ADM_CUENCA (COD_CUENCA, NOM_CUENCA, COD_COES,
+                                           COD_CUENCA_ANT, ESTADO_REGISTRO, USUARIO_CREACION,
+                                           TERMINAL_CREACION, FECHA_CREACION, USUARIO_ACTUALIZACION,
+                                           TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION)
+        values (#{codCuenca,jdbcType=CHAR}, #{nomCuenca,jdbcType=VARCHAR}, #{codCoes,jdbcType=VARCHAR},
+                #{codCuencaAnt,jdbcType=CHAR}, #{estadoRegistro,jdbcType=CHAR}, #{usuarioCreacion,jdbcType=VARCHAR},
+                #{terminalCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+                #{terminalActualizacion,jdbcType=VARCHAR}, #{fechaActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCuenca">
+        insert into ADMIN_GART.ADM_CUENCA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codCuenca != null">
+                COD_CUENCA,
+            </if>
+            <if test="nomCuenca != null">
+                NOM_CUENCA,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codCuencaAnt != null">
+                COD_CUENCA_ANT,
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codCuenca != null">
+                #{codCuenca,jdbcType=CHAR},
+            </if>
+            <if test="nomCuenca != null">
+                #{nomCuenca,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codCuencaAnt != null">
+                #{codCuencaAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCuenca">
+        update ADMIN_GART.ADM_CUENCA
+        <set>
+            <if test="nomCuenca != null">
+                NOM_CUENCA = #{nomCuenca,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                COD_COES = #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codCuencaAnt != null">
+                COD_CUENCA_ANT = #{codCuencaAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_CUENCA = #{codCuenca,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmCuenca">
+        update ADMIN_GART.ADM_CUENCA
+        set NOM_CUENCA             = #{nomCuenca,jdbcType=VARCHAR},
+            COD_COES               = #{codCoes,jdbcType=VARCHAR},
+            COD_CUENCA_ANT         = #{codCuencaAnt,jdbcType=CHAR},
+            ESTADO_REGISTRO        = #{estadoRegistro,jdbcType=CHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where TRIM(COD_CUENCA) = TRIM(#{codCuenca,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.cuenca.AdmCuencaDTO">
+        <!--@Table ADMIN_GART.ADM_CUENCA-->
+        <result column="COD_CUENCA" jdbcType="CHAR" property="codCuenca"/>
+        <result column="NOM_CUENCA" jdbcType="VARCHAR" property="nomCuenca"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="COD_CUENCA_ANT" jdbcType="CHAR" property="codCuencaAnt"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_CUENCA,
+               NOM_CUENCA,
+               COD_COES,
+               ESTADO_REGISTRO,
+               COD_CUENCA_ANT
+        from ADMIN_GART.ADM_CUENCA
+    </select>
+
+    <select id="filtro" resultMap="BaseResultMapDTO">
+        SELECT COD_CUENCA,
+               NOM_CUENCA,
+               COD_COES,
+               ESTADO_REGISTRO,
+               COD_CUENCA_ANT
+        FROM ADMIN_GART.ADM_CUENCA
+        WHERE 1 = 1
+        <if test="codCuenca != null and codCuenca != ''">
+            AND UPPER(TRANSLATE(COD_CUENCA, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codCuenca}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomCuenca != null and nomCuenca != ''">
+            AND UPPER(TRANSLATE(NOM_CUENCA, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{nomCuenca}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codCoes != null and codCoes != ''">
+            AND UPPER(TRANSLATE(COD_COES, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codCoes}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="estadoRegistro != null and estadoRegistro != ''">
+            AND UPPER(TRANSLATE(ESTADO_REGISTRO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{estadoRegistro}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codCuencaAnt != null and codCuencaAnt != ''">
+            AND UPPER(TRANSLATE(COD_CUENCA_ANT, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codCuencaAnt}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

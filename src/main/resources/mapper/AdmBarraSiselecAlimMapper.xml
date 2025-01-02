@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmBarraSiselecAlimMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarraSiselecAlim">
+    <!--@Table ADMIN_GART.ADM_BARRA_SISELEC_ALIM-->
+    <id column="COD_SIS_ELEC" jdbcType="CHAR" property="codSisElec" />
+    <id column="COD_BARRA" jdbcType="CHAR" property="codBarra" />
+    <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta" />
+    <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_SIS_ELEC, COD_BARRA, FEC_ALTA, FEC_BAJA, AD_COD_USUARIO, AD_FECHA, ESTADO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_BARRA_SISELEC_ALIM
+    where trim(COD_SIS_ELEC) = trim(#{codSisElec,jdbcType=CHAR})
+    and trim(COD_BARRA) = trim(#{codBarra,jdbcType=CHAR})
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from ADMIN_GART.ADM_BARRA_SISELEC_ALIM
+    where trim(COD_SIS_ELEC) = trim(#{codSisElec,jdbcType=CHAR})
+      and trim(COD_BARRA) = trim(#{codBarra,jdbcType=CHAR})
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarraSiselecAlim">
+    insert into ADMIN_GART.ADM_BARRA_SISELEC_ALIM (COD_SIS_ELEC, COD_BARRA, FEC_ALTA,
+      FEC_BAJA, AD_COD_USUARIO, AD_FECHA,
+      ESTADO)
+    values (#{codSisElec,jdbcType=CHAR}, #{codBarra,jdbcType=CHAR}, #{fecAlta,jdbcType=TIMESTAMP},
+      #{fecBaja,jdbcType=TIMESTAMP}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP},
+      #{estado,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarraSiselecAlim">
+    insert into ADMIN_GART.ADM_BARRA_SISELEC_ALIM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codSisElec != null">
+        COD_SIS_ELEC,
+      </if>
+      <if test="codBarra != null">
+        COD_BARRA,
+      </if>
+      <if test="fecAlta != null">
+        FEC_ALTA,
+      </if>
+      <if test="fecBaja != null">
+        FEC_BAJA,
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO,
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codSisElec != null">
+        #{codSisElec,jdbcType=CHAR},
+      </if>
+      <if test="codBarra != null">
+        #{codBarra,jdbcType=CHAR},
+      </if>
+      <if test="fecAlta != null">
+        #{fecAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecBaja != null">
+        #{fecBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adCodUsuario != null">
+        #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarraSiselecAlim">
+    update ADMIN_GART.ADM_BARRA_SISELEC_ALIM
+    <set>
+      <if test="fecAlta != null">
+        FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fecBaja != null">
+        FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=CHAR},
+      </if>
+    </set>
+    where COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+      and COD_BARRA = #{codBarra,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmBarraSiselecAlim">
+    update ADMIN_GART.ADM_BARRA_SISELEC_ALIM
+    set FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+      FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+      AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      ESTADO = #{estado,jdbcType=CHAR}
+    where trim(COD_SIS_ELEC) = trim(#{codSisElec,jdbcType=CHAR})
+    and trim(COD_BARRA) = trim(#{codBarra,jdbcType=CHAR})
+  </update>
+
+  <delete id="borrarPorBarra">
+    delete from ADMIN_GART.ADM_BARRA_SISELEC_ALIM
+    where trim(COD_BARRA) = trim(#{codBarra,jdbcType=CHAR})
+  </delete>
+
+  <delete id="borrarPorCodSisElec">
+    delete from ADMIN_GART.ADM_BARRA_SISELEC_ALIM
+    where trim(COD_SIS_ELEC) = trim(#{codSisElec,jdbcType=CHAR})
+  </delete>
+</mapper>

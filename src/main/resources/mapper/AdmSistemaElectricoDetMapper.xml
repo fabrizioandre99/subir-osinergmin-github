@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmSistemaElectricoDetMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectricoDet">
+        <!--@Table ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET-->
+        <id column="ID_SE_DET" jdbcType="INTEGER" property="idSeDet"/>
+        <result column="COD_SIS_ELEC" jdbcType="CHAR" property="codSisElec"/>
+        <result column="FECHA_ASOCIACION" jdbcType="TIMESTAMP" property="fechaAsociacion"/>
+        <result column="COD_SIS_ELEC_ANT" jdbcType="CHAR" property="codSisElecAnt"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID_SE_DET,
+        COD_SIS_ELEC,
+        FECHA_ASOCIACION,
+        COD_SIS_ELEC_ANT,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+        where ID_SE_DET = #{idSeDet,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+        delete
+        from ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+        where ID_SE_DET = #{idSeDet,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectricoDet">
+        insert into ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET (ID_SE_DET, COD_SIS_ELEC, FECHA_ASOCIACION,
+                                                          COD_SIS_ELEC_ANT, AD_COD_USUARIO, AD_FECHA)
+        values (#{idSeDet,jdbcType=INTEGER}, #{codSisElec,jdbcType=CHAR}, #{fechaAsociacion,jdbcType=TIMESTAMP},
+                #{codSisElecAnt,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectricoDet">
+        insert into ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idSeDet != null">
+                ID_SE_DET,
+            </if>
+            <if test="codSisElec != null">
+                COD_SIS_ELEC,
+            </if>
+            <if test="fechaAsociacion != null">
+                FECHA_ASOCIACION,
+            </if>
+            <if test="codSisElecAnt != null">
+                COD_SIS_ELEC_ANT,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="idSeDet != null">
+                #{idSeDet,jdbcType=DECIMAL},
+            </if>
+            <if test="codSisElec != null">
+                #{codSisElec,jdbcType=CHAR},
+            </if>
+            <if test="fechaAsociacion != null">
+                #{fechaAsociacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codSisElecAnt != null">
+                #{codSisElecAnt,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectricoDet">
+        update ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+        <set>
+            <if test="codSisElec != null">
+                COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR},
+            </if>
+            <if test="fechaAsociacion != null">
+                FECHA_ASOCIACION = #{fechaAsociacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codSisElecAnt != null">
+                COD_SIS_ELEC_ANT = #{codSisElecAnt,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID_SE_DET = #{idSeDet,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectricoDet">
+        update ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+        set COD_SIS_ELEC     = #{codSisElec,jdbcType=CHAR},
+            FECHA_ASOCIACION = #{fechaAsociacion,jdbcType=TIMESTAMP},
+            COD_SIS_ELEC_ANT = #{codSisElecAnt,jdbcType=CHAR},
+            AD_COD_USUARIO   = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA         = #{adFecha,jdbcType=TIMESTAMP}
+        where ID_SE_DET = #{idSeDet,jdbcType=INTEGER}
+    </update>
+
+    <update id="actualizarDos"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.dto.sistemaElectricoDet.SistemaElectricoDetDTO">
+        update ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+        set COD_SIS_ELEC     = #{codSisElec,jdbcType=CHAR},
+            FECHA_ASOCIACION = TO_DATE(#{fechaAsociacion,jdbcType=VARCHAR}, 'YYYY/MM/DD'),
+            COD_SIS_ELEC_ANT = #{codSisElecAnt,jdbcType=CHAR},
+            AD_COD_USUARIO   = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA         = #{adFecha,jdbcType=TIMESTAMP}
+        where ID_SE_DET = #{idSeDet,jdbcType=INTEGER}
+    </update>
+
+    <insert id="insertarDos"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.dto.sistemaElectricoDet.SistemaElectricoDetDTO">
+        insert into ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET (ID_SE_DET,
+                                                          COD_SIS_ELEC,
+                                                          FECHA_ASOCIACION,
+                                                          COD_SIS_ELEC_ANT,
+                                                          AD_COD_USUARIO,
+                                                          AD_FECHA)
+        values (#{idSeDet,jdbcType=INTEGER},
+                #{codSisElec,jdbcType=CHAR},
+        <if test="fechaAsociacion != null and fechaAsociacion != ''">
+            TO_DATE(#{fechaAsociacion,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+        </if>
+        <if test="fechaAsociacion == null or fechaAsociacion == ''">
+            null,
+        </if>
+        #{codSisElecAnt,jdbcType=CHAR},
+        #{adCodUsuario,jdbcType=VARCHAR},
+        #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="selectMaxIdSeDet" resultType="int">
+        SELECT NVL(MAX(ID_SE_DET), 0)
+        FROM ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+    </select>
+
+    <delete id="deleteByCodSisElec" parameterType="string">
+        DELETE
+        FROM ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET
+        WHERE COD_SIS_ELEC = #{codSisElec}
+    </delete>
+</mapper>

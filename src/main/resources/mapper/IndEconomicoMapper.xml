@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.IndEconomicoMapper">
+
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.IndEconomico">
+        <id column="ANNIO_MES" jdbcType="CHAR" property="annioMes"/>
+        <id column="COD_INDICADOR" jdbcType="CHAR" property="codIndicador"/>
+        <result column="VAL_INDICADOR" jdbcType="DECIMAL" property="valIndicador"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ANNIO_MES, COD_INDICADOR, VAL_INDICADOR, ESTADO, AD_COD_USUARIO, AD_FECHA
+    </sql>
+
+    <select id="selectByCodIndicador" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ADMIN_GART.ADM_IND_ECONOMICO
+        WHERE COD_INDICADOR = TRIM(#{codIndicador,jdbcType=CHAR})
+    </select>
+
+    <delete id="deleteByCodIndicador" parameterType="string">
+        DELETE FROM ADMIN_GART.ADM_IND_ECONOMICO
+        WHERE TRIM(COD_INDICADOR) = TRIM(#{codIndicador,jdbcType=CHAR})
+    </delete>
+
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.IndEconomico">
+        INSERT INTO ADMIN_GART.ADM_IND_ECONOMICO
+        (ANNIO_MES, COD_INDICADOR, VAL_INDICADOR, ESTADO, AD_COD_USUARIO, AD_FECHA)
+        VALUES
+        (#{annioMes,jdbcType=CHAR}, #{codIndicador,jdbcType=CHAR}, #{valIndicador,jdbcType=DECIMAL},
+        #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.IndEconomico">
+        update ADMIN_GART.ADM_IND_ECONOMICO
+        set VAL_INDICADOR = #{valIndicador,jdbcType=DECIMAL},
+        ESTADO = #{estado,jdbcType=CHAR},
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP}
+        where TRIM(ANNIO_MES) = #{annioMes,jdbcType=CHAR}
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.indEconomico.IndEconomicoDTO">
+        <id column="ANNIO_MES" jdbcType="CHAR" property="annioMes"/>
+        <id column="COD_INDICADOR" jdbcType="CHAR" property="codIndicador"/>
+        <result column="VAL_INDICADOR" jdbcType="DECIMAL" property="valIndicador"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+
+    <select id="listarConFiltro" resultMap="BaseResultMapDTO">
+        SELECT
+        COD_INDICADOR,
+        ANNIO_MES,
+        VAL_INDICADOR,
+        ESTADO
+        FROM ADMIN_GART.ADM_IND_ECONOMICO
+        where 1=1
+        <if test="codIndicador != null and codIndicador != ''">
+            and UPPER(COD_INDICADOR) like '%' || UPPER(#{codIndicador}) || '%'
+        </if>
+        <if test="sort != null and sort != ''">
+            ORDER BY
+            ${sort} ${order}
+        </if>
+    </select>
+
+    <select id="listarIdEconomico" resultMap="BaseResultMapDTO">
+        SELECT
+            ANNIO_MES,
+            COD_INDICADOR,
+            VAL_INDICADOR,
+            ESTADO
+        FROM ADMIN_GART.ADM_IND_ECONOMICO
+    </select>
+
+    <select id="existeCod" resultType="int">
+        SELECT COUNT(1)
+        FROM ADMIN_GART.ADM_IND_ECONOMICO
+        WHERE TRIM(COD_INDICADOR) = TRIM(#{codIndicador,jdbcType=CHAR})
+    </select>
+</mapper>

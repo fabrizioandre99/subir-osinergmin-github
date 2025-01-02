@@ -1,0 +1,67 @@
+stages:
+  - build
+  - publish
+  - deploy_k8s
+
+default:
+  interruptible: true
+  cache: &global_cache
+    key: "caches3"
+    paths:
+      - target
+
+build:
+  stage: build
+  image: "maven:3-amazoncorretto-17"
+  cache:
+    <<: *global_cache
+  script:
+    - mv /root/.m2/settings_osinergmin.xml /root/.m2/settings.xml
+    - mvn -T8 clean package -DskipTests=true -B
+
+    - mv /root/.m2/settings.xml /root/.m2/settings_osinergmin.xml
+  only:
+    - deploy
+
+publish:
+  stage: publish
+  image:
+    name: gcr.io/kaniko-project/executor:v1.9.1-debug
+    entrypoint: [""]
+  cache:
+    <<: *global_cache
+  script: |
+    VERSION=latest
+     echo "--------------------------------------------------------------------"
+     echo -e "Creating container"
+     echo "--------------------------------------------------------------------"
+     mkdir -p /kaniko/.docker
+     echo "{\"auths\":{\"${CLOUD_REGISTRY_URL}\":{\"auth\":\"$(printf "%s:%s" "${CLOUD_REGISTRY_USER}" "${CLOUD_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+     /kaniko/executor --context "${CI_PROJECT_DIR}" --dockerfile "${CI_PROJECT_DIR}/.deploy_cloud/Dockerfile" --destination "${CLOUD_REGISTRY_URL}/${CI_PROJECT_PATH}:$VERSION"
+     echo "--------------------------------------------------------------------"
+     echo -e "Succesfull"
+     echo "--------------------------------------------------------------------"
+  only:
+    - deploy
+
+variables:
+  KUBECONFIG: /etc/deploy/config
+
+deploy_k8s:
+  stage: deploy_k8s
+  image: registry.cn-hangzhou.aliyuncs.com/haoshuwei24/kubectl:1.16.6
+  cache:
+    <<: *global_cache
+  script:
+    - mkdir -p /etc/deploy
+    - echo $KUBE_CONFIG | base64 -d > /etc/deploy/config.yml
+    - ls /etc/deploy
+    - cat /etc/deploy/config.yml
+    - export KUBECONFIG=/etc/deploy/config.yml
+    - kubectl config use-context local
+    - kubectl cluster-info
+    - kubectl apply -f .deploy_cloud/deployment.yaml
+    - kubectl rollout restart deployment prie-admin-backend -n prie-ns
+  only:
+    - deploy
+

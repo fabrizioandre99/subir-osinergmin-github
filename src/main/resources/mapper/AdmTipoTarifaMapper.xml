@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTipoTarifaMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoTarifa">
+    <!--@Table ADMIN_GART.ADM_TIPO_TARIFA-->
+    <id column="CODTARIFA" jdbcType="VARCHAR" property="codtarifa" />
+    <result column="DESCRIPCION" jdbcType="VARCHAR" property="descripcion" />
+    <result column="ESTADO" jdbcType="VARCHAR" property="estado" />
+    <result column="CODUSUARIO" jdbcType="VARCHAR" property="codusuario" />
+    <result column="FECACTUALIZA" jdbcType="TIMESTAMP" property="fecactualiza" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CODTARIFA, DESCRIPCION, ESTADO, CODUSUARIO, FECACTUALIZA, AD_COD_USUARIO, AD_FECHA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TIPO_TARIFA
+    where CODTARIFA = #{codtarifa,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ADMIN_GART.ADM_TIPO_TARIFA
+    where TRIM(CODTARIFA) = TRIM(#{codtarifa,jdbcType=VARCHAR})
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoTarifa">
+    insert into ADMIN_GART.ADM_TIPO_TARIFA (CODTARIFA, DESCRIPCION, ESTADO,
+      CODUSUARIO, FECACTUALIZA, AD_COD_USUARIO,
+      AD_FECHA)
+    values (#{codtarifa,jdbcType=VARCHAR}, #{descripcion,jdbcType=VARCHAR}, #{estado,jdbcType=VARCHAR},
+      #{codusuario,jdbcType=VARCHAR}, #{fecactualiza,jdbcType=TIMESTAMP}, #{adCodUsuario,jdbcType=VARCHAR},
+      #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoTarifa">
+    insert into ADMIN_GART.ADM_TIPO_TARIFA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codtarifa != null">
+        CODTARIFA,
+      </if>
+      <if test="descripcion != null">
+        DESCRIPCION,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+      <if test="codusuario != null">
+        CODUSUARIO,
+      </if>
+      <if test="fecactualiza != null">
+        FECACTUALIZA,
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO,
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codtarifa != null">
+        #{codtarifa,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcion != null">
+        #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=VARCHAR},
+      </if>
+      <if test="codusuario != null">
+        #{codusuario,jdbcType=VARCHAR},
+      </if>
+      <if test="fecactualiza != null">
+        #{fecactualiza,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adCodUsuario != null">
+        #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoTarifa">
+    update ADMIN_GART.ADM_TIPO_TARIFA
+    <set>
+      <if test="descripcion != null">
+        DESCRIPCION = #{descripcion,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=VARCHAR},
+      </if>
+      <if test="codusuario != null">
+        CODUSUARIO = #{codusuario,jdbcType=VARCHAR},
+      </if>
+      <if test="fecactualiza != null">
+        FECACTUALIZA = #{fecactualiza,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CODTARIFA = #{codtarifa,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoTarifa">
+    update ADMIN_GART.ADM_TIPO_TARIFA
+    set DESCRIPCION = #{descripcion,jdbcType=VARCHAR},
+      ESTADO = #{estado,jdbcType=VARCHAR},
+      CODUSUARIO = #{codusuario,jdbcType=VARCHAR},
+      FECACTUALIZA = #{fecactualiza,jdbcType=TIMESTAMP},
+      AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      AD_FECHA = #{adFecha,jdbcType=TIMESTAMP}
+    where CODTARIFA = #{codtarifa,jdbcType=VARCHAR}
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tipoTarifa.TipoTarifaDTO">
+    <id column="CODTARIFA" jdbcType="DECIMAL" property="codtarifa" />
+    <result column="DESCRIPCION" jdbcType="CHAR" property="descripcion" />
+    <result column="ESTADO" jdbcType="VARCHAR" property="estado" />
+  </resultMap>
+
+  <select id="listarConFiltro" resultMap="BaseResultMapDTO">
+    SELECT
+    CODTARIFA,
+    DESCRIPCION,
+    ESTADO,
+    CODUSUARIO,
+    AD_COD_USUARIO,
+    AD_FECHA
+    FROM ADM_TIPO_TARIFA
+    WHERE UPPER(
+    TRANSLATE(DESCRIPCION,
+    'ÁÉÍÓÚáéíóú',
+    'AEIOUaeiou')
+    ) LIKE UPPER(
+    TRANSLATE('%' || #{descripcion} || '%',
+    'ÁÉÍÓÚáéíóú',
+    'AEIOUaeiou')
+    )
+  </select>
+
+
+  <select id="listarIdTarifa" resultMap="BaseResultMapDTO">
+    SELECT <include refid="Base_Column_List"/>
+    FROM ADM_TIPO_TARIFA
+  </select>
+
+  <select id="existeCod" resultType="int">
+    SELECT COUNT(1)
+    FROM ADM_TIPO_TARIFA
+    WHERE CODTARIFA = TRIM(#{codtarifa,jdbcType=VARCHAR})
+  </select>
+
+  <select id="buscarPorCodTarifa" resultMap="BaseResultMapDTO">
+    SELECT
+      CODTARIFA, DESCRIPCION, ESTADO, CODUSUARIO, AD_COD_USUARIO, AD_FECHA
+    FROM ADM_TIPO_TARIFA
+    WHERE CODTARIFA = #{codtarifa,jdbcType=VARCHAR}
+  </select>
+</mapper>

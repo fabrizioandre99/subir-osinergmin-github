@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmSectorTipicoMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmSectorTipico">
+        <!--@Table ADMIN_GART.ADM_SECTOR_TIPICO-->
+        <id column="COD_SECTOR_TIPICO" jdbcType="CHAR" property="codSectorTipico"/>
+        <result column="DSC_SECTOR_TIPICO" jdbcType="VARCHAR" property="dscSectorTipico"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_SECTOR_TIPICO,
+        DSC_SECTOR_TIPICO,
+        ESTADO,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_SECTOR_TIPICO
+        where TRIM(COD_SECTOR_TIPICO) = TRIM(#{codSectorTipico,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_SECTOR_TIPICO
+        where TRIM(COD_SECTOR_TIPICO) = TRIM(#{codSectorTipico,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSectorTipico">
+        insert into ADMIN_GART.ADM_SECTOR_TIPICO (COD_SECTOR_TIPICO, DSC_SECTOR_TIPICO, ESTADO,
+                                                  AD_COD_USUARIO, AD_FECHA)
+        values (#{codSectorTipico,jdbcType=CHAR}, #{dscSectorTipico,jdbcType=VARCHAR}, #{estado,jdbcType=CHAR},
+                #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSectorTipico">
+        insert into ADMIN_GART.ADM_SECTOR_TIPICO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codSectorTipico != null">
+                COD_SECTOR_TIPICO,
+            </if>
+            <if test="dscSectorTipico != null">
+                DSC_SECTOR_TIPICO,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codSectorTipico != null">
+                #{codSectorTipico,jdbcType=CHAR},
+            </if>
+            <if test="dscSectorTipico != null">
+                #{dscSectorTipico,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSectorTipico">
+        update ADMIN_GART.ADM_SECTOR_TIPICO
+        <set>
+            <if test="dscSectorTipico != null">
+                DSC_SECTOR_TIPICO = #{dscSectorTipico,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_SECTOR_TIPICO = #{codSectorTipico,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSectorTipico">
+        update ADMIN_GART.ADM_SECTOR_TIPICO
+        set DSC_SECTOR_TIPICO = #{dscSectorTipico,jdbcType=VARCHAR},
+            ESTADO            = #{estado,jdbcType=CHAR},
+            AD_COD_USUARIO    = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA          = #{adFecha,jdbcType=TIMESTAMP}
+        where TRIM(COD_SECTOR_TIPICO) = TRIM(#{codSectorTipico,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.sectorTipico.AdmSectorTipicoDTO">
+        <!--@Table ADMIN_GART.ADM_SECTOR_TIPICO-->
+        <result column="COD_SECTOR_TIPICO" jdbcType="CHAR" property="codSectorTipico"/>
+        <result column="DSC_SECTOR_TIPICO" jdbcType="VARCHAR" property="dscSectorTipico"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_SECTOR_TIPICO,
+               DSC_SECTOR_TIPICO,
+               ESTADO
+        from ADMIN_GART.ADM_SECTOR_TIPICO
+    </select>
+
+    <select id="filtrar" resultMap="BaseResultMapDTO">
+        SELECT COD_SECTOR_TIPICO,
+               DSC_SECTOR_TIPICO,
+               ESTADO
+        FROM ADMIN_GART.ADM_SECTOR_TIPICO
+        WHERE 1 = 1
+        <if test="codSectorTipico != null and codSectorTipico != ''">
+            AND UPPER(TRANSLATE(COD_SECTOR_TIPICO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codSectorTipico}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="dscSectorTipico != null and dscSectorTipico != ''">
+            AND UPPER(TRANSLATE(DSC_SECTOR_TIPICO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{dscSectorTipico}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

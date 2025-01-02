@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmDevanadoMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmDevanado">
+        <!--@Table ADMIN_GART.ADM_DEVANADO-->
+        <id column="ID_DEVANADO" jdbcType="DECIMAL" property="idDevanado"/>
+        <result column="COD_DEVANADO" jdbcType="CHAR" property="codDevanado"/>
+        <result column="ID_TRANSFORMADOR" jdbcType="DECIMAL" property="idTransformador"/>
+        <result column="COD_BARRA" jdbcType="CHAR" property="codBarra"/>
+        <result column="AREA_DEMANDA" jdbcType="DECIMAL" property="areaDemanda"/>
+        <result column="POT_DEVANADO" jdbcType="DECIMAL" property="potDevanado"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+        <result column="USUARIO_ELIMINACION" jdbcType="VARCHAR" property="usuarioEliminacion"/>
+        <result column="TERMINAL_ELIMINACION" jdbcType="VARCHAR" property="terminalEliminacion"/>
+        <result column="FECHA_ELIMINACION" jdbcType="TIMESTAMP" property="fechaEliminacion"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID_DEVANADO,
+        COD_DEVANADO,
+        ID_TRANSFORMADOR,
+        COD_BARRA,
+        AREA_DEMANDA,
+        POT_DEVANADO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION,
+        USUARIO_ELIMINACION,
+        TERMINAL_ELIMINACION,
+        FECHA_ELIMINACION,
+        ESTADO
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_DEVANADO
+        where ID_DEVANADO = #{idDevanado,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from ADMIN_GART.ADM_DEVANADO
+        where ID_DEVANADO = #{idDevanado,jdbcType=DECIMAL}
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDevanado">
+        insert into ADMIN_GART.ADM_DEVANADO (ID_DEVANADO, COD_DEVANADO, ID_TRANSFORMADOR,
+                                             COD_BARRA, AREA_DEMANDA, POT_DEVANADO,
+                                             USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION,
+                                             USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+                                             FECHA_ACTUALIZACION, USUARIO_ELIMINACION,
+                                             TERMINAL_ELIMINACION, FECHA_ELIMINACION,
+                                             ESTADO)
+        values (#{idDevanado,jdbcType=DECIMAL}, #{codDevanado,jdbcType=CHAR}, #{idTransformador,jdbcType=DECIMAL},
+                #{codBarra,jdbcType=CHAR}, #{areaDemanda,jdbcType=DECIMAL}, #{potDevanado,jdbcType=DECIMAL},
+                #{usuarioCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR},
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR},
+                #{fechaActualizacion,jdbcType=TIMESTAMP}, #{usuarioEliminacion,jdbcType=VARCHAR},
+                #{terminalEliminacion,jdbcType=VARCHAR}, #{fechaEliminacion,jdbcType=TIMESTAMP},
+                #{estado,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDevanado">
+        insert into ADMIN_GART.ADM_DEVANADO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="idDevanado != null">
+                ID_DEVANADO,
+            </if>
+            <if test="codDevanado != null">
+                COD_DEVANADO,
+            </if>
+            <if test="idTransformador != null">
+                ID_TRANSFORMADOR,
+            </if>
+            <if test="codBarra != null">
+                COD_BARRA,
+            </if>
+            <if test="areaDemanda != null">
+                AREA_DEMANDA,
+            </if>
+            <if test="potDevanado != null">
+                POT_DEVANADO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+            <if test="usuarioEliminacion != null">
+                USUARIO_ELIMINACION,
+            </if>
+            <if test="terminalEliminacion != null">
+                TERMINAL_ELIMINACION,
+            </if>
+            <if test="fechaEliminacion != null">
+                FECHA_ELIMINACION,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="idDevanado != null">
+                #{idDevanado,jdbcType=DECIMAL},
+            </if>
+            <if test="codDevanado != null">
+                #{codDevanado,jdbcType=CHAR},
+            </if>
+            <if test="idTransformador != null">
+                #{idTransformador,jdbcType=DECIMAL},
+            </if>
+            <if test="codBarra != null">
+                #{codBarra,jdbcType=CHAR},
+            </if>
+            <if test="areaDemanda != null">
+                #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="potDevanado != null">
+                #{potDevanado,jdbcType=DECIMAL},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioEliminacion != null">
+                #{usuarioEliminacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalEliminacion != null">
+                #{terminalEliminacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaEliminacion != null">
+                #{fechaEliminacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDevanado">
+        update ADMIN_GART.ADM_DEVANADO
+        <set>
+            <if test="codDevanado != null">
+                COD_DEVANADO = #{codDevanado,jdbcType=CHAR},
+            </if>
+            <if test="idTransformador != null">
+                ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL},
+            </if>
+            <if test="codBarra != null">
+                COD_BARRA = #{codBarra,jdbcType=CHAR},
+            </if>
+            <if test="areaDemanda != null">
+                AREA_DEMANDA = #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="potDevanado != null">
+                POT_DEVANADO = #{potDevanado,jdbcType=DECIMAL},
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioEliminacion != null">
+                USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalEliminacion != null">
+                TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaEliminacion != null">
+                FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+        </set>
+        where ID_DEVANADO = #{idDevanado,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmDevanado">
+        update ADMIN_GART.ADM_DEVANADO
+        set COD_DEVANADO           = #{codDevanado,jdbcType=CHAR},
+            ID_TRANSFORMADOR       = #{idTransformador,jdbcType=DECIMAL},
+            COD_BARRA              = #{codBarra,jdbcType=CHAR},
+            AREA_DEMANDA           = #{areaDemanda,jdbcType=DECIMAL},
+            POT_DEVANADO           = #{potDevanado,jdbcType=DECIMAL},
+            USUARIO_CREACION       = #{usuarioCreacion,jdbcType=VARCHAR},
+            TERMINAL_CREACION      = #{terminalCreacion,jdbcType=VARCHAR},
+            FECHA_CREACION         = #{fechaCreacion,jdbcType=TIMESTAMP},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            USUARIO_ELIMINACION    = #{usuarioEliminacion,jdbcType=VARCHAR},
+            TERMINAL_ELIMINACION   = #{terminalEliminacion,jdbcType=VARCHAR},
+            FECHA_ELIMINACION      = #{fechaEliminacion,jdbcType=TIMESTAMP},
+            ESTADO                 = #{estado,jdbcType=CHAR}
+        where ID_DEVANADO = #{idDevanado,jdbcType=DECIMAL}
+    </update>
+
+    <delete id="deleteByTransformadorId" parameterType="java.lang.Integer">
+        DELETE
+        FROM ADMIN_GART.ADM_DEVANADO
+        WHERE ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL}
+    </delete>
+
+    <resultMap id="DevanadoDTOResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.devanado.DevanadoDTO">
+        <result property="idDevanado" column="ID_DEVANADO"/>
+        <result property="codDevanado" column="COD_DEVANADO"/>
+        <result property="idTransformador" column="ID_TRANSFORMADOR"/>
+        <result property="codBarra" column="COD_BARRA"/>
+        <result property="areaDemanda" column="AREA_DEMANDA"/>
+        <result property="potDevanado" column="POT_DEVANADO"/>
+        <result property="estado" column="ESTADO"/>
+        <result property="tension" column="TENSION"/>
+    </resultMap>
+
+    <select id="selectByTransformadorId" parameterType="java.lang.Integer" resultMap="DevanadoDTOResultMap">
+        SELECT D.ID_DEVANADO,
+               D.COD_DEVANADO,
+               D.ID_TRANSFORMADOR,
+               D.COD_BARRA,
+               D.AREA_DEMANDA,
+               D.POT_DEVANADO,
+               D.ESTADO,
+               B.TENSION
+        FROM ADMIN_GART.ADM_DEVANADO D
+                 LEFT JOIN
+             ADMIN_GART.ADM_BARRA B ON D.COD_BARRA = B.COD_BARRA
+        WHERE D.ID_TRANSFORMADOR = #{idTransformador}
+    </select>
+
+    <delete id="borrarPorAreaDemanda">
+        delete
+        from ADMIN_GART.ADM_DEVANADO
+        where trim(AREA_DEMANDA) = trim(#{areaDemanda,jdbcType=DECIMAL})
+    </delete>
+
+    <select id="getNextId" resultType="java.lang.Integer">
+        SELECT SEQ_ID_DEVANADO.NEXTVAL FROM DUAL
+    </select>
+
+
+</mapper>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmProductoMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmProducto">
+        <!--@Table ADMIN_GART.ADM_PRODUCTO-->
+        <result column="COD_PRODUCTO" jdbcType="CHAR" property="codProducto"/>
+        <result column="DSC_PRODUCTO" jdbcType="VARCHAR" property="dscProducto"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+        <result column="DSC_CORTA" jdbcType="VARCHAR" property="dscCorta"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_PRODUCTO,
+        DSC_PRODUCTO,
+        ESTADO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION,
+        DSC_CORTA
+    </sql>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProducto">
+        insert into ADMIN_GART.ADM_PRODUCTO (COD_PRODUCTO, DSC_PRODUCTO, ESTADO,
+                                             USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION,
+                                             USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+                                             FECHA_ACTUALIZACION, DSC_CORTA)
+        values (#{codProducto,jdbcType=CHAR}, #{dscProducto,jdbcType=VARCHAR}, #{estado,jdbcType=CHAR},
+                #{usuarioCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR},
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR},
+                #{fechaActualizacion,jdbcType=TIMESTAMP}, #{dscCorta,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProducto">
+        insert into ADMIN_GART.ADM_PRODUCTO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codProducto != null">
+                COD_PRODUCTO,
+            </if>
+            <if test="dscProducto != null">
+                DSC_PRODUCTO,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+            <if test="dscCorta != null">
+                DSC_CORTA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codProducto != null">
+                #{codProducto,jdbcType=CHAR},
+            </if>
+            <if test="dscProducto != null">
+                #{dscProducto,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dscCorta != null">
+                #{dscCorta,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_PRODUCTO
+        where TRIM(COD_PRODUCTO) = TRIM(#{codProducto,jdbcType=CHAR})
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmProducto">
+        update ADMIN_GART.ADM_PRODUCTO
+        set DSC_PRODUCTO           = #{dscProducto,jdbcType=VARCHAR},
+            ESTADO                 = #{estado,jdbcType=CHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where TRIM(COD_PRODUCTO) = TRIM(#{codProducto,jdbcType=CHAR})
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_PRODUCTO
+        where TRIM(COD_PRODUCTO) = TRIM(#{codProducto,jdbcType=CHAR})
+    </delete>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.producto.AdmProductoDTO">
+        <!--@Table ADMIN_GART.ADM_PRODUCTO-->
+        <result column="COD_PRODUCTO" jdbcType="CHAR" property="codProducto"/>
+        <result column="DSC_PRODUCTO" jdbcType="VARCHAR" property="dscProducto"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_PRODUCTO,
+               DSC_PRODUCTO,
+               ESTADO
+        from ADMIN_GART.ADM_PRODUCTO
+    </select>
+
+    <select id="filtrar" resultMap="BaseResultMapDTO">
+        SELECT COD_PRODUCTO,
+        DSC_PRODUCTO,
+        ESTADO
+        FROM ADMIN_GART.ADM_PRODUCTO
+        WHERE 1 = 1
+        <if test="codProducto != null and codProducto != ''">
+            AND UPPER(
+            TRANSLATE(COD_PRODUCTO, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+            ) LIKE '%' || UPPER(
+            TRANSLATE(#{codProducto}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+            ) || '%'
+        </if>
+        <if test="dscProducto != null and dscProducto != ''">
+            AND UPPER(
+            TRANSLATE(DSC_PRODUCTO, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+            ) LIKE '%' || UPPER(
+            TRANSLATE(#{dscProducto}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+            ) || '%'
+        </if>
+    </select>
+
+</mapper>

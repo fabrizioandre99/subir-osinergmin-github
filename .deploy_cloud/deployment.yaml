@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prie-ns
+  name: prie-admin-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prie-admin-backend
+  template:
+    metadata:
+      name: prie-admin-backend
+      labels:
+        app: prie-admin-backend
+    spec:
+      imagePullSecrets:
+        - name: cloud-registry
+      containers:
+      - name: prie-admin-backend
+        image: registry.cloudcomputing.com.pe/team-cloud/osinergmin/prie/backend/admin_backend:latest
+        ports:
+          - name: pa-b-port
+            containerPort: 9998
+        imagePullPolicy: Always
+#        envFrom:
+#        - configMapRef:
+#            name: sisseg-config
+        env:
+          - name: JAVA_OPTS

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmPliegoSiselecMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliegoSiselec">
+        <!--@Table ADMIN_GART.ADM_PLIEGO_SISELEC-->
+        <id column="ANNIO_MES" jdbcType="CHAR" property="annioMes"/>
+        <id column="COD_PLIEGO" jdbcType="CHAR" property="codPliego"/>
+        <id column="COD_SIS_ELEC" jdbcType="CHAR" property="codSisElec"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ANNIO_MES,
+        COD_PLIEGO,
+        COD_SIS_ELEC,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_PLIEGO_SISELEC
+        where ANNIO_MES = #{annioMes,jdbcType=CHAR}
+          and COD_PLIEGO = #{codPliego,jdbcType=CHAR}
+          and COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from ADMIN_GART.ADM_PLIEGO_SISELEC
+        where ANNIO_MES = #{annioMes,jdbcType=CHAR}
+          and COD_PLIEGO = #{codPliego,jdbcType=CHAR}
+          and COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliegoSiselec">
+        insert into ADMIN_GART.ADM_PLIEGO_SISELEC (ANNIO_MES, COD_PLIEGO, COD_SIS_ELEC,
+                                                   AD_COD_USUARIO, AD_FECHA)
+        values (#{annioMes,jdbcType=CHAR}, #{codPliego,jdbcType=CHAR}, #{codSisElec,jdbcType=CHAR},
+                #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliegoSiselec">
+        insert into ADMIN_GART.ADM_PLIEGO_SISELEC
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="annioMes != null">
+                ANNIO_MES,
+            </if>
+            <if test="codPliego != null">
+                COD_PLIEGO,
+            </if>
+            <if test="codSisElec != null">
+                COD_SIS_ELEC,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="annioMes != null">
+                #{annioMes,jdbcType=CHAR},
+            </if>
+            <if test="codPliego != null">
+                #{codPliego,jdbcType=CHAR},
+            </if>
+            <if test="codSisElec != null">
+                #{codSisElec,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliegoSiselec">
+        update ADMIN_GART.ADM_PLIEGO_SISELEC
+        <set>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ANNIO_MES = #{annioMes,jdbcType=CHAR}
+          and COD_PLIEGO = #{codPliego,jdbcType=CHAR}
+          and COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmPliegoSiselec">
+        update ADMIN_GART.ADM_PLIEGO_SISELEC
+        set AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA       = #{adFecha,jdbcType=TIMESTAMP}
+        where ANNIO_MES = #{annioMes,jdbcType=CHAR}
+          and COD_PLIEGO = #{codPliego,jdbcType=CHAR}
+          and COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+    </update>
+
+    <delete id="deleteByCodPliego" parameterType="java.lang.String">
+        DELETE
+        FROM ADMIN_GART.ADM_PLIEGO_SISELEC
+        WHERE TRIM(COD_PLIEGO) = TRIM(#{codPliego,jdbcType=CHAR})
+    </delete>
+
+    <delete id="deleteByCodSisElec">
+        DELETE
+        FROM ADMIN_GART.ADM_PLIEGO_SISELEC
+        WHERE TRIM(COD_SIS_ELEC) = TRIM(#{codSisElec,jdbcType=CHAR})
+    </delete>
+
+    <resultMap id="PliegoSiselecDTOResultMap"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.pliegoSiselec.PliegoSiselecDTO">
+        <id property="annioMes" column="ANNIO_MES"/>
+        <result property="codPliego" column="COD_PLIEGO"/>
+        <result property="codSisElec" column="COD_SIS_ELEC"/>
+        <result property="nomSisElec" column="NOM_SIS_ELEC"/>
+    </resultMap>
+
+
+    <select id="getSistemasElectricosByCodPliego" parameterType="java.lang.String"
+            resultMap="PliegoSiselecDTOResultMap">
+        SELECT
+        PS.ANNIO_MES,
+        PS.COD_PLIEGO,
+        PS.COD_SIS_ELEC,
+        SE.NOM_SIS_ELEC
+        FROM ADM_PLIEGO_SISELEC PS
+        LEFT JOIN ADM_SISTEMA_ELECTRICO SE ON PS.COD_SIS_ELEC = SE.COD_SIS_ELEC
+        WHERE PS.COD_PLIEGO = #{codPliego}
+    </select>
+
+</mapper>

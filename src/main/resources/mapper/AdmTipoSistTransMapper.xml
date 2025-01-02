@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTipoSistTransMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoSistTrans">
+    <!--@Table ADMIN_GART.ADM_TIPO_SIST_TRANS-->
+    <id column="ID_TIPO_SIS_TRANS" jdbcType="DECIMAL" property="idTipoSisTrans" />
+    <result column="COD_TIPO_SIS_TRANS" jdbcType="CHAR" property="codTipoSisTrans" />
+    <result column="TIP_SIS_TRANS" jdbcType="VARCHAR" property="tipSisTrans" />
+    <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion" />
+    <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion" />
+    <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion" />
+    <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion" />
+    <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion" />
+    <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion" />
+    <result column="USUARIO_ELIMINACION" jdbcType="VARCHAR" property="usuarioEliminacion" />
+    <result column="TERMINAL_ELIMINACION" jdbcType="VARCHAR" property="terminalEliminacion" />
+    <result column="FECHA_ELIMINACION" jdbcType="TIMESTAMP" property="fechaEliminacion" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_TIPO_SIS_TRANS, COD_TIPO_SIS_TRANS, TIP_SIS_TRANS, USUARIO_CREACION, TERMINAL_CREACION, 
+    FECHA_CREACION, USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION, 
+    USUARIO_ELIMINACION, TERMINAL_ELIMINACION, FECHA_ELIMINACION, ESTADO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TIPO_SIST_TRANS
+    where trim(ID_TIPO_SIS_TRANS) = trim(#{idTipoSisTrans,jdbcType=DECIMAL})
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ADMIN_GART.ADM_TIPO_SIST_TRANS
+    where ID_TIPO_SIS_TRANS = #{idTipoSisTrans,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoSistTrans">
+    insert into ADMIN_GART.ADM_TIPO_SIST_TRANS (ID_TIPO_SIS_TRANS, COD_TIPO_SIS_TRANS, TIP_SIS_TRANS,
+      USUARIO_CREACION, TERMINAL_CREACION, FECHA_CREACION,
+      USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+      FECHA_ACTUALIZACION, USUARIO_ELIMINACION,
+      TERMINAL_ELIMINACION, FECHA_ELIMINACION,
+      ESTADO)
+    values (#{idTipoSisTrans,jdbcType=DECIMAL}, #{codTipoSisTrans,jdbcType=CHAR}, #{tipSisTrans,jdbcType=VARCHAR},
+      #{usuarioCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP},
+      #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR},
+      #{fechaActualizacion,jdbcType=TIMESTAMP}, #{usuarioEliminacion,jdbcType=VARCHAR},
+      #{terminalEliminacion,jdbcType=VARCHAR}, #{fechaEliminacion,jdbcType=TIMESTAMP},
+      #{estado,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoSistTrans">
+    insert into ADMIN_GART.ADM_TIPO_SIST_TRANS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idTipoSisTrans != null">
+        ID_TIPO_SIS_TRANS,
+      </if>
+      <if test="codTipoSisTrans != null">
+        COD_TIPO_SIS_TRANS,
+      </if>
+      <if test="tipSisTrans != null">
+        TIP_SIS_TRANS,
+      </if>
+      <if test="usuarioCreacion != null">
+        USUARIO_CREACION,
+      </if>
+      <if test="terminalCreacion != null">
+        TERMINAL_CREACION,
+      </if>
+      <if test="fechaCreacion != null">
+        FECHA_CREACION,
+      </if>
+      <if test="usuarioActualizacion != null">
+        USUARIO_ACTUALIZACION,
+      </if>
+      <if test="terminalActualizacion != null">
+        TERMINAL_ACTUALIZACION,
+      </if>
+      <if test="fechaActualizacion != null">
+        FECHA_ACTUALIZACION,
+      </if>
+      <if test="usuarioEliminacion != null">
+        USUARIO_ELIMINACION,
+      </if>
+      <if test="terminalEliminacion != null">
+        TERMINAL_ELIMINACION,
+      </if>
+      <if test="fechaEliminacion != null">
+        FECHA_ELIMINACION,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idTipoSisTrans != null">
+        #{idTipoSisTrans,jdbcType=DECIMAL},
+      </if>
+      <if test="codTipoSisTrans != null">
+        #{codTipoSisTrans,jdbcType=CHAR},
+      </if>
+      <if test="tipSisTrans != null">
+        #{tipSisTrans,jdbcType=VARCHAR},
+      </if>
+      <if test="usuarioCreacion != null">
+        #{usuarioCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalCreacion != null">
+        #{terminalCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaCreacion != null">
+        #{fechaCreacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioActualizacion != null">
+        #{usuarioActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalActualizacion != null">
+        #{terminalActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaActualizacion != null">
+        #{fechaActualizacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioEliminacion != null">
+        #{usuarioEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalEliminacion != null">
+        #{terminalEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEliminacion != null">
+        #{fechaEliminacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoSistTrans">
+    update ADMIN_GART.ADM_TIPO_SIST_TRANS
+    <set>
+      <if test="codTipoSisTrans != null">
+        COD_TIPO_SIS_TRANS = #{codTipoSisTrans,jdbcType=CHAR},
+      </if>
+      <if test="tipSisTrans != null">
+        TIP_SIS_TRANS = #{tipSisTrans,jdbcType=VARCHAR},
+      </if>
+      <if test="usuarioCreacion != null">
+        USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalCreacion != null">
+        TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaCreacion != null">
+        FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioActualizacion != null">
+        USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalActualizacion != null">
+        TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaActualizacion != null">
+        FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioEliminacion != null">
+        USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalEliminacion != null">
+        TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEliminacion != null">
+        FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID_TIPO_SIS_TRANS = #{idTipoSisTrans,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoSistTrans">
+    update ADMIN_GART.ADM_TIPO_SIST_TRANS
+    set COD_TIPO_SIS_TRANS = #{codTipoSisTrans,jdbcType=CHAR},
+      TIP_SIS_TRANS = #{tipSisTrans,jdbcType=VARCHAR},
+      USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+      TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+      FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+      USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+      TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+      FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+      ESTADO = #{estado,jdbcType=CHAR}
+    where ID_TIPO_SIS_TRANS = #{idTipoSisTrans,jdbcType=DECIMAL}
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tipoSistTrans.AdmTipoSistTransDTO">
+    <!--@Table ADMIN_GART.ADM_TIPO_SIST_TRANS-->
+    <id column="ID_TIPO_SIS_TRANS" jdbcType="DECIMAL" property="idTipoSisTrans" />
+    <result column="COD_TIPO_SIS_TRANS" jdbcType="CHAR" property="codTipoSisTrans" />
+    <result column="TIP_SIS_TRANS" jdbcType="VARCHAR" property="tipSisTrans" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMapDTO">
+    select
+      ID_TIPO_SIS_TRANS, COD_TIPO_SIS_TRANS, TIP_SIS_TRANS,ESTADO
+    from ADMIN_GART.ADM_TIPO_SIST_TRANS
+    </select>
+
+  <select id="filtrar" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.tipoSistTrans.AdmTipoSistTransSearchDTO" resultMap="BaseResultMapDTO">
+    SELECT
+    ID_TIPO_SIS_TRANS, COD_TIPO_SIS_TRANS, TIP_SIS_TRANS, ESTADO
+    FROM ADMIN_GART.ADM_TIPO_SIST_TRANS
+    WHERE
+    1 = 1
+    <if test="codTipoSisTrans != null and codTipoSisTrans != ''">
+      AND UPPER(TRANSLATE(COD_TIPO_SIS_TRANS, 'ÁÉÍÓÚáéíóú', 'AEIOUAEIOU')) LIKE UPPER(TRANSLATE('%' || #{codTipoSisTrans} || '%', 'ÁÉÍÓÚáéíóú', 'AEIOUAEIOU'))
+    </if>
+    <if test="tipSisTrans != null and tipSisTrans != ''">
+      AND UPPER(TRANSLATE(TIP_SIS_TRANS, 'ÁÉÍÓÚáéíóú', 'AEIOUAEIOU')) LIKE UPPER(TRANSLATE('%' || #{tipSisTrans} || '%', 'ÁÉÍÓÚáéíóú', 'AEIOUAEIOU'))
+    </if>
+  </select>
+
+  <select id="selectMaxId" resultType="java.lang.Integer">
+    SELECT MAX(ID_TIPO_SIS_TRANS) FROM ADMIN_GART.ADM_TIPO_SIST_TRANS
+  </select>
+
+  <select id="validarExisteCodigo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TIPO_SIST_TRANS
+    where trim(COD_TIPO_SIS_TRANS) = trim(#{codTipoSisTrans,jdbcType=CHAR})
+  </select>
+</mapper>

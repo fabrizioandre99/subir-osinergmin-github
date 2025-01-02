@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTipoEmpresaMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoEmpresa">
+    <!--@Table ADMIN_GART.ADM_TIPO_EMPRESA-->
+    <id column="COD_TIPO_EMPRESA" jdbcType="CHAR" property="codTipoEmpresa" />
+    <result column="DSC_TIPO_EMPRESA" jdbcType="VARCHAR" property="dscTipoEmpresa" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_TIPO_EMPRESA, DSC_TIPO_EMPRESA, ESTADO, AD_COD_USUARIO, AD_FECHA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TIPO_EMPRESA
+    where TRIM(COD_TIPO_EMPRESA) = TRIM(#{codTipoEmpresa,jdbcType=CHAR})
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ADMIN_GART.ADM_TIPO_EMPRESA
+    where TRIM(COD_TIPO_EMPRESA) = TRIM(#{codTipoEmpresa,jdbcType=CHAR})
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoEmpresa">
+    insert into ADMIN_GART.ADM_TIPO_EMPRESA (COD_TIPO_EMPRESA, DSC_TIPO_EMPRESA, ESTADO, 
+      AD_COD_USUARIO, AD_FECHA)
+    values (#{codTipoEmpresa,jdbcType=CHAR}, #{dscTipoEmpresa,jdbcType=VARCHAR}, #{estado,jdbcType=CHAR}, 
+      #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoEmpresa">
+    insert into ADMIN_GART.ADM_TIPO_EMPRESA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codTipoEmpresa != null">
+        COD_TIPO_EMPRESA,
+      </if>
+      <if test="dscTipoEmpresa != null">
+        DSC_TIPO_EMPRESA,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO,
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codTipoEmpresa != null">
+        #{codTipoEmpresa,jdbcType=CHAR},
+      </if>
+      <if test="dscTipoEmpresa != null">
+        #{dscTipoEmpresa,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoEmpresa">
+    update ADMIN_GART.ADM_TIPO_EMPRESA
+    <set>
+      <if test="dscTipoEmpresa != null">
+        DSC_TIPO_EMPRESA = #{dscTipoEmpresa,jdbcType=VARCHAR},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where COD_TIPO_EMPRESA = #{codTipoEmpresa,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoEmpresa">
+    update ADMIN_GART.ADM_TIPO_EMPRESA
+    set DSC_TIPO_EMPRESA = #{dscTipoEmpresa,jdbcType=VARCHAR},
+      ESTADO = #{estado,jdbcType=CHAR},
+      AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      AD_FECHA = #{adFecha,jdbcType=TIMESTAMP}
+    where TRIM(COD_TIPO_EMPRESA) = TRIM(#{codTipoEmpresa,jdbcType=CHAR})
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tipoEmpresa.TipoEmpresaDTO">
+    <!--@Table ADMIN_GART.ADM_TIPO_EMPRESA-->
+    <id column="COD_TIPO_EMPRESA" jdbcType="CHAR" property="codTipoEmpresa" />
+    <result column="DSC_TIPO_EMPRESA" jdbcType="VARCHAR" property="dscTipoEmpresa" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMapDTO">
+    select
+      COD_TIPO_EMPRESA, DSC_TIPO_EMPRESA,ESTADO
+    from ADMIN_GART.ADM_TIPO_EMPRESA
+  </select>
+
+  <select id="listaFiltro" resultMap="BaseResultMapDTO">
+    SELECT
+    COD_TIPO_EMPRESA,
+    DSC_TIPO_EMPRESA,
+    ESTADO
+    FROM
+    ADMIN_GART.ADM_TIPO_EMPRESA
+    WHERE
+    1 = 1
+    <if test="codTipoEmpresa != null and codTipoEmpresa != ''">
+      AND UPPER(
+      TRANSLATE(COD_TIPO_EMPRESA, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+      ) LIKE UPPER(
+      TRANSLATE('%' || #{codTipoEmpresa} || '%', 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+      )
+    </if>
+    <if test="dscTipoEmpresa != null and dscTipoEmpresa != ''">
+      AND UPPER(
+      TRANSLATE(DSC_TIPO_EMPRESA, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+      ) LIKE UPPER(
+      TRANSLATE('%' || #{dscTipoEmpresa} || '%', 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+      )
+    </if>
+  </select>
+
+</mapper>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.CfgParametroMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.CfgParametro">
+    <!--@Table ADMIN_GART.CFG_PARAMETRO-->
+    <id column="COD_GRUPO" jdbcType="CHAR" property="codGrupo" />
+    <id column="COD_PARAMETRO" jdbcType="CHAR" property="codParametro" />
+    <result column="DESC_PARAMETRO" jdbcType="VARCHAR" property="descParametro" />
+    <result column="VAL_PARAMETRO" jdbcType="VARCHAR" property="valParametro" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_GRUPO, COD_PARAMETRO, DESC_PARAMETRO, VAL_PARAMETRO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.CFG_PARAMETRO
+    where COD_GRUPO = #{codGrupo,jdbcType=CHAR}
+      and COD_PARAMETRO = #{codParametro,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from ADMIN_GART.CFG_PARAMETRO
+    WHERE TRIM(COD_GRUPO) = TRIM(#{codGrupo,jdbcType=CHAR})
+    AND TRIM(COD_PARAMETRO) = TRIM(#{codParametro,jdbcType=CHAR})
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgParametro">
+    insert into ADMIN_GART.CFG_PARAMETRO (COD_GRUPO, COD_PARAMETRO, DESC_PARAMETRO, 
+      VAL_PARAMETRO)
+    values (#{codGrupo,jdbcType=CHAR}, #{codParametro,jdbcType=CHAR}, #{descParametro,jdbcType=VARCHAR}, 
+      #{valParametro,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgParametro">
+    insert into ADMIN_GART.CFG_PARAMETRO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codGrupo != null">
+        COD_GRUPO,
+      </if>
+      <if test="codParametro != null">
+        COD_PARAMETRO,
+      </if>
+      <if test="descParametro != null">
+        DESC_PARAMETRO,
+      </if>
+      <if test="valParametro != null">
+        VAL_PARAMETRO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codGrupo != null">
+        #{codGrupo,jdbcType=CHAR},
+      </if>
+      <if test="codParametro != null">
+        #{codParametro,jdbcType=CHAR},
+      </if>
+      <if test="descParametro != null">
+        #{descParametro,jdbcType=VARCHAR},
+      </if>
+      <if test="valParametro != null">
+        #{valParametro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgParametro">
+    update ADMIN_GART.CFG_PARAMETRO
+    <set>
+      <if test="descParametro != null">
+        DESC_PARAMETRO = #{descParametro,jdbcType=VARCHAR},
+      </if>
+      <if test="valParametro != null">
+        VAL_PARAMETRO = #{valParametro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where COD_GRUPO = #{codGrupo,jdbcType=CHAR}
+      and COD_PARAMETRO = #{codParametro,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgParametro">
+    update ADMIN_GART.CFG_PARAMETRO
+    set DESC_PARAMETRO = #{descParametro,jdbcType=VARCHAR},
+      VAL_PARAMETRO = #{valParametro,jdbcType=VARCHAR}
+    where COD_GRUPO = #{codGrupo,jdbcType=CHAR}
+      and COD_PARAMETRO = #{codParametro,jdbcType=CHAR}
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tablaMaestra.TablaMaestraDTO">
+    <result column="COD_PARAMETRO" jdbcType="CHAR" property="codParametro" />
+    <result column="DESC_PARAMETRO" jdbcType="VARCHAR" property="descParametro" />
+    <result column="VAL_PARAMETRO" jdbcType="VARCHAR" property="valParametro" />
+  </resultMap>
+
+  <select id="filtrar" resultMap="BaseResultMapDTO">
+    SELECT
+    COD_PARAMETRO, DESC_PARAMETRO, VAL_PARAMETRO
+    FROM ADMIN_GART.CFG_PARAMETRO
+    WHERE TRIM(COD_GRUPO) = TRIM(#{codGrupo,jdbcType=CHAR})
+
+    <if test="cfgParametroSearchDTO.codParametro != null and cfgParametroSearchDTO.codParametro.trim() != ''">
+      AND UPPER(TRIM(COD_PARAMETRO)) = UPPER(TRIM(#{cfgParametroSearchDTO.codParametro,jdbcType=CHAR}))
+    </if>
+
+    <if test="cfgParametroSearchDTO.descParametro != null and cfgParametroSearchDTO.descParametro.trim() != ''">
+      AND UPPER(TRIM(DESC_PARAMETRO)) LIKE '%' || UPPER(TRIM(#{cfgParametroSearchDTO.descParametro,jdbcType=VARCHAR})) || '%'
+    </if>
+  </select>
+
+  <select id="getParametrosByGrupo" resultMap="BaseResultMapDTO" parameterType="java.lang.String">
+    SELECT
+    COD_PARAMETRO, DESC_PARAMETRO, VAL_PARAMETRO
+    FROM ADMIN_GART.CFG_PARAMETRO
+    WHERE TRIM(COD_GRUPO) = TRIM(#{codGrupo,jdbcType=CHAR})
+  </select>
+
+  <select id="getParametro" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ADMIN_GART.CFG_PARAMETRO
+    WHERE TRIM(COD_GRUPO) = TRIM(#{codGrupo,jdbcType=CHAR})
+    AND TRIM(COD_PARAMETRO) = TRIM(#{codParametro,jdbcType=CHAR})
+  </select>
+
+  <insert id="insertParametro" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgParametro">
+    INSERT INTO ADMIN_GART.CFG_PARAMETRO (COD_GRUPO, COD_PARAMETRO, DESC_PARAMETRO, VAL_PARAMETRO)
+    VALUES (#{codGrupo,jdbcType=CHAR}, #{codParametro,jdbcType=CHAR}, #{descParametro,jdbcType=VARCHAR}, #{valParametro,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateParametro" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgParametro">
+    UPDATE ADMIN_GART.CFG_PARAMETRO
+    SET DESC_PARAMETRO = #{descParametro,jdbcType=VARCHAR},
+    VAL_PARAMETRO = #{valParametro,jdbcType=VARCHAR}
+    WHERE TRIM(COD_GRUPO) = TRIM(#{codGrupo,jdbcType=CHAR})
+    AND TRIM(COD_PARAMETRO) = TRIM(#{codParametro,jdbcType=CHAR})
+  </update>
+
+  <delete id="deleteParametro" parameterType="map">
+    DELETE FROM ADMIN_GART.CFG_PARAMETRO
+    WHERE COD_GRUPO = #{codGrupo,jdbcType=CHAR}
+    AND COD_PARAMETRO = #{codParametro,jdbcType=CHAR}
+  </delete>
+
+</mapper>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.CfgCampoAdmMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.CfgCampoAdm">
+    <!--@Table ADMIN_GART.CFG_CAMPO_ADM-->
+    <id column="COD_CAMPO" jdbcType="VARCHAR" property="codCampo" />
+    <id column="COD_TABLA" jdbcType="VARCHAR" property="codTabla" />
+    <result column="NRO_ORDEN" jdbcType="DECIMAL" property="nroOrden" />
+    <result column="TIPO_DATO" jdbcType="VARCHAR" property="tipoDato" />
+    <result column="DESCRIPCION_CAMPO" jdbcType="VARCHAR" property="descripcionCampo" />
+    <result column="ORDER_BY" jdbcType="VARCHAR" property="orderBy" />
+    <result column="OBLIGATORIO" jdbcType="CHAR" property="obligatorio" />
+    <result column="WIDHT_EXCEL" jdbcType="DECIMAL" property="widhtExcel" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="SIZE" jdbcType="DECIMAL" property="size" />
+    <result column="MAXLENGTH" jdbcType="DECIMAL" property="maxlength" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="CHECKED" jdbcType="VARCHAR" property="checked" />
+    <result column="VALIDAR_PK" jdbcType="CHAR" property="validarPk" />
+    <result column="TRANSF_ORIG" jdbcType="VARCHAR" property="transfOrig" />
+    <result column="WIDTH_GRILLA" jdbcType="DECIMAL" property="widthGrilla" />
+    <result column="HIDDEN_GRILLA" jdbcType="VARCHAR" property="hiddenGrilla" />
+    <result column="DOMINIO" jdbcType="VARCHAR" property="dominio" />
+    <result column="TIPO_NUMERO" jdbcType="CHAR" property="tipoNumero" />
+    <result column="LOGICO" jdbcType="CHAR" property="logico" />
+    <result column="QUERY_LOGICO" jdbcType="VARCHAR" property="queryLogico" />
+    <result column="VISUALIZAR_GRILLA" jdbcType="CHAR" property="visualizarGrilla" />
+    <result column="FILTRO" jdbcType="CHAR" property="filtro" />
+    <result column="FLAG_AUDITORIA" jdbcType="CHAR" property="flagAuditoria" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_CAMPO, COD_TABLA, NRO_ORDEN, TIPO_DATO, DESCRIPCION_CAMPO, ORDER_BY, OBLIGATORIO, 
+    WIDHT_EXCEL, "NAME", "TYPE", "SIZE", MAXLENGTH, "VALUE", "CHECKED", VALIDAR_PK, TRANSF_ORIG, 
+    WIDTH_GRILLA, HIDDEN_GRILLA, DOMINIO, TIPO_NUMERO, LOGICO, QUERY_LOGICO, VISUALIZAR_GRILLA, 
+    FILTRO, FLAG_AUDITORIA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.CFG_CAMPO_ADM
+    where COD_CAMPO = #{codCampo,jdbcType=VARCHAR}
+      and COD_TABLA = #{codTabla,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from ADMIN_GART.CFG_CAMPO_ADM
+    where COD_CAMPO = #{codCampo,jdbcType=VARCHAR}
+      and COD_TABLA = #{codTabla,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgCampoAdm">
+    insert into ADMIN_GART.CFG_CAMPO_ADM (COD_CAMPO, COD_TABLA, NRO_ORDEN, 
+      TIPO_DATO, DESCRIPCION_CAMPO, ORDER_BY, 
+      OBLIGATORIO, WIDHT_EXCEL, "NAME", 
+      "TYPE", "SIZE", MAXLENGTH, 
+      "VALUE", "CHECKED", VALIDAR_PK, 
+      TRANSF_ORIG, WIDTH_GRILLA, HIDDEN_GRILLA, 
+      DOMINIO, TIPO_NUMERO, LOGICO, 
+      QUERY_LOGICO, VISUALIZAR_GRILLA, FILTRO, 
+      FLAG_AUDITORIA)
+    values (#{codCampo,jdbcType=VARCHAR}, #{codTabla,jdbcType=VARCHAR}, #{nroOrden,jdbcType=DECIMAL}, 
+      #{tipoDato,jdbcType=VARCHAR}, #{descripcionCampo,jdbcType=VARCHAR}, #{orderBy,jdbcType=VARCHAR}, 
+      #{obligatorio,jdbcType=CHAR}, #{widhtExcel,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{size,jdbcType=DECIMAL}, #{maxlength,jdbcType=DECIMAL}, 
+      #{value,jdbcType=VARCHAR}, #{checked,jdbcType=VARCHAR}, #{validarPk,jdbcType=CHAR}, 
+      #{transfOrig,jdbcType=VARCHAR}, #{widthGrilla,jdbcType=DECIMAL}, #{hiddenGrilla,jdbcType=VARCHAR}, 
+      #{dominio,jdbcType=VARCHAR}, #{tipoNumero,jdbcType=CHAR}, #{logico,jdbcType=CHAR}, 
+      #{queryLogico,jdbcType=VARCHAR}, #{visualizarGrilla,jdbcType=CHAR}, #{filtro,jdbcType=CHAR}, 
+      #{flagAuditoria,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgCampoAdm">
+    insert into ADMIN_GART.CFG_CAMPO_ADM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codCampo != null">
+        COD_CAMPO,
+      </if>
+      <if test="codTabla != null">
+        COD_TABLA,
+      </if>
+      <if test="nroOrden != null">
+        NRO_ORDEN,
+      </if>
+      <if test="tipoDato != null">
+        TIPO_DATO,
+      </if>
+      <if test="descripcionCampo != null">
+        DESCRIPCION_CAMPO,
+      </if>
+      <if test="orderBy != null">
+        ORDER_BY,
+      </if>
+      <if test="obligatorio != null">
+        OBLIGATORIO,
+      </if>
+      <if test="widhtExcel != null">
+        WIDHT_EXCEL,
+      </if>
+      <if test="name != null">
+        "NAME",
+      </if>
+      <if test="type != null">
+        "TYPE",
+      </if>
+      <if test="size != null">
+        "SIZE",
+      </if>
+      <if test="maxlength != null">
+        MAXLENGTH,
+      </if>
+      <if test="value != null">
+        "VALUE",
+      </if>
+      <if test="checked != null">
+        "CHECKED",
+      </if>
+      <if test="validarPk != null">
+        VALIDAR_PK,
+      </if>
+      <if test="transfOrig != null">
+        TRANSF_ORIG,
+      </if>
+      <if test="widthGrilla != null">
+        WIDTH_GRILLA,
+      </if>
+      <if test="hiddenGrilla != null">
+        HIDDEN_GRILLA,
+      </if>
+      <if test="dominio != null">
+        DOMINIO,
+      </if>
+      <if test="tipoNumero != null">
+        TIPO_NUMERO,
+      </if>
+      <if test="logico != null">
+        LOGICO,
+      </if>
+      <if test="queryLogico != null">
+        QUERY_LOGICO,
+      </if>
+      <if test="visualizarGrilla != null">
+        VISUALIZAR_GRILLA,
+      </if>
+      <if test="filtro != null">
+        FILTRO,
+      </if>
+      <if test="flagAuditoria != null">
+        FLAG_AUDITORIA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codCampo != null">
+        #{codCampo,jdbcType=VARCHAR},
+      </if>
+      <if test="codTabla != null">
+        #{codTabla,jdbcType=VARCHAR},
+      </if>
+      <if test="nroOrden != null">
+        #{nroOrden,jdbcType=DECIMAL},
+      </if>
+      <if test="tipoDato != null">
+        #{tipoDato,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcionCampo != null">
+        #{descripcionCampo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null">
+        #{orderBy,jdbcType=VARCHAR},
+      </if>
+      <if test="obligatorio != null">
+        #{obligatorio,jdbcType=CHAR},
+      </if>
+      <if test="widhtExcel != null">
+        #{widhtExcel,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=DECIMAL},
+      </if>
+      <if test="maxlength != null">
+        #{maxlength,jdbcType=DECIMAL},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="checked != null">
+        #{checked,jdbcType=VARCHAR},
+      </if>
+      <if test="validarPk != null">
+        #{validarPk,jdbcType=CHAR},
+      </if>
+      <if test="transfOrig != null">
+        #{transfOrig,jdbcType=VARCHAR},
+      </if>
+      <if test="widthGrilla != null">
+        #{widthGrilla,jdbcType=DECIMAL},
+      </if>
+      <if test="hiddenGrilla != null">
+        #{hiddenGrilla,jdbcType=VARCHAR},
+      </if>
+      <if test="dominio != null">
+        #{dominio,jdbcType=VARCHAR},
+      </if>
+      <if test="tipoNumero != null">
+        #{tipoNumero,jdbcType=CHAR},
+      </if>
+      <if test="logico != null">
+        #{logico,jdbcType=CHAR},
+      </if>
+      <if test="queryLogico != null">
+        #{queryLogico,jdbcType=VARCHAR},
+      </if>
+      <if test="visualizarGrilla != null">
+        #{visualizarGrilla,jdbcType=CHAR},
+      </if>
+      <if test="filtro != null">
+        #{filtro,jdbcType=CHAR},
+      </if>
+      <if test="flagAuditoria != null">
+        #{flagAuditoria,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgCampoAdm">
+    update ADMIN_GART.CFG_CAMPO_ADM
+    <set>
+      <if test="nroOrden != null">
+        NRO_ORDEN = #{nroOrden,jdbcType=DECIMAL},
+      </if>
+      <if test="tipoDato != null">
+        TIPO_DATO = #{tipoDato,jdbcType=VARCHAR},
+      </if>
+      <if test="descripcionCampo != null">
+        DESCRIPCION_CAMPO = #{descripcionCampo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null">
+        ORDER_BY = #{orderBy,jdbcType=VARCHAR},
+      </if>
+      <if test="obligatorio != null">
+        OBLIGATORIO = #{obligatorio,jdbcType=CHAR},
+      </if>
+      <if test="widhtExcel != null">
+        WIDHT_EXCEL = #{widhtExcel,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        "NAME" = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        "TYPE" = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        "SIZE" = #{size,jdbcType=DECIMAL},
+      </if>
+      <if test="maxlength != null">
+        MAXLENGTH = #{maxlength,jdbcType=DECIMAL},
+      </if>
+      <if test="value != null">
+        "VALUE" = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="checked != null">
+        "CHECKED" = #{checked,jdbcType=VARCHAR},
+      </if>
+      <if test="validarPk != null">
+        VALIDAR_PK = #{validarPk,jdbcType=CHAR},
+      </if>
+      <if test="transfOrig != null">
+        TRANSF_ORIG = #{transfOrig,jdbcType=VARCHAR},
+      </if>
+      <if test="widthGrilla != null">
+        WIDTH_GRILLA = #{widthGrilla,jdbcType=DECIMAL},
+      </if>
+      <if test="hiddenGrilla != null">
+        HIDDEN_GRILLA = #{hiddenGrilla,jdbcType=VARCHAR},
+      </if>
+      <if test="dominio != null">
+        DOMINIO = #{dominio,jdbcType=VARCHAR},
+      </if>
+      <if test="tipoNumero != null">
+        TIPO_NUMERO = #{tipoNumero,jdbcType=CHAR},
+      </if>
+      <if test="logico != null">
+        LOGICO = #{logico,jdbcType=CHAR},
+      </if>
+      <if test="queryLogico != null">
+        QUERY_LOGICO = #{queryLogico,jdbcType=VARCHAR},
+      </if>
+      <if test="visualizarGrilla != null">
+        VISUALIZAR_GRILLA = #{visualizarGrilla,jdbcType=CHAR},
+      </if>
+      <if test="filtro != null">
+        FILTRO = #{filtro,jdbcType=CHAR},
+      </if>
+      <if test="flagAuditoria != null">
+        FLAG_AUDITORIA = #{flagAuditoria,jdbcType=CHAR},
+      </if>
+    </set>
+    where COD_CAMPO = #{codCampo,jdbcType=VARCHAR}
+      and COD_TABLA = #{codTabla,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.CfgCampoAdm">
+    update ADMIN_GART.CFG_CAMPO_ADM
+    set NRO_ORDEN = #{nroOrden,jdbcType=DECIMAL},
+      TIPO_DATO = #{tipoDato,jdbcType=VARCHAR},
+      DESCRIPCION_CAMPO = #{descripcionCampo,jdbcType=VARCHAR},
+      ORDER_BY = #{orderBy,jdbcType=VARCHAR},
+      OBLIGATORIO = #{obligatorio,jdbcType=CHAR},
+      WIDHT_EXCEL = #{widhtExcel,jdbcType=DECIMAL},
+      "NAME" = #{name,jdbcType=VARCHAR},
+      "TYPE" = #{type,jdbcType=VARCHAR},
+      "SIZE" = #{size,jdbcType=DECIMAL},
+      MAXLENGTH = #{maxlength,jdbcType=DECIMAL},
+      "VALUE" = #{value,jdbcType=VARCHAR},
+      "CHECKED" = #{checked,jdbcType=VARCHAR},
+      VALIDAR_PK = #{validarPk,jdbcType=CHAR},
+      TRANSF_ORIG = #{transfOrig,jdbcType=VARCHAR},
+      WIDTH_GRILLA = #{widthGrilla,jdbcType=DECIMAL},
+      HIDDEN_GRILLA = #{hiddenGrilla,jdbcType=VARCHAR},
+      DOMINIO = #{dominio,jdbcType=VARCHAR},
+      TIPO_NUMERO = #{tipoNumero,jdbcType=CHAR},
+      LOGICO = #{logico,jdbcType=CHAR},
+      QUERY_LOGICO = #{queryLogico,jdbcType=VARCHAR},
+      VISUALIZAR_GRILLA = #{visualizarGrilla,jdbcType=CHAR},
+      FILTRO = #{filtro,jdbcType=CHAR},
+      FLAG_AUDITORIA = #{flagAuditoria,jdbcType=CHAR}
+    where COD_CAMPO = #{codCampo,jdbcType=VARCHAR}
+      and COD_TABLA = #{codTabla,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getCamposByTabla" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ADMIN_GART.CFG_CAMPO_ADM
+    WHERE COD_TABLA = #{codTabla,jdbcType=VARCHAR}
+    ORDER BY NRO_ORDEN
+  </select>
+
+  <select id="getObligatorios" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ADMIN_GART.CFG_CAMPO_ADM
+    WHERE COD_TABLA = #{codTabla,jdbcType=VARCHAR}
+    AND OBLIGATORIO = '1'
+    ORDER BY NRO_ORDEN
+  </select>
+
+  <select id="getPKs" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ADMIN_GART.CFG_CAMPO_ADM
+    WHERE COD_TABLA = #{codTabla,jdbcType=VARCHAR}
+    AND VALIDAR_PK = '1'
+    ORDER BY NRO_ORDEN
+  </select>
+
+  <select id="getCamposFiltrables" resultMap="BaseResultMap">
+    SELECT *
+    FROM CFG_CAMPO_ADM
+    WHERE COD_TABLA = #{codTabla}
+    AND FILTRO = '1'
+    </select>
+
+<!--  <select id="getCamposByAllTabColumns" resultType="map">-->
+<!--    SELECT-->
+<!--    COLUMN_NAME,-->
+<!--    DATA_TYPE,-->
+<!--    NULLABLE,-->
+<!--    DATA_DEFAULT-->
+<!--    FROM-->
+<!--    ALL_TAB_COLUMNS-->
+<!--    WHERE-->
+<!--    TABLE_NAME = #{codTabla}-->
+<!--    ORDER BY-->
+<!--    COLUMN_ID-->
+<!--  </select>-->
+
+  <select id="getCamposByAllTabColumns" resultType="map">
+    SELECT
+    COLUMN_NAME,
+    DATA_TYPE,
+    NULLABLE,
+    DATA_DEFAULT
+    FROM
+    ALL_TAB_COLUMNS
+    WHERE
+    OWNER = UPPER(#{owner})
+    AND TABLE_NAME = UPPER(#{tableName})
+    ORDER BY
+    COLUMN_ID
+  </select>
+
+
+</mapper>

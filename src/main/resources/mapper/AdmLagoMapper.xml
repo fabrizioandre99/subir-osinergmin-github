@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmLagoMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmLago">
+        <!--@Table ADMIN_GART.ADM_LAGO-->
+        <id column="COD_LAGO" jdbcType="CHAR" property="codLago"/>
+        <result column="NOM_LAGO" jdbcType="VARCHAR" property="nomLago"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_LAGO_ANT" jdbcType="CHAR" property="codLagoAnt"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_LAGO,
+        NOM_LAGO,
+        COD_COES,
+        COD_LAGO_ANT,
+        ESTADO_REGISTRO,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_LAGO
+        where TRIM(COD_LAGO) = TRIM(#{codLago,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_LAGO
+        where TRIM(COD_LAGO) = TRIM(#{codLago,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmLago">
+        insert into ADMIN_GART.ADM_LAGO (COD_LAGO, NOM_LAGO, COD_COES,
+                                         COD_LAGO_ANT, ESTADO_REGISTRO, USUARIO_CREACION,
+                                         TERMINAL_CREACION, FECHA_CREACION, USUARIO_ACTUALIZACION,
+                                         TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION)
+        values (#{codLago,jdbcType=CHAR}, #{nomLago,jdbcType=VARCHAR}, #{codCoes,jdbcType=VARCHAR},
+                #{codLagoAnt,jdbcType=CHAR}, #{estadoRegistro,jdbcType=CHAR}, #{usuarioCreacion,jdbcType=VARCHAR},
+                #{terminalCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+                #{terminalActualizacion,jdbcType=VARCHAR}, #{fechaActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmLago">
+        insert into ADMIN_GART.ADM_LAGO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codLago != null">
+                COD_LAGO,
+            </if>
+            <if test="nomLago != null">
+                NOM_LAGO,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codLagoAnt != null">
+                COD_LAGO_ANT,
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codLago != null">
+                #{codLago,jdbcType=CHAR},
+            </if>
+            <if test="nomLago != null">
+                #{nomLago,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codLagoAnt != null">
+                #{codLagoAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmLago">
+        update ADMIN_GART.ADM_LAGO
+        <set>
+            <if test="nomLago != null">
+                NOM_LAGO = #{nomLago,jdbcType=VARCHAR},
+            </if>
+            <if test="codCoes != null">
+                COD_COES = #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codLagoAnt != null">
+                COD_LAGO_ANT = #{codLagoAnt,jdbcType=CHAR},
+            </if>
+            <if test="estadoRegistro != null">
+                ESTADO_REGISTRO = #{estadoRegistro,jdbcType=CHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_LAGO = #{codLago,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmLago">
+        update ADMIN_GART.ADM_LAGO
+        set NOM_LAGO               = #{nomLago,jdbcType=VARCHAR},
+            COD_COES               = #{codCoes,jdbcType=VARCHAR},
+            COD_LAGO_ANT           = #{codLagoAnt,jdbcType=CHAR},
+            ESTADO_REGISTRO        = #{estadoRegistro,jdbcType=CHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where TRIM(COD_LAGO) = TRIM(#{codLago,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.lago.AdmLagoDTO">
+        <!--@Table ADMIN_GART.ADM_LAGO-->
+        <result column="COD_LAGO" jdbcType="CHAR" property="codLago"/>
+        <result column="NOM_LAGO" jdbcType="VARCHAR" property="nomLago"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_LAGO_ANT" jdbcType="CHAR" property="codLagoAnt"/>
+        <result column="ESTADO_REGISTRO" jdbcType="CHAR" property="estadoRegistro"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_LAGO,
+               NOM_LAGO,
+               COD_COES,
+               COD_LAGO_ANT,
+               ESTADO_REGISTRO
+        from ADMIN_GART.ADM_LAGO
+    </select>
+
+    <select id="filtro" resultMap="BaseResultMapDTO">
+        SELECT COD_LAGO,
+               NOM_LAGO,
+               COD_COES,
+               COD_LAGO_ANT,
+               ESTADO_REGISTRO
+        FROM ADMIN_GART.ADM_LAGO
+        WHERE 1 = 1
+        <if test="codLago != null and codLago != ''">
+            AND UPPER(TRANSLATE(COD_LAGO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codLago}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomLago != null and nomLago != ''">
+            AND UPPER(TRANSLATE(NOM_LAGO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{nomLago}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codCoes != null and codCoes != ''">
+            AND UPPER(TRANSLATE(COD_COES, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codCoes}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="estadoRegistro != null and estadoRegistro != ''">
+            AND UPPER(TRANSLATE(ESTADO_REGISTRO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{estadoRegistro}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codLagoAnt != null and codLagoAnt != ''">
+            AND UPPER(TRANSLATE(COD_LAGO_ANT, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codLagoAnt}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

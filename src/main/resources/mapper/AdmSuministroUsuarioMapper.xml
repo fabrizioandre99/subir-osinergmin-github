@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmSuministroUsuarioMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmSuministroUsuario">
+        <!-- @Table ADMIN_GART.ADM_SUMINISTRO_USUARIO -->
+        <result column="COD_SUMINISTRO_USUARIO" jdbcType="VARCHAR" property="codSuministroUsuario"/>
+        <result column="COD_USUARIO_LIBRE" jdbcType="CHAR" property="codUsuarioLibre"/>
+        <result column="NOMBRE_USUARIO_LIBRE" jdbcType="VARCHAR" property="nombreUsuarioLibre"/>
+        <result column="DIRECCION_SUMINISTRO" jdbcType="VARCHAR" property="direccionSuministro"/>
+        <result column="NRO_SUMINISTRO_EMP" jdbcType="CHAR" property="nroSuministroEmp"/>
+        <result column="UBIGEO" jdbcType="VARCHAR" property="ubigeo"/>
+        <result column="COD_ACTIVIDAD_ECONOMICA" jdbcType="CHAR" property="codActividadEconomica"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_SUMINISTRO_USUARIO_ANT" jdbcType="CHAR" property="codSuministroUsuarioAnt"/>
+        <result column="CODCIIU" jdbcType="CHAR" property="codciiu"/>
+        <result column="COD_PTO_SUMINISTRO" jdbcType="CHAR" property="codPtoSuministro"/>
+        <result column="COD_BRG" jdbcType="CHAR" property="codBrg"/>
+        <result column="AREA_DEMANDA" jdbcType="DECIMAL" property="areaDemanda"/>
+        <result column="COD_SIS_ELECTRICO" jdbcType="CHAR" property="codSisElectrico"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        COD_SUMINISTRO_USUARIO,
+        COD_USUARIO_LIBRE,
+        NOMBRE_USUARIO_LIBRE,
+        DIRECCION_SUMINISTRO,
+        NRO_SUMINISTRO_EMP,
+        UBIGEO,
+        COD_ACTIVIDAD_ECONOMICA,
+        COD_COES,
+        COD_SUMINISTRO_USUARIO_ANT,
+        CODCIIU,
+        COD_PTO_SUMINISTRO,
+        COD_BRG,
+        AREA_DEMANDA,
+        COD_SIS_ELECTRICO
+    </sql>
+
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSuministroUsuario">
+        insert into ADMIN_GART.ADM_SUMINISTRO_USUARIO (COD_SUMINISTRO_USUARIO, COD_USUARIO_LIBRE,
+                                                       NOMBRE_USUARIO_LIBRE, DIRECCION_SUMINISTRO,
+                                                       NRO_SUMINISTRO_EMP, UBIGEO, COD_ACTIVIDAD_ECONOMICA,
+                                                       COD_COES, COD_SUMINISTRO_USUARIO_ANT, CODCIIU,
+                                                       COD_PTO_SUMINISTRO, COD_BRG, AREA_DEMANDA,
+                                                       COD_SIS_ELECTRICO)
+        values (#{codSuministroUsuario,jdbcType=VARCHAR}, #{codUsuarioLibre,jdbcType=CHAR},
+                #{nombreUsuarioLibre,jdbcType=VARCHAR}, #{direccionSuministro,jdbcType=VARCHAR},
+                #{nroSuministroEmp,jdbcType=CHAR}, #{ubigeo,jdbcType=VARCHAR}, #{codActividadEconomica,jdbcType=CHAR},
+                #{codCoes,jdbcType=VARCHAR}, #{codSuministroUsuarioAnt,jdbcType=CHAR}, #{codciiu,jdbcType=CHAR},
+                #{codPtoSuministro,jdbcType=CHAR}, #{codBrg,jdbcType=CHAR}, #{areaDemanda,jdbcType=DECIMAL},
+                #{codSisElectrico,jdbcType=CHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSuministroUsuario">
+        insert into ADMIN_GART.ADM_SUMINISTRO_USUARIO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codSuministroUsuario != null">
+                COD_SUMINISTRO_USUARIO,
+            </if>
+            <if test="codUsuarioLibre != null">
+                COD_USUARIO_LIBRE,
+            </if>
+            <if test="nombreUsuarioLibre != null">
+                NOMBRE_USUARIO_LIBRE,
+            </if>
+            <if test="direccionSuministro != null">
+                DIRECCION_SUMINISTRO,
+            </if>
+            <if test="nroSuministroEmp != null">
+                NRO_SUMINISTRO_EMP,
+            </if>
+            <if test="ubigeo != null">
+                UBIGEO,
+            </if>
+            <if test="codActividadEconomica != null">
+                COD_ACTIVIDAD_ECONOMICA,
+            </if>
+            <if test="codCoes != null">
+                COD_COES,
+            </if>
+            <if test="codSuministroUsuarioAnt != null">
+                COD_SUMINISTRO_USUARIO_ANT,
+            </if>
+            <if test="codciiu != null">
+                CODCIIU,
+            </if>
+            <if test="codPtoSuministro != null">
+                COD_PTO_SUMINISTRO,
+            </if>
+            <if test="codBrg != null">
+                COD_BRG,
+            </if>
+            <if test="areaDemanda != null">
+                AREA_DEMANDA,
+            </if>
+            <if test="codSisElectrico != null">
+                COD_SIS_ELECTRICO,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codSuministroUsuario != null">
+                #{codSuministroUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="codUsuarioLibre != null">
+                #{codUsuarioLibre,jdbcType=CHAR},
+            </if>
+            <if test="nombreUsuarioLibre != null">
+                #{nombreUsuarioLibre,jdbcType=VARCHAR},
+            </if>
+            <if test="direccionSuministro != null">
+                #{direccionSuministro,jdbcType=VARCHAR},
+            </if>
+            <if test="nroSuministroEmp != null">
+                #{nroSuministroEmp,jdbcType=CHAR},
+            </if>
+            <if test="ubigeo != null">
+                #{ubigeo,jdbcType=VARCHAR},
+            </if>
+            <if test="codActividadEconomica != null">
+                #{codActividadEconomica,jdbcType=CHAR},
+            </if>
+            <if test="codCoes != null">
+                #{codCoes,jdbcType=VARCHAR},
+            </if>
+            <if test="codSuministroUsuarioAnt != null">
+                #{codSuministroUsuarioAnt,jdbcType=CHAR},
+            </if>
+            <if test="codciiu != null">
+                #{codciiu,jdbcType=CHAR},
+            </if>
+            <if test="codPtoSuministro != null">
+                #{codPtoSuministro,jdbcType=CHAR},
+            </if>
+            <if test="codBrg != null">
+                #{codBrg,jdbcType=CHAR},
+            </if>
+            <if test="areaDemanda != null">
+                #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="codSisElectrico != null">
+                #{codSisElectrico,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_SUMINISTRO_USUARIO
+        where TRIM(COD_SUMINISTRO_USUARIO) = TRIM(#{codSuministroUsuario,jdbcType=VARCHAR})
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSuministroUsuario">
+        update ADMIN_GART.ADM_SUMINISTRO_USUARIO
+        set COD_USUARIO_LIBRE          = #{codUsuarioLibre,jdbcType=CHAR},
+            NOMBRE_USUARIO_LIBRE       = #{nombreUsuarioLibre,jdbcType=VARCHAR},
+            DIRECCION_SUMINISTRO       = #{direccionSuministro,jdbcType=VARCHAR},
+            NRO_SUMINISTRO_EMP         = #{nroSuministroEmp,jdbcType=CHAR},
+            UBIGEO                     = #{ubigeo,jdbcType=VARCHAR},
+            COD_ACTIVIDAD_ECONOMICA    = #{codActividadEconomica,jdbcType=CHAR},
+            COD_COES                   = #{codCoes,jdbcType=VARCHAR},
+            COD_SUMINISTRO_USUARIO_ANT = #{codSuministroUsuarioAnt,jdbcType=CHAR},
+            CODCIIU                    = #{codciiu,jdbcType=CHAR},
+            COD_PTO_SUMINISTRO         = #{codPtoSuministro,jdbcType=CHAR},
+            COD_BRG                    = #{codBrg,jdbcType=CHAR},
+            AREA_DEMANDA               = #{areaDemanda,jdbcType=DECIMAL},
+            COD_SIS_ELECTRICO          = #{codSisElectrico,jdbcType=CHAR}
+        where TRIM(COD_SUMINISTRO_USUARIO) = TRIM(#{codSuministroUsuario,jdbcType=VARCHAR})
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_SUMINISTRO_USUARIO
+        where TRIM(COD_SUMINISTRO_USUARIO) = TRIM(#{codSuministroUsuario,jdbcType=VARCHAR})
+    </delete>
+
+    <!-- Result Map for DTO -->
+    <resultMap id="BaseResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.suministroUsuario.AdmSuministroUsuarioDTO">
+        <result column="COD_SUMINISTRO_USUARIO" jdbcType="VARCHAR" property="codSuministroUsuario"/>
+        <result column="COD_USUARIO_LIBRE" jdbcType="CHAR" property="codUsuarioLibre"/>
+        <result column="NOMBRE_USUARIO_LIBRE" jdbcType="VARCHAR" property="nombreUsuarioLibre"/>
+        <result column="DIRECCION_SUMINISTRO" jdbcType="VARCHAR" property="direccionSuministro"/>
+        <result column="NRO_SUMINISTRO_EMP" jdbcType="CHAR" property="nroSuministroEmp"/>
+        <result column="UBIGEO" jdbcType="VARCHAR" property="ubigeo"/>
+        <result column="COD_ACTIVIDAD_ECONOMICA" jdbcType="CHAR" property="codActividadEconomica"/>
+        <result column="COD_COES" jdbcType="VARCHAR" property="codCoes"/>
+        <result column="COD_SUMINISTRO_USUARIO_ANT" jdbcType="CHAR" property="codSuministroUsuarioAnt"/>
+        <result column="CODCIIU" jdbcType="CHAR" property="codciiu"/>
+        <result column="COD_PTO_SUMINISTRO" jdbcType="CHAR" property="codPtoSuministro"/>
+        <result column="COD_BRG" jdbcType="CHAR" property="codBrg"/>
+        <result column="AREA_DEMANDA" jdbcType="DECIMAL" property="areaDemanda"/>
+        <result column="COD_SIS_ELECTRICO" jdbcType="CHAR" property="codSisElectrico"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_SUMINISTRO_USUARIO,
+               COD_USUARIO_LIBRE,
+               NOMBRE_USUARIO_LIBRE,
+               COD_ACTIVIDAD_ECONOMICA,
+               DIRECCION_SUMINISTRO,
+               NRO_SUMINISTRO_EMP,
+               UBIGEO,
+               COD_COES,
+               COD_SUMINISTRO_USUARIO_ANT,
+               CODCIIU,
+               COD_PTO_SUMINISTRO,
+               COD_BRG,
+               AREA_DEMANDA,
+               COD_SIS_ELECTRICO
+        from ADMIN_GART.ADM_SUMINISTRO_USUARIO
+    </select>
+
+    <select id="filtrar"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.dto.suministroUsuario.AdmSuministroUsuarioSearchDTO"
+            resultMap="BaseResultMapDTO">
+        select COD_SUMINISTRO_USUARIO,
+        COD_USUARIO_LIBRE,
+        NOMBRE_USUARIO_LIBRE,
+        COD_ACTIVIDAD_ECONOMICA,
+        DIRECCION_SUMINISTRO,
+        NRO_SUMINISTRO_EMP,
+        UBIGEO,
+        COD_COES,
+        COD_SUMINISTRO_USUARIO_ANT,
+        CODCIIU,
+        COD_PTO_SUMINISTRO,
+        COD_BRG,
+        AREA_DEMANDA,
+        COD_SIS_ELECTRICO
+        FROM ADMIN_GART.ADM_SUMINISTRO_USUARIO
+        WHERE 1 = 1
+        <if test="codSuministroUsuario != null and codSuministroUsuario != ''">
+            AND UPPER(TRANSLATE(COD_SUMINISTRO_USUARIO, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou'))
+                LIKE '%' || UPPER(TRANSLATE(#{codSuministroUsuario}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')) || '%'
+        </if>
+        <if test="nombreUsuarioLibre != null and nombreUsuarioLibre != ''">
+            AND UPPER(TRANSLATE(NOMBRE_USUARIO_LIBRE, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou'))
+                LIKE '%' || UPPER(TRANSLATE(#{nombreUsuarioLibre}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')) || '%'
+        </if>
+        <if test="codUsuarioLibre != null and codUsuarioLibre != ''">
+            AND UPPER(TRANSLATE(COD_USUARIO_LIBRE, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou'))
+                LIKE '%' || UPPER(TRANSLATE(#{codUsuarioLibre}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

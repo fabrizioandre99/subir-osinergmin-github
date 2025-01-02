@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmModuloSupervisionMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmModuloSupervision">
+        <!--@Table ADMIN_GART.ADM_MODULO_SUPERVISION-->
+        <id column="CO_MODULO" jdbcType="CHAR" property="coModulo"/>
+        <result column="DE_MODULO" jdbcType="VARCHAR" property="deModulo"/>
+        <result column="DE_CORTA" jdbcType="VARCHAR" property="deCorta"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="US_CREACION" jdbcType="VARCHAR" property="usCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FE_CREACION" jdbcType="TIMESTAMP" property="feCreacion"/>
+        <result column="US_ACTUALIZACION" jdbcType="VARCHAR" property="usActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FE_ACTUALIZACION" jdbcType="TIMESTAMP" property="feActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        CO_MODULO,
+        DE_MODULO,
+        DE_CORTA,
+        ESTADO,
+        US_CREACION,
+        TERMINAL_CREACION,
+        FE_CREACION,
+        US_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FE_ACTUALIZACION
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_MODULO_SUPERVISION
+        where trim(CO_MODULO) = trim(#{coModulo,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_MODULO_SUPERVISION
+        where trim(CO_MODULO) = trim(#{coModulo,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModuloSupervision">
+        insert into ADMIN_GART.ADM_MODULO_SUPERVISION (CO_MODULO, DE_MODULO, DE_CORTA,
+                                                       ESTADO, US_CREACION, TERMINAL_CREACION,
+                                                       FE_CREACION, US_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+                                                       FE_ACTUALIZACION)
+        values (#{coModulo,jdbcType=CHAR}, #{deModulo,jdbcType=VARCHAR}, #{deCorta,jdbcType=VARCHAR},
+                #{estado,jdbcType=CHAR}, #{usCreacion,jdbcType=VARCHAR}, #{terminalCreacion,jdbcType=VARCHAR},
+                #{feCreacion,jdbcType=TIMESTAMP}, #{usActualizacion,jdbcType=VARCHAR},
+                #{terminalActualizacion,jdbcType=VARCHAR},
+                #{feActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModuloSupervision">
+        insert into ADMIN_GART.ADM_MODULO_SUPERVISION
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="coModulo != null">
+                CO_MODULO,
+            </if>
+            <if test="deModulo != null">
+                DE_MODULO,
+            </if>
+            <if test="deCorta != null">
+                DE_CORTA,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="usCreacion != null">
+                US_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="feCreacion != null">
+                FE_CREACION,
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="coModulo != null">
+                #{coModulo,jdbcType=CHAR},
+            </if>
+            <if test="deModulo != null">
+                #{deModulo,jdbcType=VARCHAR},
+            </if>
+            <if test="deCorta != null">
+                #{deCorta,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="usCreacion != null">
+                #{usCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feCreacion != null">
+                #{feCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usActualizacion != null">
+                #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModuloSupervision">
+        update ADMIN_GART.ADM_MODULO_SUPERVISION
+        <set>
+            <if test="deModulo != null">
+                DE_MODULO = #{deModulo,jdbcType=VARCHAR},
+            </if>
+            <if test="deCorta != null">
+                DE_CORTA = #{deCorta,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="usCreacion != null">
+                US_CREACION = #{usCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feCreacion != null">
+                FE_CREACION = #{feCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where CO_MODULO = #{coModulo,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmModuloSupervision">
+        update ADMIN_GART.ADM_MODULO_SUPERVISION
+        set DE_MODULO              = #{deModulo,jdbcType=VARCHAR},
+            DE_CORTA               = #{deCorta,jdbcType=VARCHAR},
+            ESTADO                 = #{estado,jdbcType=CHAR},
+            US_CREACION            = #{usCreacion,jdbcType=VARCHAR},
+            TERMINAL_CREACION      = #{terminalCreacion,jdbcType=VARCHAR},
+            FE_CREACION            = #{feCreacion,jdbcType=TIMESTAMP},
+            US_ACTUALIZACION       = #{usActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FE_ACTUALIZACION       = #{feActualizacion,jdbcType=TIMESTAMP}
+        where trim(CO_MODULO) = trim(#{coModulo,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.moduloSupervision.AdmModuloSupervisionDTO">
+        <id column="CO_MODULO" jdbcType="CHAR" property="coModulo"/>
+        <result column="DE_MODULO" jdbcType="VARCHAR" property="deModulo"/>
+        <result column="DE_CORTA" jdbcType="VARCHAR" property="deCorta"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select CO_MODULO,
+               DE_MODULO,
+               DE_CORTA,
+               ESTADO
+        from ADMIN_GART.ADM_MODULO_SUPERVISION
+    </select>
+
+    <select id="filtrar"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.dto.moduloSupervision.AdmModuloSupervisionSearchDTO"
+            resultMap="BaseResultMapDTO">
+        select CO_MODULO,
+               DE_MODULO,
+               DE_CORTA,
+               ESTADO
+        from ADMIN_GART.ADM_MODULO_SUPERVISION
+        where 1 = 1
+        <if test="coModulo != null and coModulo != ''">
+            and UPPER(CO_MODULO) like '%' || UPPER(#{coModulo}) || '%'
+        </if>
+        <if test="deModulo != null and deModulo != ''">
+            and UPPER(DE_MODULO) like '%' || UPPER(#{deModulo}) || '%'
+        </if>
+    </select>
+</mapper>

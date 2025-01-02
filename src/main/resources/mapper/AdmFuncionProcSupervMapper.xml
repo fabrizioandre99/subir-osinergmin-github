@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmFuncionProcSupervMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmFuncionProcSuperv">
+        <!--@Table ADMIN_GART.ADM_FUNCION_PROC_SUPERV-->
+        <id column="COD_PROC_SUPERVISION" jdbcType="CHAR" property="codProcSupervision"/>
+        <id column="COD_FUNCION_PROC_SUPERV" jdbcType="CHAR" property="codFuncionProcSuperv"/>
+        <result column="DSC_FUNCION_PROC_SUPERV" jdbcType="VARCHAR" property="dscFuncionProcSuperv"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_PROC_SUPERVISION,
+        COD_FUNCION_PROC_SUPERV,
+        DSC_FUNCION_PROC_SUPERV,
+        AD_COD_USUARIO,
+        AD_FECHA
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        where trim(COD_PROC_SUPERVISION) = trim(#{codProcSupervision,jdbcType=CHAR})
+          and trim(COD_FUNCION_PROC_SUPERV) = trim(#{codFuncionProcSuperv,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="map">
+        delete
+        from ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        where trim(COD_PROC_SUPERVISION) = trim(#{codProcSupervision,jdbcType=CHAR})
+          and trim(COD_FUNCION_PROC_SUPERV) = trim(#{codFuncionProcSuperv,jdbcType=CHAR})
+    </delete>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmFuncionProcSuperv">
+        insert into ADMIN_GART.ADM_FUNCION_PROC_SUPERV (COD_PROC_SUPERVISION, COD_FUNCION_PROC_SUPERV,
+                                                        DSC_FUNCION_PROC_SUPERV, AD_COD_USUARIO, AD_FECHA)
+        values (#{codProcSupervision,jdbcType=CHAR}, #{codFuncionProcSuperv,jdbcType=CHAR},
+                #{dscFuncionProcSuperv,jdbcType=VARCHAR}, #{adCodUsuario,jdbcType=VARCHAR},
+                #{adFecha,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmFuncionProcSuperv">
+        insert into ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codProcSupervision != null">
+                COD_PROC_SUPERVISION,
+            </if>
+            <if test="codFuncionProcSuperv != null">
+                COD_FUNCION_PROC_SUPERV,
+            </if>
+            <if test="dscFuncionProcSuperv != null">
+                DSC_FUNCION_PROC_SUPERV,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codProcSupervision != null">
+                #{codProcSupervision,jdbcType=CHAR},
+            </if>
+            <if test="codFuncionProcSuperv != null">
+                #{codFuncionProcSuperv,jdbcType=CHAR},
+            </if>
+            <if test="dscFuncionProcSuperv != null">
+                #{dscFuncionProcSuperv,jdbcType=VARCHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmFuncionProcSuperv">
+        update ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        <set>
+            <if test="dscFuncionProcSuperv != null">
+                DSC_FUNCION_PROC_SUPERV = #{dscFuncionProcSuperv,jdbcType=VARCHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where COD_PROC_SUPERVISION = #{codProcSupervision,jdbcType=CHAR}
+          and COD_FUNCION_PROC_SUPERV = #{codFuncionProcSuperv,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmFuncionProcSuperv">
+        update ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        set DSC_FUNCION_PROC_SUPERV = #{dscFuncionProcSuperv,jdbcType=VARCHAR},
+            AD_COD_USUARIO          = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA                = #{adFecha,jdbcType=TIMESTAMP}
+        where trim(COD_PROC_SUPERVISION) = trim(#{codProcSupervision,jdbcType=CHAR})
+          and trim(COD_FUNCION_PROC_SUPERV) = trim(#{codFuncionProcSuperv,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.funcionProcSuperv.AdmFuncionProcSupervDTO">
+        <!--@Table ADMIN_GART.ADM_FUNCION_PROC_SUPERV-->
+        <id column="COD_PROC_SUPERVISION" jdbcType="CHAR" property="codProcSupervision"/>
+        <id column="COD_FUNCION_PROC_SUPERV" jdbcType="CHAR" property="codFuncionProcSuperv"/>
+        <result column="DSC_FUNCION_PROC_SUPERV" jdbcType="VARCHAR" property="dscFuncionProcSuperv"/>
+    </resultMap>
+    <select id="listar" resultMap="BaseResultMapDTO">
+        select COD_PROC_SUPERVISION,
+               COD_FUNCION_PROC_SUPERV,
+               DSC_FUNCION_PROC_SUPERV
+        from ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+    </select>
+
+    <select id="existeCodFuncion" resultType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        where COD_FUNCION_PROC_SUPERV = #{codFuncionProcSuperv,jdbcType=CHAR}
+    </select>
+
+    <delete id="eliminar">
+        delete
+        from ADMIN_GART.ADM_FUNCION_PROC_SUPERV
+        where trim(COD_PROC_SUPERVISION) = trim(#{codProcSupervision,jdbcType=CHAR})
+    </delete>
+</mapper>

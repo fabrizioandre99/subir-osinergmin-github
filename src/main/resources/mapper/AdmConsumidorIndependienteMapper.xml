@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmConsumidorIndependienteMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmConsumidorIndependiente">
+        <!--@Table ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE-->
+        <result column="COD_CONSUMIDOR_INDE" jdbcType="CHAR" property="codConsumidorInde"/>
+        <result column="RAZON_SOCIAL" jdbcType="VARCHAR" property="razonSocial"/>
+        <result column="DIRECCION" jdbcType="VARCHAR" property="direccion"/>
+        <result column="TELEFONO" jdbcType="VARCHAR" property="telefono"/>
+        <result column="NOMBRE_REP_LEGAL" jdbcType="VARCHAR" property="nombreRepLegal"/>
+        <result column="CARGO_REP_LEG" jdbcType="VARCHAR" property="cargoRepLeg"/>
+        <result column="TELEFONO_REP_LEG" jdbcType="VARCHAR" property="telefonoRepLeg"/>
+        <result column="CORREO_REP_LEG" jdbcType="VARCHAR" property="correoRepLeg"/>
+        <result column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion"/>
+        <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion"/>
+        <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion"/>
+        <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion"/>
+        <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion"/>
+        <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_CONSUMIDOR_INDE,
+        RAZON_SOCIAL,
+        DIRECCION,
+        TELEFONO,
+        NOMBRE_REP_LEGAL,
+        CARGO_REP_LEG,
+        TELEFONO_REP_LEG,
+        CORREO_REP_LEG,
+        USUARIO_CREACION,
+        TERMINAL_CREACION,
+        FECHA_CREACION,
+        USUARIO_ACTUALIZACION,
+        TERMINAL_ACTUALIZACION,
+        FECHA_ACTUALIZACION
+    </sql>
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmConsumidorIndependiente">
+        insert into ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE (COD_CONSUMIDOR_INDE, RAZON_SOCIAL, DIRECCION,
+                                                             TELEFONO, NOMBRE_REP_LEGAL, CARGO_REP_LEG,
+                                                             TELEFONO_REP_LEG, CORREO_REP_LEG, USUARIO_CREACION,
+                                                             TERMINAL_CREACION, FECHA_CREACION, USUARIO_ACTUALIZACION,
+                                                             TERMINAL_ACTUALIZACION, FECHA_ACTUALIZACION)
+        values (#{codConsumidorInde,jdbcType=CHAR}, #{razonSocial,jdbcType=VARCHAR}, #{direccion,jdbcType=VARCHAR},
+                #{telefono,jdbcType=VARCHAR}, #{nombreRepLegal,jdbcType=VARCHAR}, #{cargoRepLeg,jdbcType=VARCHAR},
+                #{telefonoRepLeg,jdbcType=VARCHAR}, #{correoRepLeg,jdbcType=VARCHAR},
+                #{usuarioCreacion,jdbcType=VARCHAR},
+                #{terminalCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP},
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+                #{terminalActualizacion,jdbcType=VARCHAR}, #{fechaActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmConsumidorIndependiente">
+        insert into ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codConsumidorInde != null">
+                COD_CONSUMIDOR_INDE,
+            </if>
+            <if test="razonSocial != null">
+                RAZON_SOCIAL,
+            </if>
+            <if test="direccion != null">
+                DIRECCION,
+            </if>
+            <if test="telefono != null">
+                TELEFONO,
+            </if>
+            <if test="nombreRepLegal != null">
+                NOMBRE_REP_LEGAL,
+            </if>
+            <if test="cargoRepLeg != null">
+                CARGO_REP_LEG,
+            </if>
+            <if test="telefonoRepLeg != null">
+                TELEFONO_REP_LEG,
+            </if>
+            <if test="correoRepLeg != null">
+                CORREO_REP_LEG,
+            </if>
+            <if test="usuarioCreacion != null">
+                USUARIO_CREACION,
+            </if>
+            <if test="terminalCreacion != null">
+                TERMINAL_CREACION,
+            </if>
+            <if test="fechaCreacion != null">
+                FECHA_CREACION,
+            </if>
+            <if test="usuarioActualizacion != null">
+                USUARIO_ACTUALIZACION,
+            </if>
+            <if test="terminalActualizacion != null">
+                TERMINAL_ACTUALIZACION,
+            </if>
+            <if test="fechaActualizacion != null">
+                FECHA_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codConsumidorInde != null">
+                #{codConsumidorInde,jdbcType=CHAR},
+            </if>
+            <if test="razonSocial != null">
+                #{razonSocial,jdbcType=VARCHAR},
+            </if>
+            <if test="direccion != null">
+                #{direccion,jdbcType=VARCHAR},
+            </if>
+            <if test="telefono != null">
+                #{telefono,jdbcType=VARCHAR},
+            </if>
+            <if test="nombreRepLegal != null">
+                #{nombreRepLegal,jdbcType=VARCHAR},
+            </if>
+            <if test="cargoRepLeg != null">
+                #{cargoRepLeg,jdbcType=VARCHAR},
+            </if>
+            <if test="telefonoRepLeg != null">
+                #{telefonoRepLeg,jdbcType=VARCHAR},
+            </if>
+            <if test="correoRepLeg != null">
+                #{correoRepLeg,jdbcType=VARCHAR},
+            </if>
+            <if test="usuarioCreacion != null">
+                #{usuarioCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalCreacion != null">
+                #{terminalCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaCreacion != null">
+                #{fechaCreacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="usuarioActualizacion != null">
+                #{usuarioActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalActualizacion != null">
+                #{terminalActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="fechaActualizacion != null">
+                #{fechaActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE
+        where TRIM(COD_CONSUMIDOR_INDE) = TRIM(#{codConsumidorInde,jdbcType=CHAR})
+    </select>
+
+    <update id="updateByPrimaryKey"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmConsumidorIndependiente">
+        update ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE
+        set RAZON_SOCIAL           = #{razonSocial,jdbcType=VARCHAR},
+            DIRECCION              = #{direccion,jdbcType=VARCHAR},
+            TELEFONO               = #{telefono,jdbcType=VARCHAR},
+            NOMBRE_REP_LEGAL       = #{nombreRepLegal,jdbcType=VARCHAR},
+            CARGO_REP_LEG          = #{cargoRepLeg,jdbcType=VARCHAR},
+            TELEFONO_REP_LEG       = #{telefonoRepLeg,jdbcType=VARCHAR},
+            CORREO_REP_LEG         = #{correoRepLeg,jdbcType=VARCHAR},
+            USUARIO_ACTUALIZACION  = #{usuarioActualizacion,jdbcType=VARCHAR},
+            TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+            FECHA_ACTUALIZACION    = #{fechaActualizacion,jdbcType=TIMESTAMP}
+        where TRIM(COD_CONSUMIDOR_INDE) = TRIM(#{codConsumidorInde,jdbcType=CHAR})
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE
+        where TRIM(COD_CONSUMIDOR_INDE) = TRIM(#{codConsumidorInde,jdbcType=CHAR})
+    </delete>
+
+    <resultMap id="BaseResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.consumirIdependiente.AdmConsumidorIndependienteDTO">
+        <!--@Table ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE-->
+        <result column="COD_CONSUMIDOR_INDE" jdbcType="CHAR" property="codConsumidorInde"/>
+        <result column="RAZON_SOCIAL" jdbcType="VARCHAR" property="razonSocial"/>
+        <result column="TELEFONO" jdbcType="VARCHAR" property="telefono"/>
+        <result column="NOMBRE_REP_LEGAL" jdbcType="VARCHAR" property="nombreRepLegal"/>
+        <result column="CARGO_REP_LEG" jdbcType="VARCHAR" property="cargoRepLeg"/>
+        <result column="TELEFONO_REP_LEG" jdbcType="VARCHAR" property="telefonoRepLeg"/>
+        <result column="CORREO_REP_LEG" jdbcType="VARCHAR" property="correoRepLeg"/>
+        <result column="DIRECCION" jdbcType="VARCHAR" property="direccion"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_CONSUMIDOR_INDE,
+               RAZON_SOCIAL,
+               TELEFONO,
+               NOMBRE_REP_LEGAL,
+               CARGO_REP_LEG,
+               TELEFONO_REP_LEG,
+               CORREO_REP_LEG,
+               DIRECCION
+        from ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE
+    </select>
+
+    <select id="filtrar" resultMap="BaseResultMapDTO">
+        select COD_CONSUMIDOR_INDE,
+               RAZON_SOCIAL,
+               TELEFONO,
+               NOMBRE_REP_LEGAL,
+               CARGO_REP_LEG,
+               TELEFONO_REP_LEG,
+               CORREO_REP_LEG,
+               DIRECCION
+        FROM ADMIN_GART.ADM_CONSUMIDOR_INDEPENDIENTE
+        WHERE 1 = 1
+        <if test="codConsumidorInde != null and codConsumidorInde != ''">
+            AND UPPER(
+                        TRANSLATE(COD_CONSUMIDOR_INDE, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) LIKE '%' || UPPER(
+                    TRANSLATE(#{codConsumidorInde}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                              ) || '%'
+        </if>
+        <if test="razonSocial != null and razonSocial != ''">
+            AND UPPER(
+                        TRANSLATE(RAZON_SOCIAL, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                ) LIKE '%' || UPPER(
+                    TRANSLATE(#{razonSocial}, 'ÁÉÍÓÚáéíóú', 'AEIOUaeiou')
+                              ) || '%'
+        </if>
+        <if test="sort != null and sort != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

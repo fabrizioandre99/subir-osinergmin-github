@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmAreaDemandaMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmAreaDemanda">
+        <!--@Table ADMIN_GART.ADM_AREA_DEMANDA-->
+        <id column="AREA_DEMANDA" jdbcType="INTEGER" property="areaDemanda"/>
+        <result column="DSC_AREA_DEMANDA" jdbcType="VARCHAR" property="dscAreaDemanda"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        <result column="NO_CONJUNTO" jdbcType="VARCHAR" property="noConjunto"/>
+        <result column="IP_CREACION" jdbcType="VARCHAR" property="ipCreacion"/>
+        <result column="US_ACTUALIZACION" jdbcType="VARCHAR" property="usActualizacion"/>
+        <result column="IP_ACTUALIZACION" jdbcType="VARCHAR" property="ipActualizacion"/>
+        <result column="FE_ACTUALIZACION" jdbcType="TIMESTAMP" property="feActualizacion"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        AREA_DEMANDA,
+        DSC_AREA_DEMANDA,
+        ESTADO,
+        AD_COD_USUARIO,
+        AD_FECHA,
+        NO_CONJUNTO,
+        IP_CREACION,
+        US_ACTUALIZACION,
+        IP_ACTUALIZACION,
+        FE_ACTUALIZACION
+    </sql>
+
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmAreaDemanda">
+        insert into ADMIN_GART.ADM_AREA_DEMANDA (AREA_DEMANDA, DSC_AREA_DEMANDA, ESTADO,
+                                                 AD_COD_USUARIO, AD_FECHA, NO_CONJUNTO,
+                                                 IP_CREACION, US_ACTUALIZACION, IP_ACTUALIZACION,
+                                                 FE_ACTUALIZACION)
+        values (#{areaDemanda,jdbcType=INTEGER}, #{dscAreaDemanda,jdbcType=VARCHAR}, #{estado,jdbcType=CHAR},
+                #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP}, #{noConjunto,jdbcType=VARCHAR},
+                #{ipCreacion,jdbcType=VARCHAR}, #{usActualizacion,jdbcType=VARCHAR},
+                #{ipActualizacion,jdbcType=VARCHAR},
+                #{feActualizacion,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmAreaDemanda">
+        insert into ADMIN_GART.ADM_AREA_DEMANDA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="areaDemanda != null">
+                AREA_DEMANDA,
+            </if>
+            <if test="dscAreaDemanda != null">
+                DSC_AREA_DEMANDA,
+            </if>
+            <if test="estado != null">
+                ESTADO,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+            <if test="noConjunto != null">
+                NO_CONJUNTO,
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION,
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION,
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION,
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="areaDemanda != null">
+                #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="dscAreaDemanda != null">
+                #{dscAreaDemanda,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="noConjunto != null">
+                #{noConjunto,jdbcType=VARCHAR},
+            </if>
+            <if test="ipCreacion != null">
+                #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmAreaDemanda">
+        update ADMIN_GART.ADM_AREA_DEMANDA
+        <set>
+            <if test="dscAreaDemanda != null">
+                DSC_AREA_DEMANDA = #{dscAreaDemanda,jdbcType=VARCHAR},
+            </if>
+            <if test="estado != null">
+                ESTADO = #{estado,jdbcType=CHAR},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="noConjunto != null">
+                NO_CONJUNTO = #{noConjunto,jdbcType=VARCHAR},
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION = #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where AREA_DEMANDA = #{areaDemanda,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmAreaDemanda">
+        update ADMIN_GART.ADM_AREA_DEMANDA
+        set DSC_AREA_DEMANDA = #{dscAreaDemanda,jdbcType=VARCHAR},
+            ESTADO           = #{estado,jdbcType=CHAR},
+            AD_COD_USUARIO   = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA         = #{adFecha,jdbcType=TIMESTAMP},
+            NO_CONJUNTO      = #{noConjunto,jdbcType=VARCHAR},
+            US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+            FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP}
+        where trim(AREA_DEMANDA) = trim(#{areaDemanda,jdbcType=INTEGER})
+    </update>
+
+    <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.areaDemanda.AdmAreaDemandaDTO">
+        <!--@Table ADMIN_GART.ADM_AREA_DEMANDA-->
+        <result column="AREA_DEMANDA" jdbcType="INTEGER" property="areaDemanda"/>
+        <result column="DSC_AREA_DEMANDA" jdbcType="VARCHAR" property="dscAreaDemanda"/>
+        <result column="ESTADO" jdbcType="CHAR" property="estado"/>
+        <result column="NO_CONJUNTO" jdbcType="VARCHAR" property="noConjunto"/>
+    </resultMap>
+    <select id="listarAreas" resultMap="BaseResultMapDTO">
+        select AREA_DEMANDA,
+               DSC_AREA_DEMANDA,
+               ESTADO,
+               NO_CONJUNTO
+        from ADMIN_GART.ADM_AREA_DEMANDA
+    </select>
+
+    <delete id="deleteByPrimaryKey">
+        delete
+        from ADMIN_GART.ADM_AREA_DEMANDA
+        where trim(AREA_DEMANDA) = trim(#{areaDemanda,jdbcType=INTEGER})
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_AREA_DEMANDA
+        where trim(AREA_DEMANDA) = trim(#{areaDemanda,jdbcType=INTEGER})
+    </select>
+
+    <select id="filtrar" resultMap="BaseResultMapDTO">
+        SELECT AREA_DEMANDA,
+               DSC_AREA_DEMANDA,
+               ESTADO,
+               NO_CONJUNTO
+        FROM ADMIN_GART.ADM_AREA_DEMANDA
+        WHERE 1 = 1
+        <if test="areaDemanda != null">
+            AND UPPER(TRANSLATE(AREA_DEMANDA, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{areaDemanda}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="dscAreaDemanda != null and dscAreaDemanda != ''">
+            AND UPPER(TRANSLATE(DSC_AREA_DEMANDA, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{dscAreaDemanda}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="noConjunto != null and noConjunto != ''">
+            AND UPPER(TRANSLATE(NO_CONJUNTO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{noConjunto}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>

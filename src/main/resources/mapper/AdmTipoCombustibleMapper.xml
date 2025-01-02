@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTipoCombustibleMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCombustible">
+    <!--@Table ADMIN_GART.ADM_TIPO_COMBUSTIBLE-->
+    <id column="COD_TIPO_COMBUSTIBLE" jdbcType="CHAR" property="codTipoCombustible" />
+    <result column="NOM_TIPO_COMBUSTIBLE" jdbcType="VARCHAR" property="nomTipoCombustible" />
+    <result column="COD_GRUPO_COMBUSTIBLE" jdbcType="CHAR" property="codGrupoCombustible" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+    <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario" />
+    <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    COD_TIPO_COMBUSTIBLE, NOM_TIPO_COMBUSTIBLE, COD_GRUPO_COMBUSTIBLE, ESTADO, AD_COD_USUARIO, 
+    AD_FECHA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TIPO_COMBUSTIBLE
+    where trim(COD_TIPO_COMBUSTIBLE) = trim(#{codTipoCombustible,jdbcType=CHAR})
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from ADMIN_GART.ADM_TIPO_COMBUSTIBLE
+    where trim(COD_TIPO_COMBUSTIBLE) = trim(#{codTipoCombustible,jdbcType=CHAR})
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCombustible">
+    insert into ADMIN_GART.ADM_TIPO_COMBUSTIBLE (COD_TIPO_COMBUSTIBLE, NOM_TIPO_COMBUSTIBLE, 
+      COD_GRUPO_COMBUSTIBLE, ESTADO, AD_COD_USUARIO, 
+      AD_FECHA)
+    values (#{codTipoCombustible,jdbcType=CHAR}, #{nomTipoCombustible,jdbcType=VARCHAR}, 
+      #{codGrupoCombustible,jdbcType=CHAR}, #{estado,jdbcType=CHAR}, #{adCodUsuario,jdbcType=VARCHAR}, 
+      #{adFecha,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCombustible">
+    insert into ADMIN_GART.ADM_TIPO_COMBUSTIBLE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="codTipoCombustible != null">
+        COD_TIPO_COMBUSTIBLE,
+      </if>
+      <if test="nomTipoCombustible != null">
+        NOM_TIPO_COMBUSTIBLE,
+      </if>
+      <if test="codGrupoCombustible != null">
+        COD_GRUPO_COMBUSTIBLE,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO,
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="codTipoCombustible != null">
+        #{codTipoCombustible,jdbcType=CHAR},
+      </if>
+      <if test="nomTipoCombustible != null">
+        #{nomTipoCombustible,jdbcType=VARCHAR},
+      </if>
+      <if test="codGrupoCombustible != null">
+        #{codGrupoCombustible,jdbcType=CHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCombustible">
+    update ADMIN_GART.ADM_TIPO_COMBUSTIBLE
+    <set>
+      <if test="nomTipoCombustible != null">
+        NOM_TIPO_COMBUSTIBLE = #{nomTipoCombustible,jdbcType=VARCHAR},
+      </if>
+      <if test="codGrupoCombustible != null">
+        COD_GRUPO_COMBUSTIBLE = #{codGrupoCombustible,jdbcType=CHAR},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=CHAR},
+      </if>
+      <if test="adCodUsuario != null">
+        AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      </if>
+      <if test="adFecha != null">
+        AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where COD_TIPO_COMBUSTIBLE = #{codTipoCombustible,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTipoCombustible">
+    update ADMIN_GART.ADM_TIPO_COMBUSTIBLE
+    set NOM_TIPO_COMBUSTIBLE = #{nomTipoCombustible,jdbcType=VARCHAR},
+      COD_GRUPO_COMBUSTIBLE = #{codGrupoCombustible,jdbcType=CHAR},
+      ESTADO = #{estado,jdbcType=CHAR},
+      AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+      AD_FECHA = #{adFecha,jdbcType=TIMESTAMP}
+    where trim(COD_TIPO_COMBUSTIBLE) = trim(#{codTipoCombustible,jdbcType=CHAR})
+  </update>
+
+  <resultMap id="BaseResultMapDTO" type="pe.gob.osinergmin.prie.admin.backend.dto.tipoCombustible.AdmTipoCombustibleDTO">
+    <!--@Table ADMIN_GART.ADM_TIPO_COMBUSTIBLE-->
+    <result column="COD_TIPO_COMBUSTIBLE" jdbcType="CHAR" property="codTipoCombustible" />
+    <result column="NOM_TIPO_COMBUSTIBLE" jdbcType="VARCHAR" property="nomTipoCombustible" />
+    <result column="COD_GRUPO_COMBUSTIBLE" jdbcType="CHAR" property="codGrupoCombustible" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+
+  <select id="listartodo" resultMap="BaseResultMapDTO">
+    select
+      COD_TIPO_COMBUSTIBLE, NOM_TIPO_COMBUSTIBLE, COD_GRUPO_COMBUSTIBLE, ESTADO
+    from ADMIN_GART.ADM_TIPO_COMBUSTIBLE
+    </select>
+
+  <select id="filtrarTipoCombustible" resultMap="BaseResultMapDTO">
+    select
+    COD_TIPO_COMBUSTIBLE, NOM_TIPO_COMBUSTIBLE, COD_GRUPO_COMBUSTIBLE, ESTADO
+    from ADMIN_GART.ADM_TIPO_COMBUSTIBLE
+    WHERE
+    1 = 1
+    <if test="codTipoCombustible != null and codTipoCombustible != ''">
+      AND LOWER(TRANSLATE(COD_TIPO_COMBUSTIBLE, 'ÁÉÍÓÚáéíóúÑñ', 'AEIOUaeiounn')) LIKE '%' || LOWER(TRANSLATE(#{codTipoCombustible}, 'ÁÉÍÓÚáéíóúÑñ', 'AEIOUaeiounn')) || '%'
+    </if>
+    <if test="nomTipoCombustible != null and nomTipoCombustible != ''">
+      AND LOWER(TRANSLATE(NOM_TIPO_COMBUSTIBLE, 'ÁÉÍÓÚáéíóúÑñ', 'AEIOUaeiounn')) LIKE '%' || LOWER(TRANSLATE(#{nomTipoCombustible}, 'ÁÉÍÓÚáéíóúÑñ', 'AEIOUaeiounn')) || '%'
+    </if>
+    <if test="sort != null and sort != '' and order != null and order != ''">
+      order by ${sort} ${order}
+    </if>
+  </select>
+</mapper>

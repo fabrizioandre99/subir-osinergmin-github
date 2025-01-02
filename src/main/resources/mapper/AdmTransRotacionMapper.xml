@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmTransRotacionMapper">
+  <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransRotacion">
+    <!--@Table ADMIN_GART.ADM_TRANS_ROTACION-->
+    <id column="ID_TRANSF_ROTACION" jdbcType="DECIMAL" property="idTransfRotacion" />
+    <id column="USUARIO_CREACION" jdbcType="VARCHAR" property="usuarioCreacion" />
+    <result column="COD_SUBESTACION" jdbcType="CHAR" property="codSubestacion" />
+    <result column="ID_TRANSFORMADOR" jdbcType="DECIMAL" property="idTransformador" />
+    <result column="COD_SUBESTACION_DESTINO" jdbcType="CHAR" property="codSubestacionDestino" />
+    <result column="FEC_MOVIMIENTO" jdbcType="TIMESTAMP" property="fecMovimiento" />
+    <result column="TERMINAL_CREACION" jdbcType="VARCHAR" property="terminalCreacion" />
+    <result column="FECHA_CREACION" jdbcType="TIMESTAMP" property="fechaCreacion" />
+    <result column="USUARIO_ACTUALIZACION" jdbcType="VARCHAR" property="usuarioActualizacion" />
+    <result column="TERMINAL_ACTUALIZACION" jdbcType="VARCHAR" property="terminalActualizacion" />
+    <result column="FECHA_ACTUALIZACION" jdbcType="TIMESTAMP" property="fechaActualizacion" />
+    <result column="USUARIO_ELIMINACION" jdbcType="VARCHAR" property="usuarioEliminacion" />
+    <result column="TERMINAL_ELIMINACION" jdbcType="VARCHAR" property="terminalEliminacion" />
+    <result column="FECHA_ELIMINACION" jdbcType="TIMESTAMP" property="fechaEliminacion" />
+    <result column="SITUACION" jdbcType="CHAR" property="situacion" />
+    <result column="ESTADO" jdbcType="CHAR" property="estado" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID_TRANSF_ROTACION, USUARIO_CREACION, COD_SUBESTACION, ID_TRANSFORMADOR, COD_SUBESTACION_DESTINO, 
+    FEC_MOVIMIENTO, TERMINAL_CREACION, FECHA_CREACION, USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION, 
+    FECHA_ACTUALIZACION, USUARIO_ELIMINACION, TERMINAL_ELIMINACION, FECHA_ELIMINACION, 
+    SITUACION, ESTADO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ADMIN_GART.ADM_TRANS_ROTACION
+    where ID_TRANSF_ROTACION = #{idTransfRotacion,jdbcType=DECIMAL}
+      and USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from ADMIN_GART.ADM_TRANS_ROTACION
+    where ID_TRANSF_ROTACION = #{idTransfRotacion,jdbcType=DECIMAL}
+      and USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransRotacion">
+    insert into ADMIN_GART.ADM_TRANS_ROTACION (ID_TRANSF_ROTACION, USUARIO_CREACION, 
+      COD_SUBESTACION, ID_TRANSFORMADOR, COD_SUBESTACION_DESTINO, 
+      FEC_MOVIMIENTO, TERMINAL_CREACION, FECHA_CREACION, 
+      USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION, 
+      FECHA_ACTUALIZACION, USUARIO_ELIMINACION, 
+      TERMINAL_ELIMINACION, FECHA_ELIMINACION, 
+      SITUACION, ESTADO)
+    values (#{idTransfRotacion,jdbcType=DECIMAL}, #{usuarioCreacion,jdbcType=VARCHAR}, 
+      #{codSubestacion,jdbcType=CHAR}, #{idTransformador,jdbcType=DECIMAL}, #{codSubestacionDestino,jdbcType=CHAR}, 
+      #{fecMovimiento,jdbcType=TIMESTAMP}, #{terminalCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP}, 
+      #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR}, 
+      #{fechaActualizacion,jdbcType=TIMESTAMP}, #{usuarioEliminacion,jdbcType=VARCHAR}, 
+      #{terminalEliminacion,jdbcType=VARCHAR}, #{fechaEliminacion,jdbcType=TIMESTAMP}, 
+      #{situacion,jdbcType=CHAR}, #{estado,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransRotacion">
+    insert into ADMIN_GART.ADM_TRANS_ROTACION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="idTransfRotacion != null">
+        ID_TRANSF_ROTACION,
+      </if>
+      <if test="usuarioCreacion != null">
+        USUARIO_CREACION,
+      </if>
+      <if test="codSubestacion != null">
+        COD_SUBESTACION,
+      </if>
+      <if test="idTransformador != null">
+        ID_TRANSFORMADOR,
+      </if>
+      <if test="codSubestacionDestino != null">
+        COD_SUBESTACION_DESTINO,
+      </if>
+      <if test="fecMovimiento != null">
+        FEC_MOVIMIENTO,
+      </if>
+      <if test="terminalCreacion != null">
+        TERMINAL_CREACION,
+      </if>
+      <if test="fechaCreacion != null">
+        FECHA_CREACION,
+      </if>
+      <if test="usuarioActualizacion != null">
+        USUARIO_ACTUALIZACION,
+      </if>
+      <if test="terminalActualizacion != null">
+        TERMINAL_ACTUALIZACION,
+      </if>
+      <if test="fechaActualizacion != null">
+        FECHA_ACTUALIZACION,
+      </if>
+      <if test="usuarioEliminacion != null">
+        USUARIO_ELIMINACION,
+      </if>
+      <if test="terminalEliminacion != null">
+        TERMINAL_ELIMINACION,
+      </if>
+      <if test="fechaEliminacion != null">
+        FECHA_ELIMINACION,
+      </if>
+      <if test="situacion != null">
+        SITUACION,
+      </if>
+      <if test="estado != null">
+        ESTADO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="idTransfRotacion != null">
+        #{idTransfRotacion,jdbcType=DECIMAL},
+      </if>
+      <if test="usuarioCreacion != null">
+        #{usuarioCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="codSubestacion != null">
+        #{codSubestacion,jdbcType=CHAR},
+      </if>
+      <if test="idTransformador != null">
+        #{idTransformador,jdbcType=DECIMAL},
+      </if>
+      <if test="codSubestacionDestino != null">
+        #{codSubestacionDestino,jdbcType=CHAR},
+      </if>
+      <if test="fecMovimiento != null">
+        #{fecMovimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminalCreacion != null">
+        #{terminalCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaCreacion != null">
+        #{fechaCreacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioActualizacion != null">
+        #{usuarioActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalActualizacion != null">
+        #{terminalActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaActualizacion != null">
+        #{fechaActualizacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioEliminacion != null">
+        #{usuarioEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalEliminacion != null">
+        #{terminalEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEliminacion != null">
+        #{fechaEliminacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="situacion != null">
+        #{situacion,jdbcType=CHAR},
+      </if>
+      <if test="estado != null">
+        #{estado,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransRotacion">
+    update ADMIN_GART.ADM_TRANS_ROTACION
+    <set>
+      <if test="codSubestacion != null">
+        COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR},
+      </if>
+      <if test="idTransformador != null">
+        ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL},
+      </if>
+      <if test="codSubestacionDestino != null">
+        COD_SUBESTACION_DESTINO = #{codSubestacionDestino,jdbcType=CHAR},
+      </if>
+      <if test="fecMovimiento != null">
+        FEC_MOVIMIENTO = #{fecMovimiento,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminalCreacion != null">
+        TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaCreacion != null">
+        FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioActualizacion != null">
+        USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalActualizacion != null">
+        TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaActualizacion != null">
+        FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="usuarioEliminacion != null">
+        USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalEliminacion != null">
+        TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+      </if>
+      <if test="fechaEliminacion != null">
+        FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+      </if>
+      <if test="situacion != null">
+        SITUACION = #{situacion,jdbcType=CHAR},
+      </if>
+      <if test="estado != null">
+        ESTADO = #{estado,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID_TRANSF_ROTACION = #{idTransfRotacion,jdbcType=DECIMAL}
+      and USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmTransRotacion">
+    update ADMIN_GART.ADM_TRANS_ROTACION
+    set COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR},
+      ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL},
+      COD_SUBESTACION_DESTINO = #{codSubestacionDestino,jdbcType=CHAR},
+      FEC_MOVIMIENTO = #{fecMovimiento,jdbcType=TIMESTAMP},
+      TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+      FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+      USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+      TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+      FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+      USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+      TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+      FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+      SITUACION = #{situacion,jdbcType=CHAR},
+      ESTADO = #{estado,jdbcType=CHAR}
+    where ID_TRANSF_ROTACION = #{idTransfRotacion,jdbcType=DECIMAL}
+      and USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteByTransformadorId" parameterType="java.lang.Integer">
+    DELETE FROM ADMIN_GART.ADM_TRANS_ROTACION WHERE ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL}
+  </delete>
+
+  <insert id="insertarNuevo" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.transRotacion.TransRotacionDTO">
+    insert into ADMIN_GART.ADM_TRANS_ROTACION (
+    ID_TRANSF_ROTACION, USUARIO_CREACION,
+    COD_SUBESTACION, ID_TRANSFORMADOR, COD_SUBESTACION_DESTINO,
+    FEC_MOVIMIENTO, TERMINAL_CREACION, FECHA_CREACION,
+    USUARIO_ACTUALIZACION, TERMINAL_ACTUALIZACION,
+    FECHA_ACTUALIZACION, USUARIO_ELIMINACION,
+    TERMINAL_ELIMINACION, FECHA_ELIMINACION,
+    SITUACION, ESTADO
+    )
+    values (
+    #{idTransfRotacion,jdbcType=DECIMAL}, #{usuarioCreacion,jdbcType=VARCHAR},
+    #{codSubestacion,jdbcType=CHAR}, #{idTransformador,jdbcType=DECIMAL}, #{codSubestacionDestino,jdbcType=CHAR},
+    TO_DATE(#{fecMovimiento}, 'yyyy-MM-dd'), #{terminalCreacion,jdbcType=VARCHAR}, #{fechaCreacion,jdbcType=TIMESTAMP},
+    #{usuarioActualizacion,jdbcType=VARCHAR}, #{terminalActualizacion,jdbcType=VARCHAR},
+    #{fechaActualizacion,jdbcType=TIMESTAMP}, #{usuarioEliminacion,jdbcType=VARCHAR},
+    #{terminalEliminacion,jdbcType=VARCHAR}, #{fechaEliminacion,jdbcType=TIMESTAMP},
+    #{situacion,jdbcType=CHAR}, #{estado,jdbcType=CHAR}
+    )
+  </insert>
+
+  <update id="actualizarNuevo"  parameterType="pe.gob.osinergmin.prie.admin.backend.dto.transRotacion.TransRotacionDTO">
+    update ADMIN_GART.ADM_TRANS_ROTACION
+    set COD_SUBESTACION = #{codSubestacion,jdbcType=CHAR},
+    ID_TRANSFORMADOR = #{idTransformador,jdbcType=DECIMAL},
+    COD_SUBESTACION_DESTINO = #{codSubestacionDestino,jdbcType=CHAR},
+    FEC_MOVIMIENTO = TO_DATE(#{fecMovimiento}, 'yyyy-MM-dd'),
+    TERMINAL_CREACION = #{terminalCreacion,jdbcType=VARCHAR},
+    FECHA_CREACION = #{fechaCreacion,jdbcType=TIMESTAMP},
+    USUARIO_ACTUALIZACION = #{usuarioActualizacion,jdbcType=VARCHAR},
+    TERMINAL_ACTUALIZACION = #{terminalActualizacion,jdbcType=VARCHAR},
+    FECHA_ACTUALIZACION = #{fechaActualizacion,jdbcType=TIMESTAMP},
+    USUARIO_ELIMINACION = #{usuarioEliminacion,jdbcType=VARCHAR},
+    TERMINAL_ELIMINACION = #{terminalEliminacion,jdbcType=VARCHAR},
+    FECHA_ELIMINACION = #{fechaEliminacion,jdbcType=TIMESTAMP},
+    SITUACION = #{situacion,jdbcType=CHAR},
+    ESTADO = #{estado,jdbcType=CHAR}
+    where ID_TRANSF_ROTACION = #{idTransfRotacion,jdbcType=DECIMAL}
+    and USUARIO_CREACION = #{usuarioCreacion,jdbcType=VARCHAR}
+  </update>
+
+  <resultMap id="TransRotacionDTOResultMap" type="pe.gob.osinergmin.prie.admin.backend.dto.transRotacion.TransRotacionDTO">
+    <result property="idTransfRotacion" column="ID_TRANSF_ROTACION"/>
+    <result property="usuarioCreacion" column="USUARIO_CREACION"/>
+    <result property="codSubestacion" column="COD_SUBESTACION"/>
+    <result property="idTransformador" column="ID_TRANSFORMADOR"/>
+    <result property="codSubestacionDestino" column="COD_SUBESTACION_DESTINO"/>
+    <result property="fecMovimiento" column="FEC_MOVIMIENTO"/>
+    <result property="situacion" column="SITUACION"/>
+    <result property="estado" column="ESTADO"/>
+  </resultMap>
+
+  <select id="selectByTransformadorId" parameterType="java.lang.Integer" resultMap="TransRotacionDTOResultMap">
+    SELECT
+    ID_TRANSF_ROTACION,
+    USUARIO_CREACION,
+    COD_SUBESTACION,
+    ID_TRANSFORMADOR,
+    COD_SUBESTACION_DESTINO,
+    TO_CHAR(FEC_MOVIMIENTO, 'YYYY-MM-DD') AS FEC_MOVIMIENTO,
+    SITUACION,
+    ESTADO
+    FROM
+    ADMIN_GART.ADM_TRANS_ROTACION
+    WHERE
+    ID_TRANSFORMADOR = #{idTransformador}
+  </select>
+
+  <select id="getNextId" resultType="java.lang.Integer">
+    SELECT SEQ_ID_TRANS_ROTACION.NEXTVAL FROM DUAL
+  </select>
+
+</mapper>

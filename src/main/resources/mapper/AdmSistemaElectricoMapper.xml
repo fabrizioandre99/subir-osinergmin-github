@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.gob.osinergmin.prie.admin.backend.mapper.AdmSistemaElectricoMapper">
+    <resultMap id="BaseResultMap" type="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectrico">
+        <!--@Table ADMIN_GART.ADM_SISTEMA_ELECTRICO-->
+        <id column="COD_SIS_ELEC" jdbcType="CHAR" property="codSisElec"/>
+        <result column="NOM_SIS_ELEC" jdbcType="VARCHAR" property="nomSisElec"/>
+        <result column="COD_EMPRESA" jdbcType="CHAR" property="codEmpresa"/>
+        <result column="TIP_SIS_ELEC" jdbcType="CHAR" property="tipSisElec"/>
+        <result column="FEC_ALTA" jdbcType="TIMESTAMP" property="fecAlta"/>
+        <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja"/>
+        <result column="COD_SECTOR_TIPICO" jdbcType="CHAR" property="codSectorTipico"/>
+        <result column="FEC_INTERCON" jdbcType="TIMESTAMP" property="fecIntercon"/>
+        <result column="AREA_DEMANDA" jdbcType="INTEGER" property="areaDemanda"/>
+        <result column="AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+        <result column="AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        <result column="IP_CREACION" jdbcType="VARCHAR" property="ipCreacion"/>
+        <result column="US_ACTUALIZACION" jdbcType="VARCHAR" property="usActualizacion"/>
+        <result column="IP_ACTUALIZACION" jdbcType="VARCHAR" property="ipActualizacion"/>
+        <result column="FE_ACTUALIZACION" jdbcType="TIMESTAMP" property="feActualizacion"/>
+        <result column="ES_SIS_ELEC" jdbcType="CHAR" property="esSisElec"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        COD_SIS_ELEC,
+        NOM_SIS_ELEC,
+        COD_EMPRESA,
+        TIP_SIS_ELEC,
+        FEC_ALTA,
+        FEC_BAJA,
+        COD_SECTOR_TIPICO,
+        FEC_INTERCON,
+        AREA_DEMANDA,
+        AD_COD_USUARIO,
+        AD_FECHA,
+        IP_CREACION,
+        US_ACTUALIZACION,
+        IP_ACTUALIZACION,
+        FE_ACTUALIZACION,
+        ES_SIS_ELEC
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ADMIN_GART.ADM_SISTEMA_ELECTRICO
+        where trim(COD_SIS_ELEC) = trim(#{codSisElec,jdbcType=CHAR})
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete
+        from ADMIN_GART.ADM_SISTEMA_ELECTRICO
+        where COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+    </delete>
+    <insert id="insertSelective" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectrico">
+        insert into ADMIN_GART.ADM_SISTEMA_ELECTRICO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="codSisElec != null">
+                COD_SIS_ELEC,
+            </if>
+            <if test="nomSisElec != null">
+                NOM_SIS_ELEC,
+            </if>
+            <if test="codEmpresa != null">
+                COD_EMPRESA,
+            </if>
+            <if test="tipSisElec != null">
+                TIP_SIS_ELEC,
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA,
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA,
+            </if>
+            <if test="codSectorTipico != null">
+                COD_SECTOR_TIPICO,
+            </if>
+            <if test="fecIntercon != null">
+                FEC_INTERCON,
+            </if>
+            <if test="areaDemanda != null">
+                AREA_DEMANDA,
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO,
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA,
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION,
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION,
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION,
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION,
+            </if>
+            <if test="esSisElec != null">
+                ES_SIS_ELEC,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="codSisElec != null">
+                #{codSisElec,jdbcType=CHAR},
+            </if>
+            <if test="nomSisElec != null">
+                #{nomSisElec,jdbcType=VARCHAR},
+            </if>
+            <if test="codEmpresa != null">
+                #{codEmpresa,jdbcType=CHAR},
+            </if>
+            <if test="tipSisElec != null">
+                #{tipSisElec,jdbcType=CHAR},
+            </if>
+            <if test="fecAlta != null">
+                #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codSectorTipico != null">
+                #{codSectorTipico,jdbcType=CHAR},
+            </if>
+            <if test="fecIntercon != null">
+                #{fecIntercon,jdbcType=TIMESTAMP},
+            </if>
+            <if test="areaDemanda != null">
+                #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="adCodUsuario != null">
+                #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ipCreacion != null">
+                #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="esSisElec != null">
+                #{esSisElec,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectrico">
+        update ADMIN_GART.ADM_SISTEMA_ELECTRICO
+        <set>
+            <if test="nomSisElec != null">
+                NOM_SIS_ELEC = #{nomSisElec,jdbcType=VARCHAR},
+            </if>
+            <if test="codEmpresa != null">
+                COD_EMPRESA = #{codEmpresa,jdbcType=CHAR},
+            </if>
+            <if test="tipSisElec != null">
+                TIP_SIS_ELEC = #{tipSisElec,jdbcType=CHAR},
+            </if>
+            <if test="fecAlta != null">
+                FEC_ALTA = #{fecAlta,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fecBaja != null">
+                FEC_BAJA = #{fecBaja,jdbcType=TIMESTAMP},
+            </if>
+            <if test="codSectorTipico != null">
+                COD_SECTOR_TIPICO = #{codSectorTipico,jdbcType=CHAR},
+            </if>
+            <if test="fecIntercon != null">
+                FEC_INTERCON = #{fecIntercon,jdbcType=TIMESTAMP},
+            </if>
+            <if test="areaDemanda != null">
+                AREA_DEMANDA = #{areaDemanda,jdbcType=DECIMAL},
+            </if>
+            <if test="adCodUsuario != null">
+                AD_COD_USUARIO = #{adCodUsuario,jdbcType=VARCHAR},
+            </if>
+            <if test="adFecha != null">
+                AD_FECHA = #{adFecha,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ipCreacion != null">
+                IP_CREACION = #{ipCreacion,jdbcType=VARCHAR},
+            </if>
+            <if test="usActualizacion != null">
+                US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="ipActualizacion != null">
+                IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+            </if>
+            <if test="feActualizacion != null">
+                FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP},
+            </if>
+            <if test="esSisElec != null">
+                ES_SIS_ELEC = #{esSisElec,jdbcType=CHAR},
+            </if>
+        </set>
+        where COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="pe.gob.osinergmin.prie.admin.backend.domain.AdmSistemaElectrico">
+        update ADMIN_GART.ADM_SISTEMA_ELECTRICO
+        set NOM_SIS_ELEC      = #{nomSisElec,jdbcType=VARCHAR},
+            COD_EMPRESA       = #{codEmpresa,jdbcType=CHAR},
+            TIP_SIS_ELEC      = #{tipSisElec,jdbcType=CHAR},
+            FEC_ALTA          = #{fecAlta,jdbcType=TIMESTAMP},
+            FEC_BAJA          = #{fecBaja,jdbcType=TIMESTAMP},
+            COD_SECTOR_TIPICO = #{codSectorTipico,jdbcType=CHAR},
+            FEC_INTERCON      = #{fecIntercon,jdbcType=TIMESTAMP},
+            AREA_DEMANDA      = #{areaDemanda,jdbcType=INTEGER},
+            AD_COD_USUARIO    = #{adCodUsuario,jdbcType=VARCHAR},
+            AD_FECHA          = #{adFecha,jdbcType=TIMESTAMP},
+            IP_CREACION       = #{ipCreacion,jdbcType=VARCHAR},
+            US_ACTUALIZACION  = #{usActualizacion,jdbcType=VARCHAR},
+            IP_ACTUALIZACION  = #{ipActualizacion,jdbcType=VARCHAR},
+            FE_ACTUALIZACION  = #{feActualizacion,jdbcType=TIMESTAMP},
+            ES_SIS_ELEC       = #{esSisElec,jdbcType=CHAR}
+        where COD_SIS_ELEC = #{codSisElec,jdbcType=CHAR}
+    </update>
+
+    <insert id="insert" parameterType="pe.gob.osinergmin.prie.admin.backend.dto.sisElectrico.SistemaElectricoInsertDTO">
+        insert into ADMIN_GART.ADM_SISTEMA_ELECTRICO (COD_SIS_ELEC, NOM_SIS_ELEC, COD_EMPRESA,
+                                                      TIP_SIS_ELEC, FEC_ALTA, FEC_BAJA,
+                                                      COD_SECTOR_TIPICO, FEC_INTERCON, AREA_DEMANDA,
+                                                      AD_COD_USUARIO, AD_FECHA, IP_CREACION, ES_SIS_ELEC)
+        values (#{codSisElec,jdbcType=CHAR}, #{nomSisElec,jdbcType=VARCHAR}, #{codEmpresa,jdbcType=CHAR},
+                #{tipSisElec,jdbcType=CHAR}, TO_DATE(#{fecAlta,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+                TO_DATE(#{fecBaja,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+                #{codSectorTipico,jdbcType=CHAR},
+                TO_DATE(#{fecIntercon,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+                #{areaDemanda,jdbcType=INTEGER},
+                #{adCodUsuario,jdbcType=VARCHAR}, #{adFecha,jdbcType=TIMESTAMP}, #{ipCreacion,jdbcType=VARCHAR},
+                #{esSisElec,jdbcType=CHAR})
+    </insert>
+
+
+    <update id="actualizarDos"
+            parameterType="pe.gob.osinergmin.prie.admin.backend.dto.sisElectrico.SistemaElectricoInsertDTO">
+        update ADMIN_GART.ADM_SISTEMA_ELECTRICO
+        set NOM_SIS_ELEC = #{nomSisElec,jdbcType=VARCHAR},
+            COD_EMPRESA  = #{codEmpresa,jdbcType=CHAR},
+            TIP_SIS_ELEC = #{tipSisElec,jdbcType=CHAR},
+
+        <if test="fecAlta != null and fecAlta != ''">
+            FEC_ALTA = TO_DATE(#{fecAlta,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+        </if>
+        <if test="fecAlta == null or fecAlta == ''">
+            FEC_ALTA = null,
+        </if>
+
+        <if test="fecBaja != null and fecBaja != ''">
+            FEC_BAJA = TO_DATE(#{fecBaja,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+        </if>
+        <if test="fecBaja == null or fecBaja == ''">
+            FEC_BAJA = null,
+        </if>
+
+        COD_SECTOR_TIPICO = #{codSectorTipico,jdbcType=CHAR},
+
+        <if test="fecIntercon != null and fecIntercon != ''">
+            FEC_INTERCON = TO_DATE(#{fecIntercon,jdbcType=VARCHAR}, 'YYYY-MM-DD'),
+        </if>
+        <if test="fecIntercon == null or fecIntercon == ''">
+            FEC_INTERCON = null,
+        </if>
+
+        AREA_DEMANDA     = #{areaDemanda,jdbcType=INTEGER},
+        AD_COD_USUARIO   = #{adCodUsuario,jdbcType=VARCHAR},
+        US_ACTUALIZACION = #{usActualizacion,jdbcType=VARCHAR},
+        IP_ACTUALIZACION = #{ipActualizacion,jdbcType=VARCHAR},
+        FE_ACTUALIZACION = #{feActualizacion,jdbcType=TIMESTAMP},
+        ES_SIS_ELEC      = #{esSisElec,jdbcType=CHAR}
+        where trim(COD_SIS_ELEC) = trim(#{codSisElec,jdbcType=CHAR})
+    </update>
+
+    <resultMap id="BaseResultMapDTO"
+               type="pe.gob.osinergmin.prie.admin.backend.dto.sisElectrico.AdmSistemaElectricoDTO">
+        <result column="COD_SIS_ELEC" jdbcType="CHAR" property="codSisElec"/>
+        <result column="NOM_SIS_ELEC" jdbcType="VARCHAR" property="nomSisElec"/>
+        <result column="COD_EMPRESA" jdbcType="CHAR" property="codEmpresa"/>
+        <result column="TIP_SIS_ELEC" jdbcType="CHAR" property="tipSisElec"/>
+        <result column="FEC_BAJA" jdbcType="TIMESTAMP" property="fecBaja"/>
+        <result column="AREA_DEMANDA" jdbcType="INTEGER" property="areaDemanda"/>
+        <result column="FEC_INTERCON" jdbcType="TIMESTAMP" property="fecIntercon"/>
+        <result column="COD_SECTOR_TIPICO" jdbcType="CHAR" property="codSectorTipico"/>
+        <result column="desEmpresa" jdbcType="VARCHAR" property="desEmpresa"/>
+        <result column="ES_SIS_ELEC" jdbcType="CHAR" property="esSisElec"/>
+        <result column="desAreaDemanda" jdbcType="VARCHAR" property="desAreaDemanda"/>
+        <collection property="sistemaElectricoDets"
+                    ofType="pe.gob.osinergmin.prie.admin.backend.dto.sistemaElectricoDet.SistemaElectricoDetResultDTO"
+                    notNullColumn="ID_SE_DET">
+            <id column="ID_SE_DET" jdbcType="INTEGER" property="idSeDet"/>
+            <result column="det_COD_SIS_ELEC" jdbcType="CHAR" property="codSisElec"/>
+            <result column="FECHA_ASOCIACION" jdbcType="DATE" property="fechaAsociacion"/>
+            <result column="COD_SIS_ELEC_ANT" jdbcType="CHAR" property="codSisElecAnt"/>
+            <result column="det_AD_COD_USUARIO" jdbcType="VARCHAR" property="adCodUsuario"/>
+            <result column="det_AD_FECHA" jdbcType="TIMESTAMP" property="adFecha"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="selectAll" resultMap="BaseResultMapDTO">
+        select COD_SIS_ELEC,
+               NOM_SIS_ELEC,
+               COD_EMPRESA,
+               TIP_SIS_ELEC,
+               FEC_BAJA,
+               AREA_DEMANDA,
+               COD_SECTOR_TIPICO,
+               FEC_INTERCON, ES_SIS_ELEC
+        from ADMIN_GART.ADM_SISTEMA_ELECTRICO
+    </select>
+
+    <select id="filtrar" resultMap="BaseResultMapDTO">
+        SELECT
+        se.COD_SIS_ELEC,
+        se.NOM_SIS_ELEC,
+        se.COD_EMPRESA,
+        se.TIP_SIS_ELEC,
+        se.FEC_BAJA,
+        se.AREA_DEMANDA,
+        se.COD_SECTOR_TIPICO,
+        se.FEC_INTERCON,
+        se.ES_SIS_ELEC,
+        det.ID_SE_DET,
+        det.COD_SIS_ELEC AS det_COD_SIS_ELEC,
+        det.FECHA_ASOCIACION,
+        det.COD_SIS_ELEC_ANT,
+        det.AD_COD_USUARIO AS det_AD_COD_USUARIO,
+        det.AD_FECHA AS det_AD_FECHA,
+        emp.DSC_EMPRESA AS desEmpresa,
+        ad.DSC_AREA_DEMANDA AS desAreaDemanda
+        FROM
+        ADMIN_GART.ADM_SISTEMA_ELECTRICO se
+        LEFT JOIN
+        ADMIN_GART.ADM_SISTEMA_ELECTRICO_DET det ON se.COD_SIS_ELEC = det.COD_SIS_ELEC
+        LEFT JOIN
+        ADMIN_GART.ADM_EMPRESA emp ON se.COD_EMPRESA = emp.COD_EMPRESA
+        LEFT JOIN
+        ADMIN_GART.ADM_AREA_DEMANDA ad ON se.AREA_DEMANDA = ad.AREA_DEMANDA
+        WHERE
+        1 = 1
+        <if test="codSisElec != null and codSisElec != ''">
+            AND UPPER(TRANSLATE(se.COD_SIS_ELEC, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codSisElec}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="nomSisElec != null and nomSisElec != ''">
+            AND UPPER(TRANSLATE(se.NOM_SIS_ELEC, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{nomSisElec}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codEmpresa != null and codEmpresa != ''">
+            AND UPPER(TRANSLATE(se.COD_EMPRESA, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codEmpresa}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="tipSisElec != null and tipSisElec != ''">
+            AND UPPER(TRANSLATE(se.TIP_SIS_ELEC, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{tipSisElec}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="codSectorTipico != null and codSectorTipico != ''">
+            AND UPPER(TRANSLATE(se.COD_SECTOR_TIPICO, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN'))
+                LIKE '%' || UPPER(TRANSLATE(#{codSectorTipico}, 'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÑ', 'AEIOUAEIOUAEIOUN')) || '%'
+        </if>
+        <if test="sort != null and sort != '' and order != null and order != ''">
+            ORDER BY ${sort} ${order}
+        </if>
+    </select>
+</mapper>
